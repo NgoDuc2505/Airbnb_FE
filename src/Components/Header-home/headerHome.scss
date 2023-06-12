@@ -1,0 +1,92 @@
+.header-home{
+    height: 8rem;
+    border-bottom: 0.5px rgba(128, 128, 128, 0.3) solid;
+    padding: 2rem 0;
+    font-weight: 600;
+    p{
+        margin-bottom: 0;
+    }
+    .container-header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        width: 90%;
+        margin: auto;
+    }
+    .left-header{
+        height: 100%;
+        img{
+            height: 100%;
+        }
+    }
+    .mid-header{
+        width: 28%;
+        height: 5rem;
+        font-size: 1.4rem;
+        line-height: 2.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.5rem 0 1.5rem 1.5rem;
+        border-radius: 50px;
+        border: 0.5px solid rgba(128, 128, 128, 0.444);
+        box-shadow: 0 1px 2px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.05);
+        transform: translateX(20%);
+        .location-random{
+            padding: 0 1rem;
+        }
+        .week{
+            padding: 0 2rem;
+            border-left: 0.5px gray solid;
+            border-right: 0.5px gray solid;
+        }
+        .add-customer{
+            display: flex;
+            font-weight: 300;
+            align-items: center;
+            margin-bottom: 0;
+            padding: 0 1rem;
+            .search-btn{
+                margin-left: 2rem;
+                width: 3rem;
+                height:3rem;
+                border-radius: 50%;
+                color: #fff;
+                background-color: #FF385C;
+                border: unset;
+            }
+        }
+    }
+    .right-header{
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        .fa-globe{
+            font-size: 1.8rem;
+        }
+        .login-area{
+            width: 7.7rem;
+            height: 4.2rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            border-radius: 50px;
+            border: 0.5px solid rgba(128, 128, 128, 0.522);
+            padding: 2rem 0rem 2rem 1.2rem;
+            i{
+                display: block;
+                font-size: 1.5rem;
+            }
+            .user-login{
+                width: 3rem;
+                height: 3rem;
+                line-height: 3rem;
+                text-align: center;
+                border-radius: 50%;
+                color: #fff;
+                background-color: #717171;
+            }
+        }
+    }
+}
