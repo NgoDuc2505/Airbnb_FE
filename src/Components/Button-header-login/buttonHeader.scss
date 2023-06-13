@@ -1,0 +1,29 @@
+.ant-modal-content{
+    padding: 0!important;
+    width: 40%;
+    margin-left: auto;
+    .modal-content-header,
+    .modal-content-footer{
+        border-bottom: 0.5px rgba(128, 128, 128, 0.54) solid;
+        padding: 1rem 1rem;
+        a{
+            &:hover{
+                background-color: #80808029;
+            }
+            &:first-child{
+                font-weight: 600;
+                color: #000000;
+            }
+            display: block;
+            font-size: 1.6rem;
+            line-height: 3.6rem;
+            text-decoration: none;
+            color: #808080;
+        }
+    }
+    .modal-content-footer{
+        .help-btn{
+            color: #808080;
+        }
+    }
+}

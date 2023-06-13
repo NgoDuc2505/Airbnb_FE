@@ -1,44 +1,35 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'antd';
-
-const App: React.FC = () => {
+import './buttonHeader.scss'
+type TProps = {
+    children: JSX.Element
+  }
+const ButtonHeader: React.FC<TProps> = ({children}: TProps) => {
   const [modal1Open, setModal1Open] = useState(false);
-  const [modal2Open, setModal2Open] = useState(false);
-
   return (
     <>
-      <Button type="primary" onClick={() => setModal1Open(true)}>
-        Display a modal dialog at 20px to Top
+      <Button type="ghost" style={{outline: 'unset',width:'7.7rem', height: '4.2rem', padding: 0, borderRadius: '50px'}} onClick={() => setModal1Open(true)}>
+        {children}
       </Button>
       <Modal
-        title="20px to Top"
-        style={{ top: 20 }}
+      maskStyle={{backgroundColor:'unset'}}
+        closable={false}
+        style={{ top: 70, right: '-29%', padding: 0}}
         open={modal1Open}
         onOk={() => setModal1Open(false)}
         onCancel={() => setModal1Open(false)}
+        footer={null}
       >
-        <p>some contents...</p>
-        <p>some contents...</p>
-        <p>some contents...</p>
-      </Modal>
-      <br />
-      <br />
-      <Button type="primary" onClick={() => setModal2Open(true)}>
-        Vertically centered modal dialog
-      </Button>
-      <Modal
-        title="Vertically centered modal dialog"
-        centered
-        open={modal2Open}
-        onOk={() => setModal2Open(false)}
-        onCancel={() => setModal2Open(false)}
-      >
-        <p>some contents...</p>
-        <p>some contents...</p>
-        <p>some contents...</p>
+        <div className="modal-content-header">
+            <a href="#">Đăng ký</a>
+            <a href="#">Đăng nhập</a>
+        </div>
+        <div className="modal-content-footer">
+            <a href="#" id='help-btn'>Tro giup</a>
+        </div>
       </Modal>
     </>
   );
 };
 
-export default App;
+export default ButtonHeader;
