@@ -1,21 +1,31 @@
 // import React from 'react'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import ButtonHeader from '../Button-header-login/Button'
 import './headerHome.scss'
+import BasicModal from '../Modal/ModalLocation'
 
 function HeaderHome() {
-    const [active, setActive] = useState([false,false,false,false])
+    const inputRef = useRef<null | HTMLInputElement>(null)
+    const [active, setActive] = useState([true, false, false, false])
     const [show, setShow] = useState(false)
+    const [valueInput,setValue] = useState('')
     const handleSetShow = (): void => {
         setShow(!show)
     }
-    const handleSetActive = (index:number):void =>{
-        const partern: boolean[] = [false,false,false,false];
+    const handleSetActive = (index: number): void => {
+        const partern: boolean[] = [false, false, false, false];
         partern[index] = true;
         setActive([...partern])
+        if (index === 0) {
+            inputRef.current?.focus()
+        }
+    }
+    const handleChangeValue = (e:React.ChangeEvent<HTMLInputElement>):void=>{
+        setValue(e.target.value)
     }
     return (
         <div className='header-home'>
+            <div className={`header-home-layer ${show ? 'h-205' : ''}`}></div>
             <div className="container-header">
                 <div className="left-header">
                     <img src="/src/assets/Image/Airbnb_logo.png" alt="..." />
@@ -44,19 +54,23 @@ function HeaderHome() {
                             <button className='close-btn' onClick={handleSetShow}>x</button>
                         </div>
                         <div className="under-content">
-                            <div className={`reach-location under-content-text ${active[0] ? 'active' : ''}`} onClick={()=>{handleSetActive(0)}}>
-                                <p>Dia diem</p>
-                                <input type="text" placeholder='Tim kiem diem den' />
+                            <div className={`reach-location under-content-text ${active[0] ? 'active' : ''}`} onClick={() => { handleSetActive(0) }}>
+                                <BasicModal value={valueInput} setValue={setValue}>
+                                    <div>
+                                        <p>Dia diem</p>
+                                        <input type="text" placeholder='Tim kiem diem den' onChange={(e)=>{handleChangeValue(e)}} value={valueInput}/>
+                                    </div>
+                                </BasicModal>
                             </div>
-                            <div className={`date-checkin under-content-text ${active[1] ? 'active' : ''}`} onClick={()=>{handleSetActive(1)}}>
+                            <div className={`date-checkin under-content-text ${active[1] ? 'active' : ''}`} onClick={() => { handleSetActive(1) }}>
                                 <p>Nhan phong</p>
                                 <span>Them ngay</span>
                             </div>
-                            <div className={`date-checkout under-content-text ${active[2] ? 'active' : ''}`} onClick={()=>{handleSetActive(2)}}>
+                            <div className={`date-checkout under-content-text ${active[2] ? 'active' : ''}`} onClick={() => { handleSetActive(2) }}>
                                 <p>Tra phong</p>
                                 <span>Them ngay</span>
                             </div>
-                            <div className={`search-check under-content-text ${active[3] ? 'active' : ''}`} onClick={()=>{handleSetActive(3)}}>
+                            <div className={`search-check under-content-text ${active[3] ? 'active' : ''}`} onClick={() => { handleSetActive(3) }}>
                                 <div className="search-check-content">
                                     <p>Khach</p>
                                     <span>Them khach</span>
@@ -67,7 +81,6 @@ function HeaderHome() {
                             </div>
                         </div>
                         <div className="sub-content">
-                            
                         </div>
                     </div>
                 </div>
