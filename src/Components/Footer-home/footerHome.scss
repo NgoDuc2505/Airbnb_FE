@@ -1,0 +1,42 @@
+.footer{
+    background-color: #f7f7f7;
+    .mui-box{
+        padding: 3rem 0;
+        .mui-grid{
+            .mui-item{
+                box-shadow: unset;
+                background-color: transparent;
+                font-size: 1.6rem;
+                font-weight: 400;
+                p{
+                    color: #000000;
+                    font-weight: 500;
+                }
+                ul{
+                    list-style: none;
+                    li{
+                        a{
+                            color: #00000090;
+                            line-height: 3.2rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .sub-footer{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2rem 0;
+        border-top: 0.5px solid rgba(128, 128, 128, 0.452) ;
+        .right-sub-footer{
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            p{
+                margin-bottom: 0;
+            }
+        }
+    }
+}
