@@ -9,19 +9,6 @@
                 background-color: transparent;
                 font-size: 1.6rem;
                 font-weight: 400;
-                p{
-                    color: #000000;
-                    font-weight: 500;
-                }
-                ul{
-                    list-style: none;
-                    li{
-                        a{
-                            color: #00000090;
-                            line-height: 3.2rem;
-                        }
-                    }
-                }
                 .feature-sub-item{
                     img{
                         width: 100%;
@@ -35,8 +22,10 @@
                         }
                     }
                     p{
+                        color: black;
+                        font-weight: 600;
                         text-align: left;
-                        line-height: 3rem;
+                        line-height: 3.5rem;
                     }
                 }
             }
