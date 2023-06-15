@@ -1,0 +1,45 @@
+.feature-sub{
+    border-bottom: 0.5px #80808058 solid;
+    padding-top: 3rem;
+    .mui-box{
+        padding: 3rem 0;
+        .mui-grid{
+            .mui-item{
+                box-shadow: unset;
+                background-color: transparent;
+                font-size: 1.6rem;
+                font-weight: 400;
+                p{
+                    color: #000000;
+                    font-weight: 500;
+                }
+                ul{
+                    list-style: none;
+                    li{
+                        a{
+                            color: #00000090;
+                            line-height: 3.2rem;
+                        }
+                    }
+                }
+                .feature-sub-item{
+                    img{
+                        width: 100%;
+                        height: 334px;
+                        border-radius: 7px;
+                        position: relative;
+                        transition: all .5s;
+                        &:hover{
+                            scale: 102%;
+                           filter: contrast(130%);
+                        }
+                    }
+                    p{
+                        text-align: left;
+                        line-height: 3rem;
+                    }
+                }
+            }
+        }
+    }
+}
