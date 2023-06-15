@@ -1,8 +1,10 @@
 import React from 'react'
-
+import HardLayout from '../../Components/Hard-layout/HardLayout'
 function HomePage() {
   return (
-    <div>HomePage</div>
+    <div>
+      <HardLayout />
+    </div>
   )
 }
 
