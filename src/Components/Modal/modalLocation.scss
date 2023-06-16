@@ -1,0 +1,30 @@
+
+.location-item{
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    font-size: 1.8rem;
+    margin-top: 2rem;
+    i{
+        background-color: #8080804c;
+        width: 4rem;
+        height: 4rem;
+        text-align: center;
+        line-height: 4rem;
+        border-radius: 7px;
+    }
+    p{
+        margin: 0;
+    }
+}
+
+#modal-modal-title{
+    font-size: 1.5rem;
+    input{
+        background-color: #80808033;
+        border: unset;
+        outline: unset;
+        border-radius: 5px;
+        padding: 0 1rem;
+    }
+}

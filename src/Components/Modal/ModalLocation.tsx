@@ -2,6 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import './modalLocation.scss'
 
 const style = {
     position: 'absolute',
@@ -13,7 +14,7 @@ const style = {
     borderRadius: '10px',
     border: 'unset',
     boxShadow: 24,
-    p: 4,
+    p: 3,
 };
 type TProps = {
     children: JSX.Element,
@@ -25,11 +26,11 @@ export default function BasicModal({ children, value, setValue }: TProps) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const handleChange = (e:React.ChangeEvent<HTMLInputElement>)=>{
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value)
     }
     return (
-        <div>
+        <div className='modal-location'>
             <button onClick={handleOpen} className='btn-modal'>{children}</button>
             <Modal
                 open={open}
@@ -39,10 +40,17 @@ export default function BasicModal({ children, value, setValue }: TProps) {
             >
                 <Box sx={style}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Địa điểm khả dụng: <input type="text" value={value} onChange={(e)=>{handleChange(e)}}/>
+                        Địa điểm khả dụng: <input type="text" value={value} onChange={(e) => { handleChange(e) }} />
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        Địa điểm sẽ hiện ra ở đây ...
+                        <div className="location-item">
+                            <i className="fa-solid fa-location-dot"></i>
+                            <p>Thành phố Hồ Chí Minh</p>
+                        </div>
+                        <div className="location-item">
+                            <i className="fa-solid fa-location-dot"></i>
+                            <p>Cần Thơ</p>
+                        </div>
                     </Typography>
                 </Box>
             </Modal>
