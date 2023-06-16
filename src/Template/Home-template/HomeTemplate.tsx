@@ -2,11 +2,13 @@ import HeaderHome from "../../Components/Header-home/HeaderHome"
 import {Suspense} from 'react'
 import {Outlet} from 'react-router-dom'
 import FooterHome from "../../Components/Footer-home/FooterHome"
+import SkeletonC from "../../Components/Skeleton/Skeleton"
+
 function HomeTemplate() {
   return (
     <div>
         <HeaderHome/>
-        <Suspense fallback={<><h1>loading...</h1></>}>
+        <Suspense fallback={<SkeletonC/>}>
             <Outlet/>
         </Suspense>
         <FooterHome/>
