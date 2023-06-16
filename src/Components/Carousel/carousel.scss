@@ -1,0 +1,34 @@
+.carousel{
+    background-color: #00000029;
+    width: 100%;
+    height: 50rem;
+    margin-top: 8.2rem;
+    box-shadow: 0 0 10px 2px rgb(0, 0, 0,0.5);
+    .carousel-img{
+        background-image: url('/src/assets/Image/carousel-img.jpg');
+        width: 95%;
+        height: 100%;
+        margin: auto;
+        background-position: center;
+        background-size: cover;
+        &::before{
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #00000083;
+        }
+    }
+    p{
+        font-size: 5rem;
+        font-family: Acme;
+        color: #fff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

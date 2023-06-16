@@ -24,7 +24,7 @@ function HeaderHome() {
         setValue(e.target.value)
     }
     return (
-        <div className='header-home'>
+        <div className={`header-home ${show ? 'mb-84' : ''}`}>
             <div className={`header-home-layer ${show ? 'h-205' : ''}`}></div>
             <div className="container-header">
                 <div className="left-header">

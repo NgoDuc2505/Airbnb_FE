@@ -23,9 +23,15 @@
 }
 
 @font-face {
-  font-family: Roboto;
-  src: url('./assets/Fonts/Roboto-Thin.ttf');
-  font-weight: 300;
+  font-family: Shadow;
+  src: url('./assets/Fonts/ShadowsIntoLight-Regular.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: Acme;
+  src: url('./assets/Fonts/Acme-Regular.ttf');
+  font-weight: 400;
 }
 
 *,
