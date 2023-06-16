@@ -1,0 +1,28 @@
+.room-list{
+    margin-top: 8rem;
+    display: flex;
+    .room-list-left{
+        width: 60%;
+        .header-room-list{
+            padding: 3rem 2rem;
+            .title-room-list{
+                h1{
+                    margin-bottom: 2rem;
+                }
+            }
+        }
+        .room-item-list{
+            margin-top: 3rem;
+        }
+    }
+    .room-list-right{
+        width: 40%;
+        iframe{
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+        }
+    }
+}
