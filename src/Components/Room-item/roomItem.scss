@@ -1,0 +1,55 @@
+.room-item{
+    display: flex;
+    height: 25rem;
+    color: #0000009b;
+    gap: 2rem;
+    padding: 1rem 0;
+    border-top: 0.5px solid #00000073;
+    border-bottom: 0.5px solid #00000073;
+    position: relative;
+    .icon-favorite{
+        width: 3rem;
+        height: 3rem;
+        font-size: 3rem;
+        line-height: 3rem;
+        position: absolute;
+        right: 12%;
+        bottom: 7%;
+    }
+    .room-item-img{
+        width: 50%;
+        border-radius: 15px;
+        overflow: hidden;
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .room-item-content{
+        width: 50%;
+        .room-item-title{
+            h2{
+                color: black;
+                margin-bottom: 2rem;
+            }
+        }
+        .hr-item{
+            width: 4rem;
+        }
+    }
+    .room-item-price{
+        p{
+            margin-top: 3rem;
+            margin-bottom: 0;
+            text-align: right;
+            font-size: 1.8rem;
+            padding-right: 1rem;
+            width: 20%;
+            margin-left: auto;
+            span{
+                color: black;
+                font-weight: 600;
+            }
+        }
+    }
+}
