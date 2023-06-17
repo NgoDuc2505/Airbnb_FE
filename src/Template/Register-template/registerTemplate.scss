@@ -1,0 +1,14 @@
+.register-template{
+    height: 100vh;
+    display: flex;
+    .left-content{
+        width: 60%;
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .right-content{
+        width: 40%;
+    }
+}
