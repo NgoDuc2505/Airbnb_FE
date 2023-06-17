@@ -6,26 +6,27 @@ import AdminTemplate from './Template/Admin-template/AdminTemplate'
 import DetailTemplate from './Template/Detail-template/DetailTemplate'
 import RegisterTemplate from './Template/Register-template/RegisterTemplate'
 
-const HomePage = lazy(()=>{return import('./Pages/Home-page/HomePage') })
-const RoomList = lazy(()=>{return import('./Pages/Room-list/RoomList')})
-
+const HomePage = lazy(() => { return import('./Pages/Home-page/HomePage') })
+const RoomList = lazy(() => { return import('./Pages/Room-list/RoomList') })
+const Login = lazy(() => { return import('./Pages/Login/Login') })
+const Register =lazy(()=>{return import('./Pages/Register/Register')})
 
 function App() {
   return (
     <Fragment>
       <BrowserRouter>
         <Routes>
-          <Route path='' element={<HomeTemplate/>}>
-            <Route path='room-list' element={<RoomList/>}></Route>
-            <Route path='' element={<HomePage/>}></Route>
+          <Route path='' element={<HomeTemplate />}>
+            <Route path='room-list' element={<RoomList />}></Route>
+            <Route path='' element={<HomePage />}></Route>
           </Route>
-          <Route path='detail' element={<DetailTemplate/>}>
-
+          <Route path='detail' element={<DetailTemplate />}>
           </Route>
-          <Route path='auth' element={<RegisterTemplate/>}>
-
+          <Route path='auth' element={<RegisterTemplate />}>
+            <Route path='login' element={<Login/>}></Route>
+            <Route path='register' element={<Register/>}></Route>
           </Route>
-          <Route path='admin' element={<AdminTemplate/>}>
+          <Route path='admin' element={<AdminTemplate />}>
 
           </Route>
         </Routes>
