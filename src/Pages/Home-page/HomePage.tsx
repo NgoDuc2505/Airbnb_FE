@@ -1,4 +1,4 @@
-import React from 'react'
+
 import HardLayout from '../../Components/Hard-layout/HardLayout'
 import Carousel from '../../Components/Carousel/Carousel'
 import ExploreLocation from '../../Components/Explore-location/ExploreLocation'

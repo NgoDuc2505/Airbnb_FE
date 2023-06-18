@@ -17,7 +17,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='' element={<HomeTemplate />}>
-            <Route path='room-list' element={<RoomList />}></Route>
+            <Route path=':idLocation' element={<RoomList />}></Route>
             <Route path='' element={<HomePage />}></Route>
           </Route>
           <Route path='detail' element={<DetailTemplate />}>

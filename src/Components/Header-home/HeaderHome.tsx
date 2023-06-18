@@ -1,14 +1,17 @@
-// import React from 'react'
-import { useState, useRef } from 'react'
+//component
 import ButtonHeader from '../Button-header-login/Button'
-import './headerHome.scss'
 import BasicModal from '../Modal/ModalLocation'
+import './headerHome.scss'
+//react plugin
+import { useState, useRef} from 'react'
+import { NavLink } from 'react-router-dom'
+
 
 function HeaderHome() {
     const inputRef = useRef<null | HTMLInputElement>(null)
     const [active, setActive] = useState([true, false, false, false])
     const [show, setShow] = useState(false)
-    const [valueInput,setValue] = useState('')
+    const [valueInput, setValue] = useState('')
     const handleSetShow = (): void => {
         setShow(!show)
     }
@@ -20,15 +23,14 @@ function HeaderHome() {
             inputRef.current?.focus()
         }
     }
-    const handleChangeValue = (e:React.ChangeEvent<HTMLInputElement>):void=>{
-        setValue(e.target.value)
-    }
     return (
         <div className={`header-home ${show ? 'mb-84' : ''}`}>
             <div className={`header-home-layer ${show ? 'h-205' : ''}`}></div>
             <div className="container-header">
                 <div className="left-header">
-                    <img src="/src/assets/Image/Airbnb_logo.png" alt="..." />
+                    <NavLink to={''}>
+                        <img src="/src/assets/Image/Airbnb_logo.png" alt="..." />
+                    </NavLink>
                 </div>
                 <div className="mid-wrapper">
                     <div className={`mid-header ${!show ? '' : 'hide'}`}>
@@ -58,7 +60,7 @@ function HeaderHome() {
                                 <BasicModal value={valueInput} setValue={setValue}>
                                     <div>
                                         <p>Dia diem</p>
-                                        <input type="text" placeholder='Tim kiem diem den' onChange={(e)=>{handleChangeValue(e)}} value={valueInput}/>
+                                        <span>{valueInput ? valueInput : 'Hãy nhập địa điểm tìm kiếm'}</span>
                                     </div>
                                 </BasicModal>
                             </div>

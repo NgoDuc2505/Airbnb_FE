@@ -5,11 +5,12 @@ import FooterHome from "../../Components/Footer-home/FooterHome"
 import SkeletonC from "../../Components/Skeleton/Skeleton"
 
 function HomeTemplate() {
+  
   return (
     <div>
         <HeaderHome/>
         <Suspense fallback={<SkeletonC/>}>
-            <Outlet/>
+            <Outlet />
         </Suspense>
         <FooterHome/>
     </div>
