@@ -7,7 +7,7 @@ function Register() {
   return (
     <div className='register-page'>
       <div className="login-page-title">
-        <i className="fa-solid fa-user-lock"></i>
+      <i className="fa-solid fa-fingerprint"></i>
         <h1>Đăng ký</h1>
       </div>
       <form action="" className='login-form'>
