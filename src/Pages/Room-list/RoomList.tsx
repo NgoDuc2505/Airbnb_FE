@@ -18,7 +18,7 @@ function RoomList() {
       <div className="room-list-left">
         <div className="header-room-list">
           <div className="title-room-list">
-            <p>Hơn 300 chỗ ở.</p>
+            <p>{`Hiện có ${stateData.length} chỗ ở.`}</p>
             <h1>Chỗ ở tại khu vực bạn đã chọn</h1>
           </div>
           <Stack direction="row" spacing={1}>

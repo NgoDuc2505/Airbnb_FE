@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'antd';
 import './buttonHeader.scss'
+import { NavLink } from 'react-router-dom';
+
 type TProps = {
     children: JSX.Element
   }
@@ -21,8 +23,8 @@ const ButtonHeader: React.FC<TProps> = ({children}: TProps) => {
         footer={null}
       >
         <div className="modal-content-header">
-            <a href="#">Đăng ký</a>
-            <a href="#">Đăng nhập</a>
+            <NavLink to={'/auth/login'}>Đăng nhập</NavLink>
+            <NavLink to={'/auth/register'}>Đăng ký</NavLink>
         </div>
         <div className="modal-content-footer">
             <a href="#" id='help-btn'>Tro giup</a>
