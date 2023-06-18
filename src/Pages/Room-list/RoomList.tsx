@@ -1,13 +1,15 @@
-import React,{useEffect} from 'react'
-import { useParams } from 'react-router-dom';
+
 import './roomList.scss'
 //MUI UI
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import RoomItem from '../../Components/Room-item/RoomItem';
+//constant
+import { IRoomDetail } from '../../constant/constant'
+import useRoomList from './roomListLogic';
 
 function RoomList() {
-  const {idLocation} = useParams()
+  const stateData =useRoomList()
   const handleChipClick = () => {
     const nothing = 'nothing';
   }
@@ -27,11 +29,9 @@ function RoomList() {
             <Chip label="Bộ lọc khác" variant="outlined" sx={{ fontSize: '1.4rem' }} onClick={handleChipClick} />
           </Stack>
           <div className="room-item-list">
-            <RoomItem />
-            <RoomItem />
-            <RoomItem />
-            <RoomItem />
-            <RoomItem />
+            {stateData.map((item: IRoomDetail)=>{
+              return <RoomItem listRoomItem={item}/>
+            })}
           </div>
         </div>
       </div>

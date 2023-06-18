@@ -23,6 +23,7 @@ function HeaderHome() {
             inputRef.current?.focus()
         }
     }
+    
     return (
         <div className={`header-home ${show ? 'mb-84' : ''}`}>
             <div className={`header-home-layer ${show ? 'h-205' : ''}`}></div>

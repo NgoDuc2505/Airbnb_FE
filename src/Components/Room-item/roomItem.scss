@@ -1,6 +1,6 @@
 .room-item{
     display: flex;
-    height: 25rem;
+    height: 32rem;
     color: #0000009b;
     gap: 2rem;
     padding: 1rem 0;
@@ -27,6 +27,7 @@
     }
     .room-item-content{
         width: 50%;
+        position: relative;
         .room-item-title{
             h2{
                 color: black;
@@ -38,14 +39,14 @@
         }
     }
     .room-item-price{
+        position: absolute;
+        bottom: 5%;
+        right: 0;
         p{
-            margin-top: 3rem;
             margin-bottom: 0;
-            text-align: right;
             font-size: 1.8rem;
             padding-right: 1rem;
-            width: 20%;
-            margin-left: auto;
+            width: 100%;
             span{
                 color: black;
                 font-weight: 600;

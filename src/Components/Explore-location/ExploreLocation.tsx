@@ -8,8 +8,8 @@ import Grid from '@mui/material/Grid';
 //scss
 import './exploreComponent.scss'
 import useGetInspectOfSearchPage from './exploreComponentLogic';
-//interface redux
-import { ILocationItem } from '../../redux/Location-slice/LocationSlice'
+//interface constant
+import { ILocationItem } from '../../constant/constant'
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
