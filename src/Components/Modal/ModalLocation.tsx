@@ -1,14 +1,18 @@
 import * as React from 'react';
+import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import './modalLocation.scss'
+//interface redux
+import { ILocationItem } from '../../redux/Location-slice/LocationSlice'
+import { RootState } from '../../redux/store'
 
 const style = {
     position: 'absolute',
-    top: '30%',
-    left: '37%',
-    transform: 'translate(-50%, -50%)',
+    top: '20%',
+    left: '24%',
     width: 400,
     bgcolor: 'background.paper',
     borderRadius: '10px',
@@ -24,11 +28,19 @@ type TProps = {
 
 export default function BasicModal({ children, value, setValue }: TProps) {
     const [open, setOpen] = React.useState(false);
+    const [list, setList] = React.useState<ILocationItem[]>([]);
+    const stateData = useSelector((state: RootState) => state.sliceLocation.inspectOfSearchPage)
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value)
+        const revertValueInput = e.target.value.toLowerCase().trim()
+        const findResultList = stateData.filter((item: ILocationItem) => {
+            return (item.tinhThanh.toLowerCase().includes(revertValueInput))
+        })
+        setList(findResultList)
     }
+
     return (
         <div className='modal-location'>
             <button onClick={handleOpen} className='btn-modal'>{children}</button>
@@ -43,14 +55,16 @@ export default function BasicModal({ children, value, setValue }: TProps) {
                         Địa điểm khả dụng: <input type="text" value={value} onChange={(e) => { handleChange(e) }} />
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        <div className="location-item">
-                            <i className="fa-solid fa-location-dot"></i>
-                            <p>Thành phố Hồ Chí Minh</p>
-                        </div>
-                        <div className="location-item">
-                            <i className="fa-solid fa-location-dot"></i>
-                            <p>Cần Thơ</p>
-                        </div>
+                        {list.map((item: ILocationItem) => {
+                            return (
+                                <NavLink to={`${item.id}`}>
+                                <div className="location-item">
+                                    <i className="fa-solid fa-location-dot"></i>
+                                    <p>{`${item.tenViTri}, ${item.tinhThanh}`}</p>
+                                </div>
+                                </NavLink>
+                            )
+                        })}
                     </Typography>
                 </Box>
             </Modal>

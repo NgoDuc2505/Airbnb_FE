@@ -1,12 +1,13 @@
-import React from 'react'
+import React,{useEffect} from 'react'
+import { useParams } from 'react-router-dom';
 import './roomList.scss'
 //MUI UI
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import RoomItem from '../../Components/Room-item/RoomItem';
 
-
 function RoomList() {
+  const {idLocation} = useParams()
   const handleChipClick = () => {
     const nothing = 'nothing';
   }
