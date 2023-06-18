@@ -1,18 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
+// import type { PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { CYBER_TOKEN } from '../../constant/constant'
-
-export interface ILocationItem{
-    hinhAnh: string,
-    id: number,
-    quocGia: string,
-    tenViTri: string,
-    tinhThanh: string
-}
+import { ILocationItem } from '../../constant/constant'
 
 export interface ILocationState{
     inspectOfSearchPage : ILocationItem[],
+    listRoomByIdLocation : [],
 }
 
 export const getInspectOfSearchPage = createAsyncThunk(
@@ -29,8 +23,24 @@ export const getInspectOfSearchPage = createAsyncThunk(
     }
 )
 
+export const getListRoomByIdLocation =createAsyncThunk(
+    'locationSlice/getListRoomByIdLocation',
+    async (id: string | undefined)=>{
+        const resp = axios({
+            url:`https://airbnbnew.cybersoft.edu.vn/api/phong-thue/lay-phong-theo-vi-tri?maViTri=${id}`,
+            method:'get',
+            headers:{
+                tokenCybersoft: CYBER_TOKEN,
+            }
+        })
+        return resp
+    }
+)
+
+
 const initialState: ILocationState = {
     inspectOfSearchPage: [],
+    listRoomByIdLocation:[],
   }
 
 export const locationSlice = createSlice({
@@ -42,6 +52,9 @@ export const locationSlice = createSlice({
     extraReducers: (build)=>{
         build.addCase(getInspectOfSearchPage.fulfilled,(state,action)=>{
             state.inspectOfSearchPage = action.payload.data.content.data;
+        })
+        build.addCase(getListRoomByIdLocation.fulfilled,(state,action)=>{
+            state.listRoomByIdLocation = action.payload.data.content
         })
     }
 })
