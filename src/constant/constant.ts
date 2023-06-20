@@ -29,3 +29,19 @@ export interface ILocationItem{
     tenViTri: string,
     tinhThanh: string
 }
+export interface IValuesLogin {
+    user: string,
+    password: string,
+}
+export interface IValues extends IValuesLogin {
+    checkPassword: string,
+    name: string,
+    email: string,
+    phone: string
+  }
+
+
+export const regex = {
+    nameByVietnamese: /^[a-z A-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý\\s]+$/,
+    password: /^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^& "]).*$/,
+}
