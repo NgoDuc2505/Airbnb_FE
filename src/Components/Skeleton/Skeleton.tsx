@@ -22,3 +22,23 @@ export default function SkeletonC() {
     </Box>
   );
 }
+
+export const SkeletonRegister= ()=>{
+    return(
+      <Box sx={{width: '100%', paddingTop:'50%', transform: 'translateY(-20%)'}} className='mui-box-skeleton'>
+        <Skeleton variant='circular' sx={{width: '60px', height: '60px', borderRadius:'50%', margin:'auto'}}></Skeleton>
+        <Skeleton variant='rounded' sx={{width: '50%', height: '6rem', margin:'auto', marginTop:'1rem'}}></Skeleton>
+        <Box sx={{width: '80%', margin:'auto'}}>
+        <Skeleton variant='rectangular' sx={{width: '100%', borderRadius:'10px', height:'40px', marginTop:'2rem'}}></Skeleton>
+        <Skeleton variant='rectangular' sx={{width: '100%', borderRadius:'10px', height:'40px', marginTop:'2rem'}}></Skeleton>
+        <Skeleton variant='rectangular' sx={{width: '100%', borderRadius:'10px', height:'40px', marginTop:'2rem'}}></Skeleton>
+        </Box>
+        <Box sx={{display: 'flex',marginTop:'2rem', justifyContent: 'space-evenly'}}>
+          <Skeleton variant='rectangular' sx={{width: '30%', height:'5rem',borderRadius:'10px'}}></Skeleton>
+          <Skeleton variant='rectangular' sx={{width: '30%', height:'5rem',borderRadius:'10px'}}></Skeleton>
+        </Box>
+      </Box>
+    )
+ }
+
+  
