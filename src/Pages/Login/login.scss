@@ -64,3 +64,29 @@
         margin-top: 2rem;
     }
 }
+.date-pick{
+    input{
+        font-size: 1.4rem;
+    }
+}
+
+.mui-alert{
+    width: 50%;
+    font-size: 1.6rem;
+    animation: alert .5s linear both;
+    transform: translateX(78%);
+}
+
+@keyframes alert {
+    0%{
+        transform: translateX(100%);
+        
+    }
+    80%{
+        transform: translateX(82%);
+    }
+    100%{
+        transform: translateX(78%);
+        
+    }
+}
