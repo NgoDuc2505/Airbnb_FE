@@ -1,25 +1,41 @@
-import React from 'react'
+
+import { NavLink } from 'react-router-dom';
 import './login.scss'
 //formik 
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 //const
-import { regex, IValuesLogin } from '../../constant/constant'
+import { regex, IValuesLogin, ACCESS_TOKEN } from '../../constant/constant'
 import Button from '@mui/material/Button';
 import { FormControl, FormHelperText, Input, InputLabel } from '@mui/material';
-import { NavLink } from 'react-router-dom';
+//utils
+import { setLocal } from '../../utils/utils'
+//swal
+import swal from 'sweetalert';
+//services
+import { axiosInterceptorWithCybertoken } from '../../services/services'
+
 function Login() {
   const formik = useFormik({
     initialValues: {
-      user:'',
+      email:'',
       password:'',
     },
     validationSchema:Yup.object().shape({
-      user: Yup.string().min(6, 'Min is 6 characters').max(12, 'Max is 12 characters').required('User can not be empty'),
+      email: Yup.string().email('This field has to be email').required('Email can not be empty'),
       password: Yup.string().required('Password can not be empty').min(6, 'Min is 6 characters').max(12, 'Max is 12 characters').matches(regex.password, 'password must contain at least 1 digit, 1 special character, 1 alphabeltic character !'),
     }),
-    onSubmit:(values: IValuesLogin) => {
-      console.log(values);
+    onSubmit: async (values: IValuesLogin) => {
+      try{
+        console.log(values);
+        const resp = await axiosInterceptorWithCybertoken.post('/api/auth/signin',values)
+        console.log(resp);
+        setLocal(ACCESS_TOKEN,resp.data.content.token)
+        swal("Đã đăng nhập thành công!", {icon: "success"})
+      }catch(error){
+        console.log(error)
+        swal("Đăng nhập thất bại!", {icon: "error"})
+      }
     }
   })
   return (
@@ -28,11 +44,11 @@ function Login() {
         <i className="fa-solid fa-user-lock"></i>
         <h1>Đăng nhập</h1>
       </div>
-      <form action="" className='login-form'>
-      <FormControl variant='standard' className='mui-form-control' margin='dense' error={formik.errors.user ? true : false}>
-          <InputLabel htmlFor="my-input-account">Tài khoản</InputLabel>
-          <Input id="my-input-account" aria-describedby="my-helper-text" {...formik.getFieldProps('user')} />
-          {formik.touched.user && formik.errors.user ? <FormHelperText id="my-helper-text">{formik.errors.user}</FormHelperText> : <></>}
+      <form action="" className='login-form' onSubmit={formik.handleSubmit}>
+      <FormControl variant='standard' className='mui-form-control' margin='dense' error={formik.errors.email ? true : false}>
+          <InputLabel htmlFor="my-input-email">Email</InputLabel>
+          <Input id="my-input-email" aria-describedby="my-helper-text" {...formik.getFieldProps('email')} />
+          {formik.touched.email && formik.errors.email ? <FormHelperText id="my-helper-text">{formik.errors.email}</FormHelperText> : <></>}
         </FormControl>
         <FormControl variant='standard' className='mui-form-control' margin='dense' error={formik.errors.password ? true : false}>
           <InputLabel htmlFor="my-input-password">Mật khẩu</InputLabel>

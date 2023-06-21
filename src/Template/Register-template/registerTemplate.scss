@@ -1,14 +1,20 @@
 .register-template{
     height: 100vh;
     display: flex;
+    overflow: hidden;
     .left-content{
         width: 60%;
+        position: relative;
         img{
-            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 60%;
             height: 100%;
         }
     }
     .right-content{
+        overflow-y: auto;
         width: 40%;
     }
 }

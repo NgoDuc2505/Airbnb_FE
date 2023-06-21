@@ -1,5 +1,7 @@
 export const CYBER_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCDEkMOgIE7hurVuZyAwNyIsIkhldEhhblN0cmluZyI6IjA0LzExLzIwMjMiLCJIZXRIYW5UaW1lIjoiMTY5OTA1NjAwMDAwMCIsIm5iZiI6MTY2OTQ4MjAwMCwiZXhwIjoxNjk5MjAzNjAwfQ.z53DwWShTQ-NYmv_cyVwxzyaarjOV3xiMrElt3gwl8M'
 export const ACCESS_TOKEN = 'accessToken'
+export const BASE_URL = 'https://airbnbnew.cybersoft.edu.vn'
+
 
 export interface IRoomDetail{
     id: number,
@@ -31,14 +33,18 @@ export interface ILocationItem{
     tinhThanh: string
 }
 export interface IValuesLogin {
-    user: string,
+    email: string,
     password: string,
 }
 export interface IValues extends IValuesLogin {
     checkPassword: string,
+    user: string,
     name: string,
     email: string,
-    phone: string
+    phone: string,
+    birthday: string,
+    role: string,
+    gender: boolean,
   }
 
 
