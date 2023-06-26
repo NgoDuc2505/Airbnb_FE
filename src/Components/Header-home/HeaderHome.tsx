@@ -3,7 +3,7 @@ import ButtonHeader from '../Button-header-login/Button'
 import BasicModal from '../Modal/ModalLocation'
 import './headerHome.scss'
 //react plugin
-import { useState, useRef} from 'react'
+import { useState, useRef } from 'react'
 import { NavLink } from 'react-router-dom'
 
 
@@ -23,7 +23,7 @@ function HeaderHome() {
             inputRef.current?.focus()
         }
     }
-    
+
     return (
         <div className={`header-home ${show ? 'mb-84' : ''}`}>
             <div className={`header-home-layer ${show ? 'h-205' : ''}`}></div>
@@ -49,6 +49,15 @@ function HeaderHome() {
                             </button>
                         </div>
                     </div>
+                    <div className={`mid-header-mobile ${!show ? '' : 'hide'}`}>
+                        <div className="layer" onClick={handleSetShow}></div>
+                        <div className="mid-header-mobile-content">
+                        <p>Tìm kiếm...</p>
+                        <button className='search-btn'>
+                            <i className="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                        </div>
+                    </div>
                     <div className={`zoomout-comonent ${show ? 'show' : ''}`}>
                         <div className="above-content">
                             <p>Chỗ ở</p>
@@ -61,7 +70,8 @@ function HeaderHome() {
                                 <BasicModal value={valueInput} setValue={setValue}>
                                     <div>
                                         <p>Dia diem</p>
-                                        <span>{valueInput ? valueInput : 'Hãy nhập địa điểm tìm kiếm'}</span>
+                                        <span className='under-content-span'>{valueInput ? valueInput : 'Hãy nhập địa điểm tìm kiếm'}</span>
+                                        <span className='mobile-span'>{valueInput ? valueInput : 'Hãy nhập địa điểm'}</span>
                                     </div>
                                 </BasicModal>
                             </div>
@@ -88,7 +98,8 @@ function HeaderHome() {
                     </div>
                 </div>
                 <div className="right-header">
-                    <p>Cho thuê chỗ ở qua Airbnb</p>
+                    <p className={!show ? 'right-header-title' : 'hide'}>Cho thuê chỗ ở qua Airbnb</p>
+                    <p className={!show ? 'right-header-sub' : 'hide right-header-sub'}>Cho thuê chỗ ở</p>
                     <i className="fa-solid fa-globe"></i>
                     <ButtonHeader>
                         <div className="login-area">
