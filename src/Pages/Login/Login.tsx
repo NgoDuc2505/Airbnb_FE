@@ -1,11 +1,11 @@
 
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import './login.scss'
 //formik 
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 //const
-import { regex, IValuesLogin, ACCESS_TOKEN } from '../../constant/constant'
+import { regex, IValuesLogin, ACCESS_TOKEN, ACCESS_USER_ID } from '../../constant/constant'
 import Button from '@mui/material/Button';
 import { FormControl, FormHelperText, Input, InputLabel } from '@mui/material';
 //utils
@@ -16,6 +16,7 @@ import swal from 'sweetalert';
 import { axiosInterceptorWithCybertoken } from '../../services/services'
 
 function Login() {
+  const navigate = useNavigate()
   const formik = useFormik({
     initialValues: {
       email:'',
@@ -31,7 +32,9 @@ function Login() {
         const resp = await axiosInterceptorWithCybertoken.post('/api/auth/signin',values)
         console.log(resp);
         setLocal(ACCESS_TOKEN,resp.data.content.token)
+        setLocal(ACCESS_USER_ID,resp.data.content.user.id)
         swal("Đã đăng nhập thành công!", {icon: "success"})
+        navigate('/detail/profile')
       }catch(error){
         console.log(error)
         swal("Đăng nhập thất bại!", {icon: "error"})
