@@ -9,17 +9,17 @@ import { IComment, ILocationItem, IRoomDetail } from '../../constant/constant'
 import { getRoomById } from '../../redux/Detail-slice/DetailSlice';
 import { getCommentByRoomId } from '../../redux/Comment-slice/CommentSlice';
 
-export const getRoomDetail = ()=>{
+export const useRoomDetail = ()=>{
     const idRoom = useParams()
     const dispatch = useDispatch<AppDispatch>()
     useEffect(()=>{
       dispatch(getRoomById(idRoom.idDetail))
     },[idRoom])
-    const stateData : IRoomDetail | any = useSelector((state: RootState)=>state.sliceDetail.currentRoom)
+    const stateData : IRoomDetail = useSelector((state: RootState)=>state.sliceRoomDetail.currentRoom)
     return stateData
 }
 
-export const getCommentRoom = () => { 
+export const useCommentRoom = () => { 
     const idRoom = useParams()
     const dispatch = useDispatch<AppDispatch>()
     useEffect(()=>{
@@ -30,7 +30,7 @@ export const getCommentRoom = () => {
 }
 
 
-export const getLocation = () =>{
+export const useLocation = () =>{
     const stateLocation : ILocationItem[] = useSelector((state: RootState)=>state.sliceLocation.inspectOfSearchPage)
     return stateLocation
 }
