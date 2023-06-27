@@ -1,8 +1,20 @@
-import React from 'react'
+
+import Detail from '../../Components/Detail/detail'
+import { Container } from '@mui/material'
+import { useCommentRoom, useLocation, useRoomDetail } from './DetailRoomLogic'
+import {ILocationItem } from '../../constant/constant'
 
 function DetailRoom() {
+  const stateData = useRoomDetail()
+  const stateLocation = useLocation()
+  const stateComment = useCommentRoom()
+  const currentLocation = stateLocation.find((item: ILocationItem)=> item.id === stateData.maViTri);
   return (
-    <div>DetailRoom</div>
+    <div>
+      <Container maxWidth='xl'>
+        <Detail dataDetail={stateData} location = {currentLocation} comment = {stateComment}/> 
+      </Container>
+    </div>
   )
 }
 

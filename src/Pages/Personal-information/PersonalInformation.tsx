@@ -10,7 +10,7 @@ function PersonalInformation() {
   useEffect(()=>{
     dispatch(getProfileData(tokenId))
   },[tokenId])
-  const profileData = useSelector((state: RootState)=>state.userSlice.profileData)
+  const profileData = useSelector((state: RootState)=>state.sliceUser.profileData)
   console.log(profileData)
   return (
     <div className='profile'>

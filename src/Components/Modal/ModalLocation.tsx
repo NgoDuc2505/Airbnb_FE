@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import './modalLocation.scss'
+
 //interface redux
 import { ILocationItem } from '../../constant/constant'
 import { RootState } from '../../redux/store'
