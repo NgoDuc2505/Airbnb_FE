@@ -1,12 +1,13 @@
 
 import './detail.scss'
 import '/src/Components/UtilityIcon/utility.scss'
-import { IComment, ILocationItem, IRoomDetail } from '../../constant/constant'
+import { ACCESS_USER_ID, IComment, ILocationItem, IRoomDetail } from '../../constant/constant'
 import AlertDialogSlide from '../Dialog/dialog';
 import {BanLa, BanUi, Bep, DieuHoa, DoXe, HoBoi, MayGiat, Tivi, Wifi}  from '../UtilityIcon/UtilityIcon';
 import DisabledOptions from './guestComponent';
 import { Comment, CommentBox, CommentSlider } from './commentComponent';
 import { Divider } from 'antd';
+import { getLocal } from '../../utils/utils';
 
 interface IProps{
     dataDetail: IRoomDetail | any,
@@ -137,7 +138,7 @@ function Detail({dataDetail, location, comment}:IProps) {
         </div>
       </section>
       <hr />
-        {/* -------------------------------------- Comment display -------------------------------*/}
+      {/* -------------------------------------- Comment display -------------------------------*/}
       <section className='detail-comment'>
         <div className='detail-comment-rating'>
             <i className="fa-solid fa-star"></i>
@@ -175,14 +176,15 @@ function Detail({dataDetail, location, comment}:IProps) {
 
 
         </div>
-        </section>
-        {/* -------------------------------------- END Comment display -------------------------------*/}
-        <hr />
-         {/* --------------------------------------  Comment -------------------------------*/}
-        <div className='my-5'>
-            <h1>Phần Bình Luận</h1>
-            <CommentBox/>
-        </div>
+      </section>
+      {/* -------------------------------------- END Comment display -------------------------------*/}
+      <hr />
+      {/* --------------------------------------  Comment -------------------------------*/}
+      <div className='my-5'>
+        <h1>Phần Bình Luận</h1>
+        {getLocal(ACCESS_USER_ID) ? <CommentBox/> : <h3>Bạn cần phải đăng nhập để bình luận</h3>}
+        
+      </div>
 
        
     </div>

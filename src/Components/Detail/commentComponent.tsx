@@ -115,15 +115,12 @@ export function CommentBox() {
     })
     return (
         <form action="" className='comment-form' onSubmit={formik.handleSubmit}>
-            
-            
             <FormControl variant='standard' className='mui-form-control' margin='dense' error={formik.errors.comment ? true : false}>
                 <InputLabel htmlFor="my-input-comment">Comment</InputLabel>
                 <Input id="my-input-comment" aria-describedby="my-helper-text" {...formik.getFieldProps('comment')} />
                 {formik.touched.comment && formik.errors.comment ? <FormHelperText id="my-helper-text">{`${formik.errors.comment}`}</FormHelperText> : <></>}
             </FormControl>
-
-           
+            
             <h3 className='mt-3'>Số sao đánh giá</h3>
             <Rating
                 className='rating-star'
