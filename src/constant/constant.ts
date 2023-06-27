@@ -56,7 +56,17 @@ export interface IProfile extends IValuesLogin {
     role:string,
 }
 
+export interface IComment{ 
+    ngayBinhLuan: string,
+    noiDung: string,
+    saoBinhLuan: number,
+    tenNguoiBinhLuan: string, 
+    avatar: string
+}
+
+
 export const regex = {
     nameByVietnamese: /^[a-z A-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý\\s]+$/,
     password: /^.*(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^& "]).*$/,
 }
+
