@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import AdminTemplate from './Template/Admin-template/AdminTemplate'
 import DetailTemplate from './Template/Detail-template/DetailTemplate'
 import RegisterTemplate from './Template/Register-template/RegisterTemplate'
-// import RoomTemplate from './Template/Room-template/RoomTemplate'
+import RoomTemplate from './Template/Room-template/RoomTemplate'
 
 const HomePage = lazy(() => { return import('./Pages/Home-page/HomePage') })
 const RoomList = lazy(() => { return import('./Pages/Room-list/RoomList') })
@@ -25,13 +25,12 @@ function App() {
           </Route>
           <Route path='Detail' element={<DetailTemplate />}>
             <Route path='profile' element={<PersonalInformation/>}></Route>
+            <Route path='' element={<HomePage />}></Route>
+          </Route>
+          <Route path='room' element={<RoomTemplate />}>
             <Route path=':idDetail' element={<Detail />}></Route>
             <Route path='' element={<HomePage />}></Route>
           </Route>
-          {/* <Route path='room' element={<RoomTemplate />}>
-            <Route path=':idDetail' element={<Detail />}></Route>
-            <Route path='' element={<HomePage />}></Route>
-          </Route> */}
           <Route path='auth' element={<RegisterTemplate />}>
             <Route path='login' element={<Login/>}></Route>
             <Route path='register' element={<Register/>}></Route>
