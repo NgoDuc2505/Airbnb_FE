@@ -43,3 +43,48 @@
         }
     }
 }
+
+
+@media screen and (max-width:480px) {
+    .footer{
+        .mui-box{
+            .mui-grid{
+                .mui-item{
+                    font-size: 1.2rem;
+                    p{
+                        font-weight: 600;
+                    }
+                    ul{
+                        li{
+                            a{
+                                line-height: 2.2rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .sub-footer{
+            display: block;
+            text-align: center;
+            .right-sub-footer{
+                justify-content: center;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:414px) {
+    .footer{
+        .mui-box{
+            .mui-grid{
+                .mui-grid-item{
+                    .mui-item{
+                        font-size: 1rem;
+                       padding: 0;
+                    }
+                }
+            }
+        }
+    }
+}
