@@ -1,17 +1,17 @@
 export const CYBER_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCDEkMOgIE7hurVuZyAwNyIsIkhldEhhblN0cmluZyI6IjA0LzExLzIwMjMiLCJIZXRIYW5UaW1lIjoiMTY5OTA1NjAwMDAwMCIsIm5iZiI6MTY2OTQ4MjAwMCwiZXhwIjoxNjk5MjAzNjAwfQ.z53DwWShTQ-NYmv_cyVwxzyaarjOV3xiMrElt3gwl8M'
 export const ACCESS_TOKEN = 'accessToken'
 export const BASE_URL = 'https://airbnbnew.cybersoft.edu.vn'
+export const ACCESS_USER_ID = 'accessUserById'
 
-
-export interface IRoomDetail{
+export interface IRoomDetail {
     id: number,
-    tenPhong:string,
+    tenPhong: string,
     khach: number,
     phongNgu: number,
     giuong: number,
     phongTam: number,
     moTa: string,
-    giaTien:  number,
+    giaTien: number,
     mayGiat: boolean,
     banLa: boolean,
     tivi: boolean,
@@ -25,7 +25,7 @@ export interface IRoomDetail{
     hinhAnh: string,
 }
 
-export interface ILocationItem{
+export interface ILocationItem {
     hinhAnh: string,
     id: number,
     quocGia: string,
@@ -45,8 +45,16 @@ export interface IValues extends IValuesLogin {
     birthday: string,
     role: string,
     gender: boolean,
-  }
-
+}
+export interface IProfile extends IValuesLogin {
+    id: number,
+    name: string,
+    phone:string,
+    birthday: string,
+    avatar: string,
+    gender: boolean,
+    role:string,
+}
 
 export interface IComment{ 
     ngayBinhLuan: string,
