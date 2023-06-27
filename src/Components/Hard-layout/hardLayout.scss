@@ -12,7 +12,8 @@
                 .feature-sub-item{
                     img{
                         width: 100%;
-                        height: 334px;
+                        // height: 334px;
+                        height: 280px;
                         border-radius: 7px;
                         position: relative;
                         transition: all .5s;
@@ -27,6 +28,90 @@
                         text-align: left;
                         line-height: 3.5rem;
                     }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:1024px) {
+    .feature-sub{
+        .mui-box{
+            .mui-grid{
+                .mui-item{
+                    height: 270px;
+                    .feature-sub-item{
+                        height: 100%;
+                        img{
+                            height: 74%;
+                        }
+                        p{
+                            margin-top: 1rem;
+                            line-height: 2rem;
+                            font-size: 1.6rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:820px) {
+    .feature-sub{
+        .mui-box{
+            .mui-grid{
+                .mui-item{
+                    height: 240px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:768px) {
+    .feature-sub{
+        .mui-box{
+            .mui-grid{
+                .mui-item{
+                    .feature-sub-item{
+                        height: 100%;
+                        img{
+                            height: 74%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:480px) {
+    .feature-sub{
+        .mui-box{
+            .mui-grid{
+                .mui-item{
+                    height: 240px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:414px) {
+    .feature-sub{
+        .mui-box{
+            .mui-grid{
+                .mui-item{
+                    height: 250px;
+                    .feature-sub-item{
+                        img{
+                            height: 85%;
+                        }
+                    }
+                }
+                .mui-grid-item{
+                    width: 100%;
                 }
             }
         }

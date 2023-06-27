@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import './modalLocation.scss'
 //interface redux
-import { ILocationItem } from '../../redux/Location-slice/LocationSlice'
+import { ILocationItem } from '../../constant/constant'
 import { RootState } from '../../redux/store'
 
 const style = {
@@ -50,7 +50,7 @@ export default function BasicModal({ children, value, setValue }: TProps) {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box sx={style}>
+                <Box sx={style} className='mui-box-location'>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
                         Địa điểm khả dụng: <input type="text" value={value} onChange={(e) => { handleChange(e) }} />
                     </Typography>

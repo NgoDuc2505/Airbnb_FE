@@ -39,3 +39,64 @@
         }
     }
 }
+
+
+@media screen and (max-width:992px) {
+    .explore-location{
+        .mui-box{
+            .mui-grid{
+                    .item-location{
+                        width: 33.33333333%;
+                    }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:600px) {
+    .explore-location{
+        .mui-box{
+            .mui-grid{
+                    .item-location{
+                        width:50%
+                    }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:480px) {
+    .explore-location{
+        h1{
+            font-size: 2rem;
+        }
+    }
+}
+
+@media screen and (max-width:414px) {
+    .explore-location{
+        h1{
+            font-size: 1.8rem;
+        }
+        .mui-box{
+            .mui-grid{
+                .item-location{
+                    width:100%
+                }
+                .item-location-detail{
+                    .explore-location-item{
+                        .explore-location-item-text{
+                            p{
+                                font-size: 2rem;
+                            }
+                            span{
+                                font-size: 1.8rem;
+                                color: #b6233e8a;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -27,3 +27,24 @@
         }
     }
 }
+
+@media screen and (max-width:1280px) {
+    .ant-modal-content{
+        margin-left: 47%;
+    }
+}
+@media screen and (max-width:992px) {
+    .ant-modal-content{
+        margin-left: 40%;
+    }
+}
+@media screen and (max-width:768px) {
+    .ant-modal-content{
+        margin-left: 32%;
+    }
+}
+@media screen and (max-width:414px) {
+    .ant-modal-content{
+        margin: auto;
+    }
+}

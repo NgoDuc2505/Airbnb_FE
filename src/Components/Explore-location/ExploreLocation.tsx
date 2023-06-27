@@ -1,7 +1,7 @@
 
 import { NavLink } from 'react-router-dom';
 //MUI UI
-import { styled } from '@mui/material/styles';
+import { createTheme, styled, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
@@ -19,19 +19,31 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-
+const themeCustom = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 576,
+      md: 992,
+      lg: 1200,
+      xl: 1536,
+    },
+  },
+});
 function ExploreLocation() {
   const result: ILocationItem[] = useGetInspectOfSearchPage()
+  
   return (
     <div className='explore-location'>
       <h1>Khám phá những đặc điểm nổi bật gần đây</h1>
       <Box sx={{ flexGrow: 1 }} className='mui-box'>
-        <Grid container spacing={2} className='mui-grid'>
+      <ThemeProvider theme={themeCustom}>
+      <Grid container spacing={2} className='mui-grid'>
           {
             result.map((itemReturn : ILocationItem) => {
               return (
-                <Grid item xs={3} className='mui-grid-item' key={itemReturn.id}>
-                  <Item className='mui-item'>
+                <Grid item lg={3} md={4}  className='mui-grid-item item-location' key={itemReturn.id}>
+                  <Item className='mui-item item-location-detail'>
                     <NavLink to={`${itemReturn.id}`}>
                     <div className="explore-location-item">
                       <img src={itemReturn.hinhAnh} alt="..." />
@@ -47,6 +59,8 @@ function ExploreLocation() {
             })
           }
         </Grid>
+      </ThemeProvider>
+       
       </Box>
     </div>
   )

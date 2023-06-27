@@ -317,17 +317,6 @@
     }
 }
 
-//320
-//480
-//768
-//820
-//992
-//1024
-//1280
-//1366
-//1440
-//1600
-//1920
 
 @media screen and (max-width:1440px) {
     .header-home{
@@ -465,7 +454,7 @@
     }
 }
 
-@media screen and (max-width:480px) {
+@media screen and (max-width:576px) {
     .header-home{
         .h-205{
             height: 260%;
@@ -505,5 +494,80 @@
         }
        }
     
+    }
+}
+
+@media screen and (max-width:414px) {
+    .header-home{
+        p{
+            font-size: 1.2rem;
+        }
+       .mid-wrapper{
+        .zoomout-comonent{
+            transform: translateY(115%);
+            .above-content{
+                width: 190%; 
+            }
+            .under-content{
+                width: 225%; 
+                transform: translateX(-8%); 
+                .under-content-text{
+                    padding: 1rem 1rem 1rem 1rem; 
+                }
+                .date-checkin{
+                    width: 25%;
+                }
+                .search-check{
+                    .search-btn-check{
+                        width: 4rem;
+                        height: 4rem;
+                    }
+                }
+                .reach-location{
+                    padding-left: 1.4rem;
+                }
+            }
+        }
+       }
+    
+    }
+}
+
+@media screen and (max-width:390px) {
+    .header-home{
+        p{
+            font-size: 1rem;
+        }
+       .mid-wrapper{
+        .zoomout-comonent{
+            .under-content{
+                transform: translateX(-11%); 
+                .under-content-text{
+                    padding: 1rem 0.5rem 1rem 0.5rem; 
+                }
+                .search-check{
+                    padding-top: 0;
+                    .search-btn-check{ 
+                        width: 3rem;
+                        font-size: 1.2rem;
+                        height: 3rem;
+                    }
+                }
+                .date-checkout{ 
+                    width: 22%;
+                }
+                .reach-location{
+                    padding-left: 1.2rem;
+                }
+            }
+        }
+        .mid-header-mobile{ 
+            .mid-header-mobile-content{
+                .search-btn{
+                    margin-left: 0;
+                }
+            }
+        }
+       }
     }
 }
