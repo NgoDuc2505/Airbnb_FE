@@ -58,7 +58,7 @@ export default function BasicModal({ children, value, setValue }: TProps) {
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                         {list.map((item: ILocationItem) => {
                             return (
-                                <NavLink to={`${item.id}`}>
+                                <NavLink to={`/home/${item.id}`}>
                                 <div className="location-item">
                                     <i className="fa-solid fa-location-dot"></i>
                                     <p>{`${item.tenViTri}, ${item.tinhThanh}`}</p>

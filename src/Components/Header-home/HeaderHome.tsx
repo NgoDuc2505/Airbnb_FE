@@ -29,7 +29,7 @@ function HeaderHome() {
             <div className={`header-home-layer ${show ? 'h-205' : ''}`}></div>
             <div className="container-header">
                 <div className="left-header">
-                    <NavLink to={''}>
+                    <NavLink to={'/home'}>
                         <img src="/src/assets/Image/Airbnb_logo.png" alt="..." />
                     </NavLink>
                 </div>
