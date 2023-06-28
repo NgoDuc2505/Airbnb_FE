@@ -32,10 +32,12 @@ export interface ILocationItem {
     tenViTri: string,
     tinhThanh: string
 }
+
 export interface IValuesLogin {
     email: string,
     password: string,
 }
+
 export interface IValues extends IValuesLogin {
     checkPassword: string,
     user: string,
