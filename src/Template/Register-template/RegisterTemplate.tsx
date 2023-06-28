@@ -6,7 +6,7 @@ function RegisterTemplate() {
   return (
     <div className='register-template'>
       <div className="left-content">
-        <img src="https://source.unsplash.com/random?wallpapers" alt="..." />
+        <img src="https://picsum.photos/1200/900" alt="..." />
       </div>
       <div className="right-content">
         <Suspense fallback={<SkeletonRegister/>}>

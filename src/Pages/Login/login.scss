@@ -73,6 +73,7 @@
 .mui-alert{
     width: 50%;
     font-size: 1.6rem;
+    margin-bottom: 1rem;
     animation: alert .5s linear both;
     transform: translateX(78%);
 }
@@ -88,5 +89,29 @@
     100%{
         transform: translateX(78%);
         
+    }
+}
+
+@media screen and (max-width:820px) {
+    .login-page{
+        .form-button-group{
+            button{
+                padding: 1rem 1.5rem;
+            }
+        }
+    }
+    .register-page{
+        padding-top: 6rem;
+        padding-bottom: 3rem;
+        .form-button-group{
+            margin-top: 5rem;
+        }
+    }
+}
+
+@media screen and (max-width:414px) {
+    .mui-alert{
+        width: 55%;
+        font-size: 1.2rem;
     }
 }
