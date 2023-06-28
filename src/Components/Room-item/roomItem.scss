@@ -7,15 +7,6 @@
     border-top: 0.5px solid #00000073;
     border-bottom: 0.5px solid #00000073;
     position: relative;
-    .icon-favorite{
-        width: 3rem;
-        height: 3rem;
-        font-size: 3rem;
-        line-height: 3rem;
-        position: absolute;
-        right: 12%;
-        bottom: 7%;
-    }
     .room-item-img{
         width: 50%;
         border-radius: 15px;
@@ -42,6 +33,9 @@
         position: absolute;
         bottom: 5%;
         right: 0;
+        display: flex;
+        align-items: center;
+        gap: 2rem;
         p{
             margin-bottom: 0;
             font-size: 1.8rem;
@@ -50,6 +44,60 @@
             span{
                 color: black;
                 font-weight: 600;
+            }
+        }
+        .icon-favorite{
+        width: 3rem;
+        height: 3rem;
+        font-size: 3rem;
+        line-height: 3rem;
+    }
+    }
+}
+
+@media screen and (max-width:1366px) {
+    .room-item{
+        .room-item-content{
+            .room-item-detail{
+                .room-description{
+                    height: 120px;
+                    overflow-y: auto;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:992px) {
+    .room-item{
+        .room-item-content{
+            .room-item-detail{
+                .room-description{
+                    height: 140px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:576px) {
+    .room-item{
+        display: block;
+        height: unset;
+        .room-item-img{
+            width: 100%;
+            height: 20rem;
+        }
+        .room-item-content{
+            width: 100%;
+            padding-top: 2.5rem;
+            .room-item-price{
+                position: unset;
+            }
+            .room-item-title{
+                p{
+                    display: none;
+                }
             }
         }
     }

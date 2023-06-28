@@ -26,3 +26,53 @@
         }
     }
 }
+
+//320
+//375 - iphone6/7/8/X
+//414 - iphone6/7/8 plus/XR
+//480
+//576
+//768
+//820
+//992
+//1024
+//1280
+//1366
+//1440
+//1600
+//1920
+
+@media screen and (max-width:992px) {
+    .room-list{
+        display: block;
+        .room-list-left{
+            width: 100%;
+        }
+        .room-list-right{
+            width: 100%;
+            padding: 0 3rem 3rem 3rem;
+            height: 50rem;
+            overflow: hidden;
+            iframe{
+                position: unset;
+                height: 100%;
+                border-radius: 8px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:414px) {
+    .room-list{
+        .mui-ui-stack{
+            flex-wrap: wrap;
+            gap: 8px;
+            .mui-ui-chip{
+                margin-left: 0px;
+            }
+        }
+        .room-list-right{
+            padding: 0 1rem 1rem 1rem;
+        }
+    }
+}

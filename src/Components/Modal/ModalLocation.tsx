@@ -9,6 +9,7 @@ import './modalLocation.scss'
 //interface redux
 import { ILocationItem } from '../../constant/constant'
 import { RootState } from '../../redux/store'
+import useGetInspectOfSearchPage from '../Explore-location/exploreComponentLogic';
 
 const style = {
     position: 'absolute',
@@ -31,12 +32,14 @@ export default function BasicModal({ children, value, setValue }: TProps) {
     const [open, setOpen] = React.useState(false);
     const [list, setList] = React.useState<ILocationItem[]>([]);
     const stateData = useSelector((state: RootState) => state.sliceLocation.inspectOfSearchPage)
+    const stateDataLocation = useGetInspectOfSearchPage()
+    const listData = (stateData.length > 0 ? [...stateData] : [...stateDataLocation])
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value)
         const revertValueInput = e.target.value.toLowerCase().trim()
-        const findResultList = stateData.filter((item: ILocationItem) => {
+        const findResultList = listData.filter((item: ILocationItem) => {
             return (item.tinhThanh.toLowerCase().includes(revertValueInput))
         })
         setList(findResultList)
