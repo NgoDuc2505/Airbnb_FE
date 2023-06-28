@@ -19,17 +19,15 @@ function App() {
     <Fragment>
       <BrowserRouter>
         <Routes>
-          <Route path='' element={<HomeTemplate />}>
+          <Route path='home' element={<HomeTemplate />}>
             <Route path=':idLocation' element={<RoomList />}></Route>
             <Route path='' element={<HomePage />}></Route>
           </Route>
           <Route path='Detail' element={<DetailTemplate />}>
             <Route path='profile' element={<PersonalInformation/>}></Route>
-            <Route path='' element={<HomePage />}></Route>
           </Route>
           <Route path='room' element={<RoomTemplate />}>
             <Route path=':idDetail' element={<Detail />}></Route>
-            <Route path='' element={<HomePage />}></Route>
           </Route>
           <Route path='auth' element={<RegisterTemplate />}>
             <Route path='login' element={<Login/>}></Route>
