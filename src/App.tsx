@@ -19,7 +19,7 @@ function App() {
     <Fragment>
       <BrowserRouter>
         <Routes>
-          <Route path='home' element={<HomeTemplate />}>
+          <Route path='' element={<HomeTemplate />}>
             <Route path=':idLocation' element={<RoomList />}></Route>
             <Route path='' element={<HomePage />}></Route>
           </Route>
