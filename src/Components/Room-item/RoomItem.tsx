@@ -10,9 +10,6 @@ interface IProps{
 function RoomItem({ listRoomItem }:IProps) {
   return (
     <div className='room-item'>
-        <div className="icon-favorite">
-        <i className="fa-regular fa-heart"></i>
-        </div>
         <div className="room-item-img">
         <img src={listRoomItem.hinhAnh} alt="..." />
         </div>
@@ -24,9 +21,10 @@ function RoomItem({ listRoomItem }:IProps) {
             </div>
             <hr className='hr-item' />
             <div className="room-item-detail">
-                <p>{listRoomItem.moTa}</p>
+                <p className='room-description'>{listRoomItem.moTa}</p>
             </div>
             <div className="room-item-price">
+                <i className="fa-regular fa-heart icon-favorite"></i>
                 <p><span>{`${listRoomItem.giaTien}$`}</span>/ đêm</p>
             </div>
         </div>

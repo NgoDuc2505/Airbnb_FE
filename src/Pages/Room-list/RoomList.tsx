@@ -21,16 +21,16 @@ function RoomList() {
             <p>{`Hiện có ${stateData.length} chỗ ở.`}</p>
             <h1>Chỗ ở tại khu vực bạn đã chọn</h1>
           </div>
-          <Stack direction="row" spacing={1}>
-            <Chip label="Loại nơi ở" variant="outlined" sx={{ fontSize: '1.4rem' }} onClick={handleChipClick} />
-            <Chip label="Giá" variant="outlined" sx={{ fontSize: '1.4rem' }} onClick={handleChipClick} />
-            <Chip label="Đặt ngay" variant="outlined" sx={{ fontSize: '1.4rem' }} onClick={handleChipClick} />
-            <Chip label="Phòng ngủ" variant="outlined" sx={{ fontSize: '1.4rem' }} onClick={handleChipClick} />
-            <Chip label="Bộ lọc khác" variant="outlined" sx={{ fontSize: '1.4rem' }} onClick={handleChipClick} />
+          <Stack direction="row" spacing={1} className='mui-ui-stack'>
+            <Chip className='mui-ui-chip' label="Loại nơi ở" variant="outlined" sx={{ fontSize: '1.4rem' }} onClick={handleChipClick} />
+            <Chip className='mui-ui-chip' label="Giá" variant="outlined" sx={{ fontSize: '1.4rem' }} onClick={handleChipClick} />
+            <Chip className='mui-ui-chip' label="Đặt ngay" variant="outlined" sx={{ fontSize: '1.4rem' }} onClick={handleChipClick} />
+            <Chip className='mui-ui-chip' label="Phòng ngủ" variant="outlined" sx={{ fontSize: '1.4rem' }} onClick={handleChipClick} />
+            <Chip className='mui-ui-chip' label="Bộ lọc khác" variant="outlined" sx={{ fontSize: '1.4rem' }} onClick={handleChipClick} />
           </Stack>
           <div className="room-item-list">
             {stateData.map((item: IRoomDetail)=>{
-              return <RoomItem listRoomItem={item}/>
+              return <RoomItem key={item.id} listRoomItem={item}/>
             })}
           </div>
         </div>
