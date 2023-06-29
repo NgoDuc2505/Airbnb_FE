@@ -26,6 +26,58 @@
     }
 }
 
+.detail-range-picker{ 
+    width: 100%;
+    color: black;
+    border: solid 1px black;
+    border-width: 1px 1px 0px 1px;
+    border-radius: 10px 10px 0px 0px;
+    height: 6rem;
+    transition: all 0.5s;
+    input{
+        font-size: 1.5rem!important;
+        font-weight: 600;
+    }
+    
+    &:hover{ 
+        background-color: #e2e2e2;
+        border: solid 1px black;
+        border-width: 1px 1px 0px 1px;
+        border-radius: 10px 10px 0px 0px;
+    }
+}
+
+.detail-submit-guest{ 
+    margin: 1.5rem 0;
+    width: 100%;
+    cursor: pointer;
+    color: white;
+    border: solid 0px;
+    height: 5rem;
+    font-weight: 500;
+    background-color: #ff385c;
+    border-radius: 0.8rem;
+    transition: all 0.5s;
+    &:hover{ 
+        background-color: #de3050;
+    }
+}
+
+.detail-fees{ 
+    display: flex;
+    justify-content: space-between;
+    p:first-child{ 
+        text-decoration: underline;
+    }
+}
+
+.detail-fees-total{ 
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 1.7rem;
+}
+
 .detail-page {
     margin-top: 12rem;
     font-size: 16px;
@@ -309,5 +361,30 @@
                 color: #fff;
             }
         }
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .detail-page{
+        .detail-gimmick {
+            display: block!important;
+            .detail-sub-heading{ 
+                justify-content: start;
+            }
+            .detail-saveShare{
+                .share{ 
+                    margin-left: 0px!important;
+                }
+            }
+        }
+        .detail-main-section{
+            .detail-left{ 
+                width: 100%;
+            }
+            .detail-right{ 
+                display: none;
+            }
+        }
+   
     }
 }

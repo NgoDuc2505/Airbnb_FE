@@ -11,7 +11,7 @@ function DetailRoom() {
   const currentLocation = stateLocation.find((item: ILocationItem)=> item.id === stateData.maViTri);
   return (
     <div>
-      <Container maxWidth='xl'>
+      <Container maxWidth='lg'>
         <Detail dataDetail={stateData} location = {currentLocation} comment = {stateComment}/> 
       </Container>
     </div>

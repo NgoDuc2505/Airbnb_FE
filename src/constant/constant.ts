@@ -66,6 +66,15 @@ export interface IComment{
     avatar: string
 }
 
+export interface IBookRoom{ 
+    id: number,
+    maPhong: number,
+    ngayDen: string,
+    ngayDi: string,
+    soLuongKhach: number,
+    maNguoiDung: number
+}
+
 
 export const regex = {
     nameByVietnamese: /^[a-z A-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý\\s]+$/,

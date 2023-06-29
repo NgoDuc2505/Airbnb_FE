@@ -81,3 +81,8 @@ export const SkeletonDetail = () => {
       </Box>
     )
 }
+
+
+export const SkeletonPersonal = () => { 
+    
+}

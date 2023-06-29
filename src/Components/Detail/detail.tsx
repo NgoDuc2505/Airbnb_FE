@@ -55,7 +55,7 @@ function Detail({dataDetail, location, comment}:IProps) {
     <div className='detail-page'>
       <h1 className='detail-heading'>{dataDetail.tenPhong}</h1>
       {/* --------------------------------------heading -------------------------------*/}
-      <div className='d-flex justify-content-between align-content-center'>
+      <div className='detail-gimmick d-flex justify-content-between align-content-center'>
         <div className='detail-sub-heading'>
             <i className="fa-solid fa-star"></i>
             <p className='rating'>{averageStar}</p>
@@ -133,7 +133,7 @@ function Detail({dataDetail, location, comment}:IProps) {
                     <p>·</p>
                     <p className='onDetail'>({comment.length} đánh giá)</p>
                 </div>
-                <DisabledOptions khachMax={dataDetail.khach}/>
+                <DisabledOptions giaTien = {dataDetail.giaTien} khachMax={dataDetail.khach}/>
             </section>
         </div>
       </section>
@@ -154,9 +154,11 @@ function Detail({dataDetail, location, comment}:IProps) {
 
         <div className='detail-comment-section'>
             {
-                comment && comment.slice(0, 5).map((currentComment: IComment) => { 
+                comment && comment.slice(0, 5).map((currentComment: IComment, index: number) => { 
                     return ( 
-                        <Comment currentComment={currentComment} limit={true}/> 
+                        <div key={index}>
+                            <Comment currentComment={currentComment} limit={true}/> 
+                        </div>
                     )
                 })
             }
@@ -166,9 +168,11 @@ function Detail({dataDetail, location, comment}:IProps) {
             title={`★ ${averageStar} · ${comment.length} đánh giá`} 
             description={
                 <div>
-                    {comment && comment.map((currentComment: IComment) => { 
+                    {comment && comment.map((currentComment: IComment, index: number) => { 
                         return ( 
-                            <Comment currentComment={currentComment} limit={false}/> 
+                            <div key={index}>
+                                <Comment currentComment={currentComment} limit={false}/> 
+                            </div>
                         )
                     })}
                 </div>
