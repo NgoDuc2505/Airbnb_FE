@@ -13,7 +13,6 @@ export const axiosInterceptor: AxiosInstance = axios.create({
 
 axiosInterceptor.interceptors.request.use((config)=>
 {
-       
         config.headers.Authorization = `Bearer ${getLocal(ACCESS_TOKEN)}`
         config.headers.tokenCybersoft  = CYBER_TOKEN
 
