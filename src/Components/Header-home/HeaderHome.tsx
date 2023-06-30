@@ -5,16 +5,46 @@ import './headerHome.scss'
 //react plugin
 import { useState, useRef } from 'react'
 import { NavLink } from 'react-router-dom'
+//utils
+import { getLocal, deleteKey } from '../../utils/utils'
+//const
+import { ACCESS_TOKEN, ACCESS_USER_ID } from '../../constant/constant'
+//redux
+import Avatar from '@mui/material/Avatar'
+import { deepOrange } from '@mui/material/colors'
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
+//swal
+import swal from 'sweetalert';
+import { useLoginRenderAva } from './headerHomeLogic'
 
+
+const style = {
+    position: 'absolute',
+    top: '18%',
+    left: '90%',
+    transform: 'translate(-50%, -50%)',
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 2,
+    borderRadius: '8px',
+  };
 
 function HeaderHome() {
+    const getAcessToken: string = getLocal(ACCESS_TOKEN)
     const inputRef = useRef<null | HTMLInputElement>(null)
     const [active, setActive] = useState([true, false, false, false])
     const [show, setShow] = useState(false)
     const [valueInput, setValue] = useState('')
+    const [reload,setReloat] = useState(false)
     const handleSetShow = (): void => {
         setShow(!show)
     }
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
     const handleSetActive = (index: number): void => {
         const partern: boolean[] = [false, false, false, false];
         partern[index] = true;
@@ -23,13 +53,19 @@ function HeaderHome() {
             inputRef.current?.focus()
         }
     }
-
+    const avaName = useLoginRenderAva(getAcessToken)
+    const handleLogOut = ()=>{
+        deleteKey(ACCESS_TOKEN),
+        deleteKey(ACCESS_USER_ID)
+        setReloat(!reload)
+        swal("Đã đăng xuất thành công!", {icon: "success"})
+    }
     return (
         <div className={`header-home ${show ? 'mb-84' : ''}`}>
             <div className={`header-home-layer ${show ? 'h-205' : ''}`}></div>
             <div className="container-header">
                 <div className="left-header">
-                    <NavLink to={'/home'}>
+                    <NavLink to={'/'}>
                         <img src="/src/assets/Image/Airbnb_logo.png" alt="..." />
                     </NavLink>
                 </div>
@@ -52,10 +88,10 @@ function HeaderHome() {
                     <div className={`mid-header-mobile ${!show ? '' : 'hide'}`}>
                         <div className="layer" onClick={handleSetShow}></div>
                         <div className="mid-header-mobile-content">
-                        <p>Tìm kiếm...</p>
-                        <button className='search-btn'>
-                            <i className="fa-solid fa-magnifying-glass"></i>
-                        </button>
+                            <p>Tìm kiếm...</p>
+                            <button className='search-btn'>
+                                <i className="fa-solid fa-magnifying-glass"></i>
+                            </button>
                         </div>
                     </div>
                     <div className={`zoomout-comonent ${show ? 'show' : ''}`}>
@@ -101,12 +137,36 @@ function HeaderHome() {
                     <p className={!show ? 'right-header-title' : 'hide'}>Cho thuê chỗ ở qua Airbnb</p>
                     <p className={!show ? 'right-header-sub' : 'hide right-header-sub'}>Cho thuê chỗ ở</p>
                     <i className="fa-solid fa-globe"></i>
-                    <ButtonHeader>
-                        <div className="login-area">
-                            <i className="fa-solid fa-bars"></i>
-                            <i className="fa-solid fa-user user-login"></i>
+                    {
+                        !getAcessToken 
+                        ? ( <ButtonHeader>
+                            <div className="login-area">
+                                <i className="fa-solid fa-bars"></i>
+                                <i className="fa-solid fa-user user-login"></i>
+                            </div>
+                        </ButtonHeader>)
+                        : (
+                            <div>
+                            <Button onClick={handleOpen} sx={{width: '40px', height:'40px', borderRadius:'50%', minWidth: 'unset'}}>
+                            <Avatar sx={{ bgcolor: deepOrange[500] }}>{avaName}</Avatar> 
+                            </Button>
+                            <Modal
+                                open={open}
+                                onClose={handleClose}
+                                aria-labelledby="modal-modal-title"
+                                aria-describedby="modal-modal-description"
+                            >
+                                <Box sx={style} className='mui-box-avatar'>
+                                    <NavLink to={'/Detail/profile'}>Profile</NavLink>
+                                    <hr />
+                                    <Button variant="text" sx={{fontSize:'1.6rem'}} onClick={handleLogOut}>Log out</Button>
+                                </Box>
+                            </Modal>
                         </div>
-                    </ButtonHeader>
+                        )
+                    }
+                   
+                   
                 </div>
             </div>
         </div>
