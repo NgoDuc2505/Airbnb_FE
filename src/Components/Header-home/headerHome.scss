@@ -293,6 +293,22 @@
         display: none!important;
     }
 }
+.mui-box-avatar{
+    outline: unset;
+    border: unset!important;
+    width: 200px;
+    a{
+        display: block;
+        padding: 6px 8px;
+        color: black;
+        font-weight: 600;
+    }
+    button{
+        outline: unset;
+        border: unset!important;
+        color: black;
+    }
+}
 .mb-84{
     margin-bottom: 104px;
 }
@@ -355,6 +371,10 @@
             }
         }
         
+    }
+    .mui-box-avatar{
+        top: 11% !important;
+        left: 85% !important;
     }
 }
 
@@ -452,6 +472,10 @@
         }
        }
     }
+    .mui-box-avatar{
+        top: 14% !important;
+        left: 83% !important;
+    }
 }
 
 @media screen and (max-width:576px) {
@@ -495,6 +519,10 @@
        }
     
     }
+    .mui-box-avatar{
+        top: 15% !important;
+        left: 77% !important;
+    }
 }
 
 @media screen and (max-width:414px) {
@@ -530,6 +558,10 @@
         }
        }
     
+    }
+    .mui-box-avatar{
+        top: 20%!important;
+        left: 70%!important;
     }
 }
 
