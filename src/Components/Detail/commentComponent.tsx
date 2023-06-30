@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IComment } from '../../constant/constant';
+import { ACCESS_TOKEN, ACCESS_USER_ID, CYBER_TOKEN, IComment } from '../../constant/constant';
 import TextField from '@mui/material/TextField';
 import { useFormik } from 'formik';
 import { FormControl, FormHelperText, Input, InputLabel } from '@mui/material';
@@ -9,6 +9,9 @@ import { axiosInterceptorWithCybertoken } from '../../services/services'
 import Button from '@mui/material/Button';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
+import { getLocal } from '../../utils/utils';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 interface IProps{
     currentComment: IComment | any
@@ -91,6 +94,7 @@ export function CommentSlider({classes}: IPropsSlider){
 
 
 export function CommentBox() { 
+    const idRoom = useParams()
     const [starvalue, setValue] = React.useState<number | null>(0);
     const formik = useFormik({ 
         initialValues: {
@@ -103,8 +107,26 @@ export function CommentBox() {
         }),
         onSubmit: async (values: any) => {
         try{
-            console.log(values);
-        //   const resp = await axiosInterceptorWithCybertoken.post('/api/auth/signin',values)
+            if (getLocal(ACCESS_USER_ID)){             
+                const value = {
+                    maPhong: idRoom.idDetail,
+                    maNguoiBinhLuan: getLocal(ACCESS_USER_ID),
+                    ngayBinhLuan: new Date(),
+                    noiDung: values.comment,
+                    saoBinhLuan: values.star
+                }   
+                const options = {
+                    headers: {
+                        tokenCybersoft: CYBER_TOKEN,
+                        token: getLocal(ACCESS_TOKEN)
+                    }
+                }
+                await axios.post(
+                    "https://airbnbnew.cybersoft.edu.vn/api/binh-luan",
+                    value,
+                    options
+                )
+            }
             
             swal("Comment thành công!", {icon: "success"})
         }catch(error){
@@ -115,15 +137,12 @@ export function CommentBox() {
     })
     return (
         <form action="" className='comment-form' onSubmit={formik.handleSubmit}>
-            
-            
             <FormControl variant='standard' className='mui-form-control' margin='dense' error={formik.errors.comment ? true : false}>
                 <InputLabel htmlFor="my-input-comment">Comment</InputLabel>
                 <Input id="my-input-comment" aria-describedby="my-helper-text" {...formik.getFieldProps('comment')} />
                 {formik.touched.comment && formik.errors.comment ? <FormHelperText id="my-helper-text">{`${formik.errors.comment}`}</FormHelperText> : <></>}
             </FormControl>
-
-           
+            
             <h3 className='mt-3'>Số sao đánh giá</h3>
             <Rating
                 className='rating-star'

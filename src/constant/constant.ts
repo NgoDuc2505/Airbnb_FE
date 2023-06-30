@@ -32,10 +32,12 @@ export interface ILocationItem {
     tenViTri: string,
     tinhThanh: string
 }
+
 export interface IValuesLogin {
     email: string,
     password: string,
 }
+
 export interface IValues extends IValuesLogin {
     checkPassword: string,
     user: string,
@@ -62,6 +64,15 @@ export interface IComment{
     saoBinhLuan: number,
     tenNguoiBinhLuan: string, 
     avatar: string
+}
+
+export interface IBookRoom{ 
+    id: number,
+    maPhong: number,
+    ngayDen: string,
+    ngayDi: string,
+    soLuongKhach: number,
+    maNguoiDung: number
 }
 
 

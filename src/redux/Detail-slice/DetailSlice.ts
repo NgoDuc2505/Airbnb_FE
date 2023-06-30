@@ -1,11 +1,30 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 // import type { PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { CYBER_TOKEN, IRoomDetail } from '../../constant/constant'
+import { CYBER_TOKEN, IBookRoom, IRoomDetail } from '../../constant/constant'
+import { axiosInterceptorWithCybertoken } from '../../services/services'
 
 export interface IRoomState{
-    currentRoom: IRoomDetail
+    currentRoom: IRoomDetail,
+    currentBookRoom: IBookRoom[]
 }
+
+export const getRoomByUserId = createAsyncThunk(
+    'roomSlice/getRoomByUserId',
+    async (id: number | undefined)=>{
+        // const resp = axios({
+        //     url:`https://airbnbnew.cybersoft.edu.vn/api/phong-thue/lay-phong-theo-vi-tri?maViTri=${id}`,
+        //     method:'get',
+        //     headers:{
+        //         tokenCybersoft: CYBER_TOKEN,
+        //     }
+        // })
+        const resp = axiosInterceptorWithCybertoken.get(`/api/dat-phong/lay-theo-nguoi-dung/${id}`)
+        return resp
+    }
+)
+
+
 
 export const getRoomById = createAsyncThunk(
     'roomSlice/getRoomById',
@@ -42,7 +61,8 @@ const initialState: IRoomState = {
         moTa:'',
         hinhAnh: '',
         hoBoi: false,
-    }
+    },
+    currentBookRoom:[]
 }
 
 export const roomSlice = createSlice({
@@ -54,7 +74,9 @@ export const roomSlice = createSlice({
     extraReducers: (build)=>{
         build.addCase(getRoomById.fulfilled,(state,action)=>{
             state.currentRoom = action.payload.data.content
-            console.log(state.currentRoom);
+        })
+        build.addCase(getRoomByUserId.fulfilled,(state,action)=>{
+            state.currentBookRoom = action.payload.data.content
         })
     }
 })

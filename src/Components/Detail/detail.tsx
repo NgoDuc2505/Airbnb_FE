@@ -1,12 +1,13 @@
 
 import './detail.scss'
 import '/src/Components/UtilityIcon/utility.scss'
-import { IComment, ILocationItem, IRoomDetail } from '../../constant/constant'
+import { ACCESS_USER_ID, IComment, ILocationItem, IRoomDetail } from '../../constant/constant'
 import AlertDialogSlide from '../Dialog/dialog';
 import {BanLa, BanUi, Bep, DieuHoa, DoXe, HoBoi, MayGiat, Tivi, Wifi}  from '../UtilityIcon/UtilityIcon';
 import DisabledOptions from './guestComponent';
 import { Comment, CommentBox, CommentSlider } from './commentComponent';
 import { Divider } from 'antd';
+import { getLocal } from '../../utils/utils';
 
 interface IProps{
     dataDetail: IRoomDetail | any,
@@ -54,7 +55,7 @@ function Detail({dataDetail, location, comment}:IProps) {
     <div className='detail-page'>
       <h1 className='detail-heading'>{dataDetail.tenPhong}</h1>
       {/* --------------------------------------heading -------------------------------*/}
-      <div className='d-flex justify-content-between align-content-center'>
+      <div className='detail-gimmick d-flex justify-content-between align-content-center'>
         <div className='detail-sub-heading'>
             <i className="fa-solid fa-star"></i>
             <p className='rating'>{averageStar}</p>
@@ -132,12 +133,12 @@ function Detail({dataDetail, location, comment}:IProps) {
                     <p>·</p>
                     <p className='onDetail'>({comment.length} đánh giá)</p>
                 </div>
-                <DisabledOptions khachMax={dataDetail.khach}/>
+                <DisabledOptions giaTien = {dataDetail.giaTien} khachMax={dataDetail.khach}/>
             </section>
         </div>
       </section>
       <hr />
-        {/* -------------------------------------- Comment display -------------------------------*/}
+      {/* -------------------------------------- Comment display -------------------------------*/}
       <section className='detail-comment'>
         <div className='detail-comment-rating'>
             <i className="fa-solid fa-star"></i>
@@ -153,9 +154,11 @@ function Detail({dataDetail, location, comment}:IProps) {
 
         <div className='detail-comment-section'>
             {
-                comment && comment.slice(0, 5).map((currentComment: IComment) => { 
+                comment && comment.slice(0, 5).map((currentComment: IComment, index: number) => { 
                     return ( 
-                        <Comment currentComment={currentComment} limit={true}/> 
+                        <div key={index}>
+                            <Comment currentComment={currentComment} limit={true}/> 
+                        </div>
                     )
                 })
             }
@@ -165,9 +168,11 @@ function Detail({dataDetail, location, comment}:IProps) {
             title={`★ ${averageStar} · ${comment.length} đánh giá`} 
             description={
                 <div>
-                    {comment && comment.map((currentComment: IComment) => { 
+                    {comment && comment.map((currentComment: IComment, index: number) => { 
                         return ( 
-                            <Comment currentComment={currentComment} limit={false}/> 
+                            <div key={index}>
+                                <Comment currentComment={currentComment} limit={false}/> 
+                            </div>
                         )
                     })}
                 </div>
@@ -175,14 +180,15 @@ function Detail({dataDetail, location, comment}:IProps) {
 
 
         </div>
-        </section>
-        {/* -------------------------------------- END Comment display -------------------------------*/}
-        <hr />
-         {/* --------------------------------------  Comment -------------------------------*/}
-        <div className='my-5'>
-            <h1>Phần Bình Luận</h1>
-            <CommentBox/>
-        </div>
+      </section>
+      {/* -------------------------------------- END Comment display -------------------------------*/}
+      <hr />
+      {/* --------------------------------------  Comment -------------------------------*/}
+      <div className='my-5'>
+        <h1>Phần Bình Luận</h1>
+        {getLocal(ACCESS_USER_ID) ? <CommentBox/> : <h3>Bạn cần phải đăng nhập để bình luận</h3>}
+        
+      </div>
 
        
     </div>
