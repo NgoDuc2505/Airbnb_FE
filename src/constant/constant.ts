@@ -75,6 +75,15 @@ export interface IBookRoom{
     maNguoiDung: number
 }
 
+export interface IValueUpdate{ 
+    name: string,
+    email: string,
+    phone: string,
+    birthday: string,
+    role: string,
+    gender: boolean,
+}
+
 
 export const regex = {
     nameByVietnamese: /^[a-z A-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý\\s]+$/,
