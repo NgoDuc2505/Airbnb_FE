@@ -13,6 +13,7 @@ const Login = lazy(() => { return import('./Pages/Login/Login') })
 const Register = lazy(()=>{return import('./Pages/Register/Register')})
 const Detail = lazy(()=>{return import('./Pages/Detail-room/DetailRoom')})
 const PersonalInformation = lazy(()=>{return import('./Pages/Personal-information/PersonalInformation')})
+const ManageUser = lazy(()=> {return import('./Components/Admin/ManageUser')})
 
 function App() {
   return (
@@ -34,7 +35,7 @@ function App() {
             <Route path='register' element={<Register/>}></Route>
           </Route>
           <Route path='admin' element={<AdminTemplate />}>
-
+            <Route path='user' element={<ManageUser/>}></Route>
           </Route>
         </Routes>
       </BrowserRouter>
