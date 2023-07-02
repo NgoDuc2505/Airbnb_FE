@@ -6,23 +6,21 @@ import {Pagination} from 'antd'
 import "./profile.scss"
 import { getLocal } from "../../utils/utils"
 import UpdateProfile from "./UpdateProfile"
-
+import { PAGE_SIZE } from '../../constant/constant'
 
 interface IProps{
     profileData: IProfile | any,
     bookRoomData: IBookRoom[]
 }
 
-const PAGE_SIZE = 2; 
-
 export function Profile({profileData, bookRoomData}: IProps){ 
-    const [data, setData] = useState([])
+    const [data, setData] = useState<IBookRoom[]>([])
     const [hide, setHide] = useState(true)
     const [page, setPage] = useState(1)
     
     useEffect(()=>{
         if (bookRoomData != undefined){
-            let newData : any= bookRoomData.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
+            const newData : IBookRoom[]= bookRoomData.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
             setData(newData)
         }
     },[page])
@@ -86,7 +84,7 @@ export function Profile({profileData, bookRoomData}: IProps){
                     <button className="profile-button mt-3" type='button' onClick={() => {
                         setHide(!hide); 
                         if(data.length===0) {
-                            let newData: any= [bookRoomData[0],bookRoomData[1]]
+                            const newData:  IBookRoom[]= [bookRoomData[0],bookRoomData[1]]
                             setData(newData)
                         }
                     }}>{hide? `Hiển thị ${bookRoomData.length} phòng đã đặt` : "Ẩn hiện thị phòng"}</button>
