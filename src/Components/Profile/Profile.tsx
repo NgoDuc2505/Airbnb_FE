@@ -62,7 +62,7 @@ export function Profile({profileData, bookRoomData}: IProps){
                     <div>
                         {data.length >= 0 && data.map((booked: IBookRoom) => { 
                             return(
-                                <BookRoom key={booked.id} bookRoom={booked}/>
+                                <BookRoom key={booked?.id} bookRoom={booked}/>
                             )
                         })} 
                         

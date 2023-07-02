@@ -158,6 +158,7 @@ function HeaderHome() {
                             >
                                 <Box sx={style} className='mui-box-avatar'>
                                     <NavLink to={'/Detail/profile'}>Profile</NavLink>
+                                    <NavLink to={'/admin/user'}>For Admin</NavLink>
                                     <hr />
                                     <Button variant="text" sx={{fontSize:'1.6rem'}} onClick={handleLogOut}>Log out</Button>
                                 </Box>
