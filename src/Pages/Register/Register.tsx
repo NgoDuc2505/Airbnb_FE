@@ -26,7 +26,7 @@ import { axiosInterceptorWithCybertoken } from '../../services/services'
 
 function Register() {
   const navigate = useNavigate()
-  const [isValid,setValid] = useState(true)
+  const [isValid, setValid] = useState(true)
   const [dateValue, setDateValue] = useState<Dayjs | null>(null);
   const [genderValue, setGender] = useState<boolean | string>();
   const [open, setOpen] = useState(false);
@@ -49,7 +49,7 @@ function Register() {
       name: '',
       email: '',
       phone: '',
-      birthday:'',
+      birthday: '',
       role: '',
       gender: true,
     },
@@ -62,13 +62,13 @@ function Register() {
       phone: Yup.number().required('Phone can not be empty')
     }),
     onSubmit: async (values: IValues) => {
-      try{
-        const date = `${dateValue?.date()}-${(dateValue?.month() || 0 )+1}-${dateValue?.year()}`
-        const getGender = (genderValue ==='true' ? true : (genderValue ==='false' ? false : ""))
-       
-        if(date === "undefined-1-undefined" || (getGender === "")){
+      try {
+        const date = `${dateValue?.date()}-${(dateValue?.month() || 0) + 1}-${dateValue?.year()}`
+        const getGender = (genderValue === 'true' ? true : (genderValue === 'false' ? false : ""))
+
+        if (date === "undefined-1-undefined" || (getGender === "")) {
           setValid(false)
-        }else{
+        } else {
           setValid(true)
           const newValue = {
             ...values,
@@ -77,26 +77,26 @@ function Register() {
             gender: getGender,
           }
           console.log(newValue);
-          const resp = await axiosInterceptorWithCybertoken.post('/api/auth/signup',newValue)
+          const resp = await axiosInterceptorWithCybertoken.post('/api/auth/signup', newValue)
           console.log(resp)
           swal("Thành công, tài khoản đã được tạo!", {
             icon: "success",
           });
           navigate('/auth/login')
         }
-      }catch(error){
+      } catch (error) {
         console.log(error)
         swal("Thất bại, email đã được dùng!", {
           icon: "error",
         });
       }
-     
+
     }
   })
 
   return (
     <div className='register-page'>
-      {!isValid ? <Alert className='mui-alert' severity="error" sx={{fontSize:'2rem'}}>Vui lòng điền đầy đủ thông tin!</Alert> : <></> }
+      {!isValid ? <Alert className='mui-alert' severity="error" sx={{ fontSize: '2rem' }}>Vui lòng điền đầy đủ thông tin!</Alert> : <></>}
       <div className="login-page-title">
         <i className="fa-solid fa-fingerprint"></i>
         <h1>Đăng ký</h1>
@@ -132,30 +132,30 @@ function Register() {
           <Input id="my-input-phone" aria-describedby="my-helper-text" {...formik.getFieldProps('phone')} />
           {formik.touched.phone && formik.errors.phone ? <FormHelperText id="my-helper-text">{formik.errors.phone}</FormHelperText> : <></>}
         </FormControl>
-        <Box sx={{display:'flex'}}>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DemoContainer components={['DatePicker']}>
-            <DatePicker className='date-pick' value={dateValue} onChange={(newValue) => setDateValue(newValue)}/>
-          </DemoContainer>
-        </LocalizationProvider>
-      <FormControl sx={{ m: 1, minWidth: 90}}>
-        <InputLabel id="demo-controlled-open-select-label">Gender</InputLabel>
-        <Select
-          labelId="demo-controlled-open-select-label"
-          id="demo-controlled-open-select"
-          open={open}
-          onClose={handleClose}
-          onOpen={handleOpen}
-          value={genderValue}
-          label="Gender"
-          onChange={handleChange}
-          sx={{fontSize: '1.4rem'}}
-        >
-          <MenuItem value={'true'}>Male</MenuItem>
-          <MenuItem value={'false'}>Female</MenuItem>
-        </Select>
-      </FormControl>
-    </Box>
+        <Box sx={{ display: 'flex' }}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer components={['DatePicker']}>
+              <DatePicker className='date-pick' value={dateValue} onChange={(newValue) => setDateValue(newValue)} />
+            </DemoContainer>
+          </LocalizationProvider>
+          <FormControl sx={{ m: 1, minWidth: 90 }}>
+            <InputLabel id="demo-controlled-open-select-label">Gender</InputLabel>
+            <Select
+              labelId="demo-controlled-open-select-label"
+              id="demo-controlled-open-select"
+              open={open}
+              onClose={handleClose}
+              onOpen={handleOpen}
+              value={genderValue}
+              label="Gender"
+              onChange={handleChange}
+              sx={{ fontSize: '1.4rem' }}
+            >
+              <MenuItem value={'true'}>Male</MenuItem>
+              <MenuItem value={'false'}>Female</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
 
         <div className="form-button-group">
           <Button variant="outlined" type='submit'>Đăng ký</Button>

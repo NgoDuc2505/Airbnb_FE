@@ -1,0 +1,68 @@
+.admin-register{
+    width: 50%;
+    height: 600px;
+    background-color: #fff;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 8px;
+    overflow: hidden;
+    background-image: url('/src/assets//Image/admin-im.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    &::before{
+        content: '';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #fff;
+        z-index: -1;
+        opacity: 0.8;
+    }
+    form{
+        width: 100%;
+        height: 100%;
+        padding:  2.5rem 2rem 2rem;
+         h1{
+        text-align: center;
+        margin-bottom: 2rem;
+        color: gray;
+        }
+    }
+    .mui-grid-admin{
+        margin: 0;
+        width: 100%;
+        .mui-item-grid-admin{
+            .mui-form-control-admin{
+                width: 90%;
+                margin: 0 auto;
+                input{
+                    font-size: 1.8rem;
+                }
+                label{
+                    font-size: 1.8rem;
+                    font-weight: 600;
+                }
+                p{
+                    font-size: 1.4rem;
+                }
+            }
+        }
+    }
+    .button-group-admin-register{
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-end;
+        padding: 3rem;
+        button{
+           width: 12%;
+           height: 40px;
+           font-size: 1.4rem;
+        }
+    }
+   
+}

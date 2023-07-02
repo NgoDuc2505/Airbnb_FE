@@ -8,6 +8,7 @@ function AdminSideBar() {
         <NavLink to={'/admin/location'}><i className="fa-solid fa-location-dot"></i>Quản lý địa điểm</NavLink>
         <NavLink to={'/admin/roomdetail'}><i className="fa-solid fa-person-shelter"></i>Quản lí thông tin phòng</NavLink>
         <NavLink to={'/admin/subscriptionroom'}><i className="fa-regular fa-id-card"></i>Quản lý đặt phòng</NavLink>
+        <NavLink to={'/'}><i className="fa-solid fa-house"></i>Về trang chủ</NavLink>
     </div>
   )
 }
