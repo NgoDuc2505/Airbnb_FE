@@ -4,6 +4,9 @@ import Button from '@mui/material/Button';
 import Pagination from '@mui/material/Pagination';
 import Container from '@mui/material/Container';
 import './manage.scss'
+import AdminRegister from '../Admin-register-popup/AdminRegister';
+import Modal from '@mui/material/Modal';
+import TextField from '@mui/material/TextField';
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'Mã', maxWidth: 70 },
   { field: 'name', headerName: 'Tên', maxWidth: 130 },
@@ -52,9 +55,25 @@ const rows = [
   { id: 83, name: 'duc minh ngo ngo minh duc', ava: 'hinh1', role: 'USER' },
 ];
 function ManageUser() {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   return (
     <div className='manage-user'>
       <Container fixed={true} className='mui-container-manage'>
+      <Button className='button-add-admin' onClick={handleOpen}>Đăng ký quản trị viên</Button>
+      <div className="search-user">
+      <TextField id="outlined-basic" label="Outlined" variant="outlined" className='input-search'/>
+      <button>Tìm</button>
+      </div>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+       <AdminRegister handleCloseModal = {handleClose}/>
+      </Modal>
       <DataGrid
         className='mui-grid-user'
         rows={rows}

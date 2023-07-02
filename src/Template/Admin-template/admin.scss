@@ -17,3 +17,20 @@
     border: unset!important;
     outline: unset!important;
 }
+.admin-template{
+    .menu-bar-header{
+        background-image: url('https://as1.ftcdn.net/v2/jpg/04/36/34/62/1000_F_436346260_b8p9duhGDUlME2kS8uaetri2x7z7hpU9.jpg');
+        background-position: center 11px;
+        position: relative;
+        &::before{
+            content: '';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            opacity: 0.8;
+        }
+    }
+}

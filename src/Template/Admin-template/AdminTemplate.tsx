@@ -1,5 +1,5 @@
 import { Suspense } from 'react'
-import { NavLink, Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import * as React from 'react';
 import './admin.scss'
 import Drawer from '@mui/material/Drawer';
@@ -15,7 +15,6 @@ import Menu from '@mui/material/Menu';
 type Anchor = 'left';
 
 function AdminTemplate() {
-  const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [state, setState] = React.useState({
     left: false,
@@ -45,7 +44,7 @@ function AdminTemplate() {
   return (
     <div className='admin-template'>
       <Box sx={{ flexGrow: 1, display: 'fl' }}>
-        <AppBar position="static" sx={{ backgroundColor: 'white' }}>
+        <AppBar className='menu-bar-header' position="static" sx={{ backgroundColor: 'white'}}>
           <Toolbar>
             <IconButton
               size="large"
@@ -62,7 +61,7 @@ function AdminTemplate() {
             <Typography variant="h6" component="div" color="black" sx={{ flexGrow: 1, fontSize: '2rem' }}>
               Manage System - AirBnb
             </Typography>
-            {auth && (
+            {(
               <div>
                 <IconButton
                   size="large"
