@@ -1,11 +1,9 @@
 import * as React from 'react';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { ACCESS_USER_ID, IProfile, IValueUpdate } from '../../constant/constant';
 
 
 //react
-import { NavLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 //Mui ui
 import { FormControl, FormHelperText, Input, InputLabel, Box } from '@mui/material';
@@ -23,7 +21,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 //const
-import { regex, IValues } from '../../constant/constant'
+import { regex} from '../../constant/constant'
 //swal
 import swal from 'sweetalert';
 //services
@@ -47,7 +45,6 @@ interface IProps {
 }
 
 export default function UpdateProfile({profileData}: IProps) {
-  const navigate = useNavigate();
   const [isValid,setValid] = useState(true);
   const [dateValue, setDateValue] = useState<Dayjs | null>(null);
 

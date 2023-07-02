@@ -189,7 +189,9 @@ function Detail({dataDetail, location, comment}:IProps) {
         {getLocal(ACCESS_USER_ID) ? <CommentBox/> : <h3>Bạn cần phải đăng nhập để bình luận</h3>}
         
       </div>
-
+      <section className='detail-phone-size'>
+        <p>sdadasd</p>
+      </section>
        
     </div>
   )
