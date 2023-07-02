@@ -133,7 +133,7 @@ function Detail({dataDetail, location, comment}:IProps) {
                     <p>·</p>
                     <p className='onDetail'>({comment.length} đánh giá)</p>
                 </div>
-                <DisabledOptions giaTien = {dataDetail.giaTien} khachMax={dataDetail.khach}/>
+                <DisabledOptions giaTien={dataDetail.giaTien} khachMax={dataDetail.khach} phone={false} dataDetail ={dataDetail}/>
             </section>
         </div>
       </section>
@@ -149,7 +149,6 @@ function Detail({dataDetail, location, comment}:IProps) {
             
         <div className='detail-comment-slider'>
             <CommentSlider classes={"row"}/>
-            
         </div>
 
         <div className='detail-comment-section'>
@@ -190,7 +189,10 @@ function Detail({dataDetail, location, comment}:IProps) {
         
       </div>
       <section className='detail-phone-size'>
-        <p>sdadasd</p>
+        <div>
+            <h1>${dataDetail.giaTien}<span> / đêm</span></h1>
+        </div>
+        <DisabledOptions giaTien = {dataDetail.giaTien} khachMax={dataDetail.khach} phone={true} dataDetail={dataDetail}/>
       </section>
        
     </div>
