@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
-
-import { IBookRoom, IRoomDetail } from '../../constant/constant';
+import { useEffect, useState } from 'react'
+import { IBookRoom } from '../../constant/constant';
 import { axiosInterceptorWithCybertoken } from '../../services/services';
 import RoomItem from '../Room-item/RoomItem';
 
-const PAGE_SIZE = 2; 
 
 interface IProps{ 
     bookRoom: IBookRoom | any

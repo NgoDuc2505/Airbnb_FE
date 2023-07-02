@@ -2,7 +2,7 @@ export const CYBER_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJ
 export const ACCESS_TOKEN = 'accessToken'
 export const BASE_URL = 'https://airbnbnew.cybersoft.edu.vn'
 export const ACCESS_USER_ID = 'accessUserById'
-
+export const PAGE_SIZE = 2; 
 export interface IRoomDetail {
     id: number,
     tenPhong: string,
