@@ -8,6 +8,7 @@ import DisabledOptions from './guestComponent';
 import { Comment, CommentBox, CommentSlider } from './commentComponent';
 import { Divider } from 'antd';
 import { getLocal } from '../../utils/utils';
+import { CardSlider } from '../CardSlider/cardslider';
 
 interface IProps{
     dataDetail: IRoomDetail | any,
@@ -162,6 +163,15 @@ function Detail({dataDetail, location, comment}:IProps) {
                 })
             }
 
+        
+
+        </div>
+
+        <div className='detail-comment-section-phone'>
+            <CardSlider comment={comment} limit={true} sliceMax={5}/>
+        </div>
+
+
         <AlertDialogSlide 
             buttonName={`Hiển Thị ${comment.length} Đánh Giá`} 
             title={`★ ${averageStar} · ${comment.length} đánh giá`} 
@@ -176,9 +186,6 @@ function Detail({dataDetail, location, comment}:IProps) {
                     })}
                 </div>
         }/>
-
-
-        </div>
       </section>
       {/* -------------------------------------- END Comment display -------------------------------*/}
       <hr />

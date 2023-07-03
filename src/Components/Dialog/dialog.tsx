@@ -1,21 +1,10 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import Slide from '@mui/material/Slide';
-import { TransitionProps } from '@mui/material/transitions';
-
-const Transition = React.forwardRef(function Transition(
-  props: TransitionProps & {
-    children: React.ReactElement<any, any>;
-  },
-  ref: React.Ref<unknown>,
-) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
 
 interface IProps{
     buttonName: string,
@@ -23,42 +12,53 @@ interface IProps{
     description: string | any
 }
 
+const style = {
+  position: 'absolute' as 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: "95%",
+  height: "95%",
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  overflowY: "scroll",
+  p: 4,
+};
+
 export default function AlertDialogSlide({buttonName, title, description} : IProps) {
   const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <div>
-      <Button sx={{color:"black", fontSize:"1.5rem", borderColor:"black", textTransform: "none"}} variant="outlined" onClick={handleClickOpen}>
+      <Button sx={{color:"black", fontSize:"1.5rem", borderColor:"black", textTransform: "none"}} variant="outlined" onClick={handleOpen}>
         {`${buttonName}`}
       </Button>
-      <Dialog
+
+      <Modal
         open={open}
-        TransitionComponent={Transition}
-        keepMounted
         onClose={handleClose}
-        aria-describedby="alert-dialog-slide-description"
-        sx={{width: "auto", height: "auto"}}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
         
       >
-        <DialogActions sx={{marginRight: "auto", marginTop: "1rem"}} >
-          <Button sx={{color:"black", fontSize:"2rem"}} onClick={handleClose}><i className="fa-solid fa-x"></i></Button>
-        </DialogActions>
-        <DialogTitle sx={{color:"black", fontSize:"3rem", borderColor:"black"}}>{`${title}`}</DialogTitle>
-        <DialogContent sx={{width:"600px"}}>
-          <DialogContentText sx={{color:"black", fontSize:"1.5rem", width:"100%"}} id="alert-dialog-slide-description">
-            {typeof description === "string" ? `${description}`: description}
-          </DialogContentText>
-        </DialogContent>
-       
-      </Dialog>
+        <Box sx={style}>
+          
+            <Button sx={{color:"black", fontSize:"2rem"}} onClick={() => {setOpen(false)}}><i className="fa-solid fa-x"></i></Button>
+         
+          <DialogTitle sx={{color:"black", fontSize:"3rem", borderColor:"black"}}>{`${title}`}</DialogTitle>
+          <DialogContent sx={{width:"100%"}}>
+            <DialogContentText sx={{color:"black", fontSize:"1.5rem", width:"100%"}} id="alert-dialog-slide-description">
+              {typeof description === "string" ? `${description}`: description}
+            </DialogContentText>
+          </DialogContent>
+        </Box>
+      </Modal>
+
     </div>
   );
 }
+
+
