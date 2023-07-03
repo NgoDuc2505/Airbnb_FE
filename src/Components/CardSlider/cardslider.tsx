@@ -74,8 +74,15 @@ export function CardSlider({comment, sliceMax, limit}: IProps){
                     )
                 })
             }
-            <button id="next">{`>`}</button>
-            <button id="prev">{`<`}</button>
+
+            { comment.length > 1 ? 
+            <div>
+                <button id="next">{`>`}</button>
+                <button id="prev">{`<`}</button>
+            </div>
+            :
+            ""
+            }
         </div>
     )
 }
