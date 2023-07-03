@@ -27,7 +27,6 @@ function AdminTemplate() {
     setAnchorEl(null);
   };
 
- 
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
       (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -39,12 +38,16 @@ function AdminTemplate() {
           return;
         }
 
-        setState({[anchor]: open });
+        setState({ [anchor]: open });
       };
+
+      const handleCloseSideBar = ()=>{
+        setState({ left: false });
+      }
   return (
     <div className='admin-template'>
       <Box sx={{ flexGrow: 1, display: 'fl' }}>
-        <AppBar className='menu-bar-header' position="static" sx={{ backgroundColor: 'white'}}>
+        <AppBar className='menu-bar-header' position="static" sx={{ backgroundColor: 'white' }}>
           <Toolbar>
             <IconButton
               size="large"
@@ -90,9 +93,9 @@ function AdminTemplate() {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
-                  <MenuItem onClick={handleClose} sx={{fontSize:'1.6rem'}}>Profile</MenuItem>
+                  <MenuItem onClick={handleClose} sx={{ fontSize: '1.6rem' }}>Profile</MenuItem>
                   <hr />
-                  <MenuItem onClick={handleClose} sx={{fontSize:'1.6rem'}}>Log out</MenuItem>
+                  <MenuItem onClick={handleClose} sx={{ fontSize: '1.6rem' }}>Log out</MenuItem>
 
                 </Menu>
               </div>
@@ -108,7 +111,7 @@ function AdminTemplate() {
         open={state['left']}
         onClose={toggleDrawer('left', false)}
       >
-        <AdminSideBar />
+        <AdminSideBar handleCloseSideBar={handleCloseSideBar} />
       </Drawer>
       <Suspense fallback={<><h1>Loading...</h1></>}>
         <Outlet></Outlet>

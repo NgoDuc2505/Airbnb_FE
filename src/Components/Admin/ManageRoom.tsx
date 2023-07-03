@@ -34,30 +34,32 @@ const initState: IRoomDetail = {
     hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/phong3.jpg"
 }
 const columns: GridColDef[] = [
-    { field: 'id', headerName: 'Mã phòng', maxWidth: 70, align: 'center' },
-    { field: 'tenPhong', headerName: 'Tên phòng', maxWidth: 130 },
+    { field: 'id', headerName: 'Mã phòng', width: 90, align: 'center' },
+    { field: 'tenPhong', headerName: 'Tên phòng', width: 300, headerAlign:'center' },
     {
-        field: 'hinhAnh', headerName: 'Hình ảnh', maxWidth: 130, renderCell: (params) => {
+        field: 'hinhAnh', headerName: 'Hình ảnh', width: 130, renderCell: (params) => {
             return <Avatar alt="Remy Sharp" src={params.row.hinhAnh} />
-        }, align: 'center'
+        }, align: 'center' , headerAlign:'center'
     },
     {
         field: 'maViTri',
         headerName: 'Mã địa điểm',
         type: 'number',
-        maxWidth: 90,
+        width: 100,
         align: 'center'
     },
     {
         field: 'khach',
         headerName: 'Tối đa khách',
         type: 'number',
-        maxWidth: 90,
+        width: 100,
         align: 'center'
     },
     {
         field: "action",
         headerName: "Action",
+        headerAlign:'center',
+        align:'center',
         width: 300,
         sortable: false,
         renderCell: (params) => {
@@ -89,7 +91,7 @@ const columns: GridColDef[] = [
                         aria-labelledby="modal-modal-title"
                         aria-describedby="modal-modal-description"
                     >
-                        <DetailRoom handleCloseModal={handleShowOff} data={params.row}/>
+                        <DetailRoom handleCloseModal={handleShowOff} data={params.row} />
                     </Modal>
                 </div>
             );
@@ -139,8 +141,8 @@ const rows = [
         banUi: true,
         maViTri: 1,
         hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/phong1.jpg"
-      },
-      {
+    },
+    {
         id: 22,
         tenPhong: "STUDIO MỚI NETFLIX MIỄN PHÍ/ĐỖ XE MIỄN PHÍ",
         khach: 2,
@@ -160,8 +162,8 @@ const rows = [
         banUi: false,
         maViTri: 1,
         hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/phong2.png"
-      },
-      {
+    },
+    {
         id: 3,
         tenPhong: "Phòng sang trọng với ban công tại D.1 - 200m đến Bitexco",
         khach: 2,
@@ -181,8 +183,8 @@ const rows = [
         banUi: true,
         maViTri: 1,
         hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/phong3.png"
-      },
-      {
+    },
+    {
         id: 4,
         tenPhong: "Closer home!!!!",
         khach: 4,
@@ -202,8 +204,8 @@ const rows = [
         banUi: false,
         maViTri: 2,
         hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/phong4.png"
-      },
-      {
+    },
+    {
         id: 5,
         tenPhong: "Toàn bộ quê hương phải của Gi ngay trung tâm Cần Thơ",
         khach: 4,
@@ -223,16 +225,16 @@ const rows = [
         banUi: true,
         maViTri: 2,
         hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/phong5.png"
-      }
-    
+    }
+
 ];
 
 function ManageRoom() {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const handleChangePagination = (e: React.ChangeEvent<unknown>,page:number)=>{
-        console.log(e,page)
+    const handleChangePagination = (e: React.ChangeEvent<unknown>, page: number) => {
+        console.log(e, page)
     }
     return (
         <div className='manage-user'>

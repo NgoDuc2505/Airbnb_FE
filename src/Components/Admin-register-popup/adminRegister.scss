@@ -66,3 +66,43 @@
     }
    
 }
+.card-detail{
+    border-radius: 8px;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url('https://img.freepik.com/free-photo/colorful-block-print-frame-beige-background_53876-104266.jpg?w=1800&t=st=1688394091~exp=1688394691~hmac=4a0749a5ae37101c2430d8bfd91595b1846cb3286c7ead0294623e20f808a604');
+    background-size: cover;
+    background-position: center;
+    .card-wrapper{
+        background-color:transparent;
+        .mui-card-content{
+            padding: 2rem;
+            .mui-typography-card{
+                h4{
+                    font-weight: 700;
+                    text-decoration: underline;
+                }
+                ul{
+                    list-style: disc;
+                    padding-left: 2rem;
+                    li{
+                        font-size: 1.4rem;
+                        font-weight: 600;
+                        span{
+                            font-weight: 400;
+                        }
+                    }
+                }
+            }
+        }
+        .btn-group-card{
+            justify-content: flex-end;
+            button{
+                font-size: 1.6rem;
+            }
+        }
+    }
+}

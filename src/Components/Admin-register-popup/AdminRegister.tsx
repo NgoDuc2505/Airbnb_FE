@@ -34,13 +34,6 @@ function AdminRegister({ handleCloseModal }: IProps) {
             <form action="" className='admin-register-form'>
                 <h1>Đăng ký người quản trị</h1>
                 <Grid container spacing={2} className='mui-grid-admin'>
-                    {/* <Grid item lg={6} className='mui-item-grid-admin'>
-                        <FormControl variant='standard' className='mui-form-control-admin' margin='dense' error={true}>
-                            <InputLabel htmlFor="my-input-email">Email</InputLabel>
-                            <Input id="my-input-email" aria-describedby="my-helper-text" />
-                            <FormHelperText>check</FormHelperText>
-                        </FormControl>
-                    </Grid> */}
                     <Grid item lg={6} className='mui-item-grid-admin'>
                     <FormControl variant='standard' className='mui-form-control-admin' margin='dense' error={true}>
                         <InputLabel htmlFor="my-input-account">Tài khoản</InputLabel>
