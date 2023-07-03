@@ -9,10 +9,11 @@ import './adminRegister.scss'
 import { IProfile } from '../../constant/constant'
 interface IProps {
     personData: IProfile,
-    closeModal: ()=>void
+    closeModal: () => void,
+    openUpdate: () => void
 }
 
-export default function PersonModal({ personData,closeModal }: IProps) {
+export default function PersonModal({ personData, closeModal, openUpdate }: IProps) {
     return (
         <div className="card-detail">
             <Card sx={{ width: 500, height: 620 }} className='card-wrapper'>
@@ -38,7 +39,7 @@ export default function PersonModal({ personData,closeModal }: IProps) {
                     </Typography>
                 </CardContent>
                 <CardActions className='btn-group-card'>
-                    <Button size="large">Sửa</Button>
+                    <Button size="large" onClick={()=>{openUpdate(); closeModal()}}>Sửa</Button>
                     <Button size="large" onClick={closeModal}>Đóng</Button>
                 </CardActions>
             </Card>

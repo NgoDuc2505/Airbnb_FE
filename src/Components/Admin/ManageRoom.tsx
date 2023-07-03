@@ -9,8 +9,10 @@ import Modal from '@mui/material/Modal';
 import Avatar from '@mui/material/Avatar';
 import TextField from '@mui/material/TextField';
 import AddRoom from '../Admin-add-room-popup/AddRoom';
+import { IRoomDetail } from '../../constant/constant';
+//modal
 import DetailRoom from '../Admin-add-room-popup/DetailRoom';
-import { IRoomDetail } from '../../constant/constant'
+import RoomUpdateModal from '../Admin-add-room-popup/RoomUpdateModal';
 
 const initState: IRoomDetail = {
     id: 0,
@@ -64,7 +66,7 @@ const columns: GridColDef[] = [
         sortable: false,
         renderCell: (params) => {
             const [show, setShow] = useState<boolean>(false)
-            const [data, setData] = useState<IRoomDetail>(initState)
+            const [showUpdate,setShowUpdate] = useState<boolean>(false)
             const handleShow = () => setShow(true);
             const handleShowOff = () => setShow(false)
             const onClick = (e: React.MouseEvent) => {
@@ -74,6 +76,7 @@ const columns: GridColDef[] = [
             };
             const onClick2 = (e: React.MouseEvent) => {
                 e.stopPropagation()
+                setShowUpdate(true)
                 console.log(e, params.row.id)
             };
             const onClick3 = (e: React.MouseEvent) => {
@@ -91,7 +94,15 @@ const columns: GridColDef[] = [
                         aria-labelledby="modal-modal-title"
                         aria-describedby="modal-modal-description"
                     >
-                        <DetailRoom handleCloseModal={handleShowOff} data={params.row} />
+                        <DetailRoom handleCloseModal={handleShowOff} data={params.row} handleUpdate={()=>{setShowUpdate(true)}} />
+                    </Modal>
+                    <Modal
+                        open={showUpdate}
+                        onClose={()=>{setShowUpdate(false)}}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    >
+                        <RoomUpdateModal handleCloseUpdate={()=>{setShowUpdate(false)}}/>
                     </Modal>
                 </div>
             );

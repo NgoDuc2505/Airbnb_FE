@@ -1,4 +1,5 @@
-.add-room{
+.add-room,
+.room-update-modal{
     width: 60%;
     height: 600px;
     background-color: #fff;
@@ -73,6 +74,13 @@
         }
     }
 }
+.room-update-modal{
+    background-image: url('https://img.freepik.com/free-vector/instruction-manual-guide-document-with-cogwheel-isolated-design-element-male-character-analyzing-file-business-analysis-data-processing-updating_335657-2607.jpg?w=1380&t=st=1688397206~exp=1688397806~hmac=2f027be89e930d268d449fe071c3c47ec10b0b26d7d61d1b658965f33bd38608');
+    background-position: center;
+    &::before{
+        background-color: #eaecffdb;
+    }
+}
 .admin-detai-room{
     width: 60%;
     height: 600px;
@@ -145,6 +153,7 @@
         margin-top: 2rem;
         display: flex;
         justify-content: flex-end;
+        gap: 2rem;
         button{
             font-size: 1.4rem;
             width: 7.2rem;
