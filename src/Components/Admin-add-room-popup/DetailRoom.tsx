@@ -5,9 +5,10 @@ import './addRoom.scss'
 interface IProps {
     handleCloseModal: ()=> void,
     data: IRoomDetail,
+    handleUpdate:()=>void
 }
 
-function DetailRoom({handleCloseModal,data}:IProps) {
+function DetailRoom({handleCloseModal,data,handleUpdate}:IProps) {
     console.log(data)
   return (
     <div className='admin-detai-room'>
@@ -35,6 +36,7 @@ function DetailRoom({handleCloseModal,data}:IProps) {
         </ul>
         </div>
         <div className="cancel-btn">
+        <Button variant="contained" onClick={()=>{handleCloseModal();handleUpdate()}}>Sửa</Button>
         <Button variant="contained" onClick={()=>{handleCloseModal()}}>Đóng</Button>
         </div>
     </div>

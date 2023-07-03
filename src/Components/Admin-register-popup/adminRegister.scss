@@ -1,4 +1,5 @@
-.admin-register{
+.admin-register,
+.person-update-modal{
     width: 50%;
     height: 600px;
     background-color: #fff;
@@ -65,6 +66,10 @@
         }
     }
    
+}
+.person-update-modal{
+    background-image: url('https://img.freepik.com/free-vector/web-page-visualization-protocol-procedure-dynamic-software-workflow-full-stack-development-markup-administrate-system-driver-shared-memory-vector-isolated-concept-metaphor-illustration_335657-4299.jpg?w=1380&t=st=1688395750~exp=1688396350~hmac=dac53bd9e4016eae531eadc29563b34d7074aac6ca2fb2e670432bf3388a43f9');
+    height: 450px;
 }
 .card-detail{
     border-radius: 8px;

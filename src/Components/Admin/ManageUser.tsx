@@ -8,7 +8,9 @@ import AdminRegister from '../Admin-register-popup/AdminRegister';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import Avatar from '@mui/material/Avatar';
+//Modal
 import PersonModal from '../Admin-register-popup/PersonDetailModal';
+import PersonUpdateModal from '../Admin-register-popup/PersonUpdateModal';
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'Mã', width: 70, align: 'center', headerAlign: 'center' },
@@ -32,6 +34,7 @@ const columns: GridColDef[] = [
     headerAlign: 'center',
     renderCell: (params) => {
       const [show, setShow] = React.useState(false)
+      const [showUpdate, setShowUpdate] = React.useState(false)
       const onClick = (e: React.MouseEvent) => {
         e.stopPropagation()
         setShow(true)
@@ -39,6 +42,7 @@ const columns: GridColDef[] = [
       };
       const onClick2 = (e: React.MouseEvent) => {
         e.stopPropagation()
+        setShowUpdate(true)
         console.log(e, params.row.id)
       };
       const onClick3 = (e: React.MouseEvent) => {
@@ -56,7 +60,15 @@ const columns: GridColDef[] = [
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
-            <PersonModal personData={params.row} closeModal={()=>{setShow(false)}}/>
+            <PersonModal personData={params.row} closeModal={()=>{setShow(false)}} openUpdate={()=>{setShowUpdate(true)}}/>
+          </Modal>
+          <Modal
+            open={showUpdate}
+            onClose={()=> setShowUpdate(false)}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <PersonUpdateModal handleCloseModal={()=>{setShowUpdate(false)}}/>
           </Modal>
         </div>
       );
