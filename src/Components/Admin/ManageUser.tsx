@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 import Pagination from '@mui/material/Pagination';
 import Container from '@mui/material/Container';

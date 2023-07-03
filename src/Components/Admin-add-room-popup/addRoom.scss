@@ -1,0 +1,153 @@
+.add-room{
+    width: 60%;
+    height: 600px;
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 2.5rem 2rem 2rem;
+    background-image: url('https://img.freepik.com/free-photo/illuminated-room_1203-133.jpg?size=626&ext=jpg&ga=GA1.2.1470230597.1688300204&semt=ais');
+    background-size: cover;
+    &::before{
+        content: '';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #ffffff78;
+        z-index: -1;
+    }
+    form{
+        width: 100%;
+        height: 100%;
+        .selection-group-wrapper{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4rem;
+            padding: 1.6rem;
+            margin-top: 2rem;
+            .selection-group{
+                display: flex;
+                gap: 2.5rem;
+                label{
+                    font-size: 1.6rem;
+                    font-weight: 500;
+                }
+                select{
+                    font-size: 1.6rem;
+                }
+            }
+        }
+        .mui-grid-container-room{
+            margin: 0;
+            .mui-grid-item-room{
+                .mui-form-control-admin{
+                    width: 60%;
+                    label{
+                        font-size: 1.4rem;
+                        font-weight: 600;
+                        margin-bottom: 1rem;
+                    }
+                    input{
+                        font-size: 1.6rem;
+                    }
+                }
+            }
+        }
+    }
+    h1{
+        text-align: center;
+    }
+    .button-group-admin-room{
+        display: flex;
+        justify-content: flex-end;
+        gap: 2rem;
+        padding-right: 1.6rem;
+        margin-top: 4rem;
+        button{
+            font-size: 1.6rem;
+        }
+    }
+}
+.admin-detai-room{
+    width: 60%;
+    height: 600px;
+    overflow: hidden;
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 8px;
+    padding: 2rem;
+    font-size: 1.6rem;
+    background-image: url('https://img.freepik.com/premium-photo/modern-interior-design-3d-illustration_259454-1571.jpg?w=1800');
+    background-size: cover;
+    h2{
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    .detail{
+        width: 100%;
+        display: flex;
+        gap: 2rem;
+        border-radius: 8px;
+        padding: 1rem;
+        backdrop-filter: blur(8px);
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+        img{
+            width: 50%;
+            height: 200px;
+            border-radius: 8px;
+        }
+        .desc{
+            font-weight: 600;
+            span{
+                font-weight: 400;
+            }
+        }
+    }
+    .sub-info{
+        border-radius: 8px;
+        padding: 1rem;
+        margin-top: 2rem;
+        backdrop-filter: blur(8px);
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+        p{
+            font-weight: 600;
+            span{
+                font-weight: 400;
+            }
+        }
+        h3{
+            text-decoration: underline;
+            margin-bottom: 1rem;
+        }
+        .extra-ben{
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            li{
+                font-weight: 500;
+                span{
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+    .cancel-btn{
+        width: 100%;
+        margin-top: 2rem;
+        display: flex;
+        justify-content: flex-end;
+        button{
+            font-size: 1.4rem;
+            width: 7.2rem;
+        }
+    }
+}
