@@ -163,6 +163,8 @@
         .detail-right{ 
             width: 35%;
             .detail-purchase{ 
+                position: sticky;
+                top: 10rem;
                 padding: 2rem;
                 border-radius: 10px;
                 background-color: white;
@@ -170,17 +172,7 @@
                 h1 span{ 
                     font-size: 1.5rem;
                 }
-
-                
             }
-
-            
-            // background-color: #c0c0c0;
-            // position: -webkit-sticky;
-            // position:fixed;
-            // top:2rem;
-            // right: 3rem;
-            // z-index:100;
         }
     }
 
@@ -525,6 +517,11 @@
     }
 }
 
+
+.detail-comment-section-phone{
+    display: none;
+}
+
 @media screen and (max-width: 900px) {
     .detail-page{
         .detail-gimmick {
@@ -557,7 +554,7 @@
         border: solid 1px rgba(0, 0, 0, 0.16);
         background-color: white;
         display: flex;
-        position: sticky;
+        position: fixed;
         bottom: 0;
         left: 0;
         border-radius: 5px;
@@ -566,5 +563,14 @@
 
     .detail-comment-slider{
         display: none;
+    }
+
+    .detail-comment-section{ 
+        display: none;
+    }
+
+
+    .detail-comment-section-phone{
+        display: block;
     }
 }

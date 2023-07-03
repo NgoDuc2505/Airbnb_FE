@@ -18,7 +18,7 @@ interface IProps{
     limit: boolean
 }
 
-const checkIfImageExists = (url: string): string => {
+export const checkIfImageExists = (url: string): string => {
     return url === "" ? "/src/assets/Image/emptyAva.jpg": url
 }
 
