@@ -19,7 +19,7 @@ export const getInspectOfSearchPage = createAsyncThunk(
         //         tokenCybersoft: CYBER_TOKEN,
         //     }
         // })
-        const resp = axiosInterceptorWithCybertoken.get('/api/vi-tri/phan-trang-tim-kiem?pageIndex=1&pageSize=8')
+        const resp = await axiosInterceptorWithCybertoken.get('/api/vi-tri/phan-trang-tim-kiem?pageIndex=1&pageSize=8')
         return resp;
     }
 )
@@ -34,7 +34,7 @@ export const getListRoomByIdLocation =createAsyncThunk(
         //         tokenCybersoft: CYBER_TOKEN,
         //     }
         // })
-        const resp = axiosInterceptorWithCybertoken.get(`/api/phong-thue/lay-phong-theo-vi-tri?maViTri=${id}`)
+        const resp = await axiosInterceptorWithCybertoken.get(`/api/phong-thue/lay-phong-theo-vi-tri?maViTri=${id}`)
         return resp
     }
 )

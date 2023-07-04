@@ -3,6 +3,7 @@ import sliceLocation from './Location-slice/LocationSlice'
 import sliceUser from './user-slice/UserSlice'
 import sliceRoomDetail from './Detail-slice/DetailSlice'
 import sliceComment from './Comment-slice/CommentSlice'
+import sliceCurrent from './Current-detail/currentDetailManage'
 import sliceAdmin from './Admin-slice/AdminSlice'
 export const store = configureStore({
   reducer: {
@@ -10,7 +11,8 @@ export const store = configureStore({
     sliceUser,
     sliceRoomDetail,
     sliceComment,
-    sliceAdmin
+    sliceCurrent,
+    sliceAdmin,
   },
 })
 

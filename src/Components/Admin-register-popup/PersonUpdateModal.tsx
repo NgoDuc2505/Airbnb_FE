@@ -93,7 +93,7 @@ function PersonUpdateModal({handleCloseModal}:IProps) {
                     </Grid>
                 </Grid>
                 <div className="button-group-admin-register">
-                    <Button variant="contained">Thêm</Button>
+                    <Button variant="contained">Sửa</Button>
                     <Button variant="contained" onClick={handleCloseModal}>Hủy</Button>
                 </div>
             </form>
