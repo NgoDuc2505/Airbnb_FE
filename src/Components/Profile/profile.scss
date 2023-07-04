@@ -62,7 +62,18 @@
     //     padding-left:8rem;
     // }
 }
-
+.birthday-show{
+    padding-left: 1rem;
+    label{
+        padding-left: 1rem;
+        font-size: 1.8rem;
+        font-weight: 700;
+    }
+    input{
+        font-size: 1.8rem;
+        font-weight: 700;
+    }
+}
 
 .profile-box-modal{ 
     width: 70%;
