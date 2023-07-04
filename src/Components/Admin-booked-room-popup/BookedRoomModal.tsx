@@ -49,7 +49,7 @@ interface IProps{
         <CardMedia
           component="img"
           height="194"
-          image="https://airbnbnew.cybersoft.edu.vn/images/phong7.png"
+          image={currentDataRoom.hinhAnh}
           alt="Paella dish"
         />
         <CardContent>

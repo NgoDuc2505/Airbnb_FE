@@ -80,7 +80,7 @@ const columns: GridColDef[] = [
   }
 ];
 
-let rows = [
+const rows = [
   {
     id: 1,
     name: "admin",
@@ -92,83 +92,6 @@ let rows = [
     gender: true,
     role: "ADMIN"
   },
-  {
-    id: 3016,
-    name: "Khoa D Nguyedsadasdndsa",
-    email: "dkhoa2019vn@gmail.com",
-    password: "123@ccc",
-    phone: "+61403256875",
-    birthday: "28-6-2023",
-    avatar: "",
-    gender: false,
-    role: "USER"
-  },
-  {
-    id: 3019,
-    name: "nguyen van k",
-    email: "nguyenvank@gmail.com",
-    password: "123456789",
-    phone: "",
-    birthday: "14-06-2023",
-    avatar: "",
-    gender: true,
-    role: "USER"
-  },
-  {
-    id: 3020,
-    name: "Ngo Duc",
-    email: "ngoduc2505@gmail.com",
-    password: "25052002Duc@",
-    phone: "0364643405",
-    birthday: "25-5-2002",
-    avatar: "",
-    gender: true,
-    role: "USER"
-  },
-  {
-    id: 3021,
-    name: "Ngô Hoàng Phúc",
-    email: "phuc204@gmail.com",
-    password: "25052002Duc@",
-    phone: "0364643405",
-    birthday: "3-6-2023",
-    avatar: "",
-    gender: true,
-    role: "USER"
-  },
-  {
-    id: 3022,
-    name: "minhtu",
-    email: "tuminhvo98@gmail.com",
-    password: "Minhtu123",
-    phone: "0123456789",
-    birthday: "08/01/1998",
-    avatar: "https://airbnbnew.cybersoft.edu.vn/avatar/30-06-2023-07-00-18-351100179_646283387406994_2654810799033263422_n.jpg",
-    gender: false,
-    role: "ADMIN"
-  },
-  {
-    id: 3023,
-    name: "abc",
-    email: "giahuyzz11@gmail.com",
-    password: "minhtu123",
-    phone: "0981231231",
-    birthday: "2023-07-06",
-    avatar: "",
-    gender: true,
-    role: "USER"
-  },
-  {
-    id: 3024,
-    name: "ductan",
-    email: "ductan@gmail.com",
-    password: "123456",
-    phone: "0123456789",
-    birthday: "10/11/1996",
-    avatar: "",
-    gender: true,
-    role: "USER"
-  }
 ];
 
 
@@ -180,7 +103,7 @@ function ManageUser() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const dataRetrieve = useSelector((state: RootState)=>state.sliceAdmin.currentUserbyPhanTrang)
-  rows = dataRetrieve.data
+  const newRows = dataRetrieve.data ? dataRetrieve.data : rows 
 
   
   React.useEffect(() => { 
@@ -209,13 +132,12 @@ function ManageUser() {
         </Modal>
         <DataGrid
           className='mui-grid-user'
-          rows={rows}
+          rows={newRows}
           columns={columns}
           checkboxSelection
           hideFooterPagination={true}
           hideFooter={true}
-
-          sx={{ fontSize: '1.4rem' }}
+          sx={{ fontSize: '1.4rem', height:475 }}
         />
         <Pagination onChange={handleChangePagination} count={Math.ceil(dataRetrieve.totalRow/dataRetrieve.pageSize)} variant="outlined" sx={{ marginTop: '1rem', marginRight: '5%', justifyContent: 'flex-end', display: 'flex' }} />
       </Container>
