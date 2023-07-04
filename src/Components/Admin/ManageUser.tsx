@@ -11,6 +11,10 @@ import Avatar from '@mui/material/Avatar';
 //Modal
 import PersonModal from '../Admin-register-popup/PersonDetailModal';
 import PersonUpdateModal from '../Admin-register-popup/PersonUpdateModal';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserByPhanTrang } from '../../redux/Admin-slice/AdminSlice';
+import { AppDispatch, RootState } from '../../redux/store';
+import { IProfile } from '../../constant/constant';
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'Mã', width: 70, align: 'center', headerAlign: 'center' },
@@ -76,7 +80,7 @@ const columns: GridColDef[] = [
   }
 ];
 
-const rows = [
+let rows = [
   {
     id: 1,
     name: "admin",
@@ -166,13 +170,27 @@ const rows = [
     role: "USER"
   }
 ];
+
+
+
 function ManageUser() {
+  const dispatch  = useDispatch<AppDispatch>()
   const [open, setOpen] = React.useState(false);
+  const [page, setPage] = React.useState(1)
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const dataRetrieve = useSelector((state: RootState)=>state.sliceAdmin.currentUserbyPhanTrang)
+  rows = dataRetrieve.data
+
+  
+  React.useEffect(() => { 
+    dispatch(getUserByPhanTrang({pageIndex: page, keywords: ""}))
+  }, [page])
+
   const handleChangePagination = (e: React.ChangeEvent<unknown>, page: number) => {
-    console.log(e, page)
-}
+    setPage(page)
+ }
+
   return (
     <div className='manage-user'>
       <Container fixed={true} className='mui-container-manage'>
@@ -199,7 +217,7 @@ function ManageUser() {
 
           sx={{ fontSize: '1.4rem' }}
         />
-        <Pagination onChange={handleChangePagination} count={10} variant="outlined" sx={{ marginTop: '1rem', marginRight: '5%', justifyContent: 'flex-end', display: 'flex' }} />
+        <Pagination onChange={handleChangePagination} count={Math.ceil(dataRetrieve.totalRow/dataRetrieve.pageSize)} variant="outlined" sx={{ marginTop: '1rem', marginRight: '5%', justifyContent: 'flex-end', display: 'flex' }} />
       </Container>
     </div>
   )
