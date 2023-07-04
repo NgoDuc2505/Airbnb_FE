@@ -15,7 +15,7 @@ const Detail = lazy(()=>{return import('./Pages/Detail-room/DetailRoom')})
 const PersonalInformation = lazy(()=>{return import('./Pages/Personal-information/PersonalInformation')})
 const ManageUser = lazy(()=> {return import('./Components/Admin/ManageUser')})
 const ManageRoom = lazy(()=>{return import('./Components/Admin/ManageRoom')})
-
+const ManageBookedRoom = lazy(()=>{return import('./Components/Admin/ManageBookedRoom')})
 function App() {
   return (
     <Fragment>
@@ -38,6 +38,7 @@ function App() {
           <Route path='admin' element={<AdminTemplate />}>
             <Route path='user' element={<ManageUser/>}></Route>
             <Route path='roomdetail' element={<ManageRoom/>}></Route>
+            <Route path='booked' element={<ManageBookedRoom/>}></Route>
           </Route>
         </Routes>
       </BrowserRouter>

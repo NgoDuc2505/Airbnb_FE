@@ -1,14 +1,17 @@
 import * as React from 'react';
 import { useState } from 'react'
+import './manage.scss'
+//mui ui
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 import Pagination from '@mui/material/Pagination';
 import Container from '@mui/material/Container';
-import './manage.scss'
 import Modal from '@mui/material/Modal';
 import Avatar from '@mui/material/Avatar';
 import TextField from '@mui/material/TextField';
+//component
 import AddRoom from '../Admin-add-room-popup/AddRoom';
+//const
 import { IRoomDetail } from '../../constant/constant';
 //modal
 import DetailRoom from '../Admin-add-room-popup/DetailRoom';

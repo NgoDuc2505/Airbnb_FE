@@ -12,14 +12,7 @@ export interface IRoomState{
 export const getRoomByUserId = createAsyncThunk(
     'roomSlice/getRoomByUserId',
     async (id: number | undefined)=>{
-        // const resp = axios({
-        //     url:`https://airbnbnew.cybersoft.edu.vn/api/phong-thue/lay-phong-theo-vi-tri?maViTri=${id}`,
-        //     method:'get',
-        //     headers:{
-        //         tokenCybersoft: CYBER_TOKEN,
-        //     }
-        // })
-        const resp = axiosInterceptorWithCybertoken.get(`/api/dat-phong/lay-theo-nguoi-dung/${id}`)
+        const resp = await axiosInterceptorWithCybertoken.get(`/api/dat-phong/lay-theo-nguoi-dung/${id}`)
         return resp
     }
 )
@@ -29,7 +22,7 @@ export const getRoomByUserId = createAsyncThunk(
 export const getRoomById = createAsyncThunk(
     'roomSlice/getRoomById',
     async (id: string | undefined)=>{
-        const resp = axios({
+        const resp = await axios({
             url:`https://airbnbnew.cybersoft.edu.vn/api/phong-thue/${id}`,
             method:'get',
             headers:{
