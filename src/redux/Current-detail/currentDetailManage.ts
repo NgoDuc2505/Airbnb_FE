@@ -43,7 +43,7 @@ export const currentSlice = createSlice({
             const underfinedUser ={
                 id:-1,
                 name:'Không xác định',
-                email:'',
+                email:'Không có tồn tại tài khoản',
                 password:'',
                 phone:'',
                 birthday:'',
