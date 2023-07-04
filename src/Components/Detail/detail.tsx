@@ -162,16 +162,10 @@ function Detail({dataDetail, location, comment}:IProps) {
                     )
                 })
             }
-
-        
-
         </div>
-
         <div className='detail-comment-section-phone'>
             <CardSlider comment={comment} limit={true} sliceMax={5}/>
         </div>
-
-
         <AlertDialogSlide 
             buttonName={`Hiển Thị ${comment.length} Đánh Giá`} 
             title={`★ ${averageStar} · ${comment.length} đánh giá`} 
