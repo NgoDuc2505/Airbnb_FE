@@ -40,6 +40,7 @@ function App() {
             <Route path='user' element={<ManageUser/>}></Route>
             <Route path='roomdetail' element={<ManageRoom/>}></Route>
             <Route path='booked' element={<ManageBookedRoom/>}></Route>
+            <Route path='location' element={<ManageLocation/>}></Route>
           </Route>
         </Routes>
       </BrowserRouter>

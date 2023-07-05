@@ -1,5 +1,7 @@
 .add-room,
-.room-update-modal{
+.room-update-modal,
+.add-location-modal,
+.update-location-modal{
     width: 60%;
     height: 600px;
     background-color: #fff;
@@ -158,5 +160,54 @@
             font-size: 1.4rem;
             width: 7.2rem;
         }
+    }
+}
+.add-location-modal,
+.update-location-modal{
+    height: 400px ;
+    background-image: url('https://img.freepik.com/premium-photo/rock-podium-tropical-forest-product-presentation-is-view-sky_41470-5023.jpg?w=1480');
+    background-position: center;
+    &::before{
+        background-color: #afc5d7b0;
+    }
+    form{
+        .mui-grid-container-room{
+            .mui-grid-item-room{
+                .mui-form-control-admin{
+                    width: 80%;
+                    label{
+                        font-size: 1.6rem;
+                        font-weight: 600;
+                        margin-bottom: 1rem;
+                        color: black;
+                    }
+                    input{
+                        font-size: 2rem;
+                    }
+                    p{
+                        font-size: 1.4rem;
+                        font-weight: 700;
+                    }
+                }
+            }
+        }
+    }
+}
+.update-location-modal{
+    height: 600px;
+    background-image: url('https://img.freepik.com/free-photo/falling-leaf-with-blurred-background_23-2148232268.jpg?w=1800&t=st=1688528493~exp=1688529093~hmac=a5ead6726b20554f366ebd5f098964ba5a9ddd8ac5b162df61cda5869c2b2df0');
+    &::before{
+        background-color: #daddbf66;
+    }
+    form{
+        .mui-grid-container-room{
+            .mui-grid-item-room{
+                img{
+                    width: 90%;
+                    height: 200px;
+                    border-radius: 5px;
+                    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.5);
+                }
+            }}
     }
 }
