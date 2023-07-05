@@ -81,7 +81,7 @@ interface IProps{
             <Typography paragraph sx={{fontSize:'1.6rem'}}>
               {currentDataUser.id === -1 
               ? <span>- <Typography sx={{display:'inline',fontSize:'1.6rem',color:'red'}}>Thông tin người dùng hiện không tồn tại vui lòng kiểm tra tại mục quản lý người dùng</Typography> <NavLink to={'/admin/user'}>tại đây</NavLink> hoặc <Button variant="outlined" color='error'>xóa đơn</Button></span>
-              : <span>- Về thôn tin chi tiết có thể tra người dùng với id: <Typography variant='h4' sx={{display:'inline'}}>{currentDataUser.id}</Typography></span>}
+              : <span>- Về thôn tin chi tiết có thể <NavLink to={'/admin/user'}>tra người dùng</NavLink> với id: <Typography variant='h4' sx={{display:'inline'}}>{currentDataUser.id}</Typography></span>}
             </Typography>
           </CardContent>
         </Collapse>

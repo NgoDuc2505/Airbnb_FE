@@ -16,6 +16,7 @@ const PersonalInformation = lazy(()=>{return import('./Pages/Personal-informatio
 const ManageUser = lazy(()=> {return import('./Components/Admin/ManageUser')})
 const ManageRoom = lazy(()=>{return import('./Components/Admin/ManageRoom')})
 const ManageBookedRoom = lazy(()=>{return import('./Components/Admin/ManageBookedRoom')})
+const ManageLocation = lazy(()=>{return import('./Components/Admin/ManageLocation')})
 function App() {
   return (
     <Fragment>
