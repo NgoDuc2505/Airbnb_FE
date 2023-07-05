@@ -56,8 +56,8 @@ const columns: GridColDef[] = [
       return (
         <div className="button-group">
           <Button variant="contained" onClick={onClick}>Xem chi tiết</Button>
-          <Button variant="contained" onClick={onClick2}>Sửa</Button>
-          <Button variant="contained" onClick={onClick3}>Xóa</Button>
+          <Button variant="contained" onClick={onClick2} color='info'>Sửa</Button>
+          <Button variant="contained" onClick={onClick3} color='error'>Xóa</Button>
           <Modal
             open={show}
             onClose={()=> setShow(false)}
@@ -119,7 +119,7 @@ function ManageUser() {
       <Container fixed={true} className='mui-container-manage'>
         <Button className='button-add-admin' onClick={handleOpen}>Đăng ký quản trị viên</Button>
         <div className="search-user">
-          <TextField id="outlined-basic" label="Outlined" variant="outlined" className='input-search' />
+          <TextField id="outlined-basic" label="Tìm tài khoản qua id" variant="outlined" className='input-search' />
           <button>Tìm</button>
         </div>
         <Modal

@@ -89,8 +89,8 @@ const columns: GridColDef[] = [
             return (
                 <div className="button-group">
                     <Button variant="contained" onClick={onClick}>Xem chi tiết</Button>
-                    <Button variant="contained" onClick={onClick2}>Sửa</Button>
-                    <Button variant="contained" onClick={onClick3}>Xóa</Button>
+                    <Button variant="contained" onClick={onClick2} color='info'>Sửa</Button>
+                    <Button variant="contained" onClick={onClick3} color='error'>Xóa</Button>
                     <Modal
                         open={show}
                         onClose={handleShowOff}
@@ -255,7 +255,7 @@ function ManageRoom() {
             <Container fixed={true} className='mui-container-manage'>
                 <Button className='button-add-admin' onClick={handleOpen}>Thêm phòng +</Button>
                 <div className="search-user">
-                    <TextField id="outlined-basic" label="Tìm phòng" variant="filled" className='input-search' />
+                    <TextField id="outlined-basic" label="Tìm phòng theo id" variant="filled" className='input-search' />
                     <button>Tìm</button>
                 </div>
                 <Modal

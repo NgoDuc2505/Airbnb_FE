@@ -230,7 +230,7 @@ function ManageBookedRoom() {
     <div className='manage-booked-room'>
       <Container fixed={true} className='mui-container-manage'>
         <div className="search-user">
-          <TextField id="outlined-basic" label="Tìm phòng" variant="filled" className='input-search' />
+          <TextField id="outlined-basic" label="Tìm phòng đặt qua id" variant="filled" className='input-search' />
           <button>Tìm</button>
         </div>
         <Box sx={{ height: 500, width: '100%' }}>

@@ -1,5 +1,6 @@
 .manage-user,
-.manage-booked-room{
+.manage-booked-room,
+.manage-location{
     padding-top: 3rem;
     .mui-grid-user{
         width: 100%;
@@ -33,5 +34,13 @@
         font-weight: 600;
         outline: unset;
         border: unset;
+    }
+}
+.manage-booked-room{
+    .MuiDataGrid-footerContainer{
+        p{
+            margin-bottom: 0;
+            font-size: 1.6rem;
+        }
     }
 }
