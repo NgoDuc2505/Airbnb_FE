@@ -12,9 +12,11 @@ import Avatar from '@mui/material/Avatar';
 import PersonModal from '../Admin-register-popup/PersonDetailModal';
 import PersonUpdateModal from '../Admin-register-popup/PersonUpdateModal';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserByPhanTrang } from '../../redux/Admin-slice/AdminSlice';
+import { deleteUserFromList, getUserByPhanTrang } from '../../redux/Admin-slice/AdminUserSlice';
 import { AppDispatch, RootState } from '../../redux/store';
 import { IProfile } from '../../constant/constant';
+import swal from 'sweetalert';
+import { axiosInterceptorWithCybertoken } from '../../services/services';
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'Mã', width: 70, align: 'center', headerAlign: 'center' },
@@ -37,6 +39,7 @@ const columns: GridColDef[] = [
     align: 'center',
     headerAlign: 'center',
     renderCell: (params) => {
+      const dispatch = useDispatch<AppDispatch>()
       const [show, setShow] = React.useState(false)
       const [showUpdate, setShowUpdate] = React.useState(false)
       const onClick = (e: React.MouseEvent) => {
@@ -51,7 +54,37 @@ const columns: GridColDef[] = [
       };
       const onClick3 = (e: React.MouseEvent) => {
         e.stopPropagation()
-        console.log(e, params.row.id)
+        try{ 
+          swal({
+            title: "Bạn có chắc chắn muốn xóa người này?",
+            text: "Không thể quay lại sau khi xóa",
+            icon: "warning",
+            buttons: [
+              'Không xóa',
+              'Xóa!'
+            ],
+            dangerMode: true,
+          }).then(function(isConfirm) {
+            if (isConfirm) {
+              swal({
+                title: 'Xóa thành công!',
+                text: `Người dùng với id ${params.row.id} đã bị xóa`,
+                icon: 'success'
+              }).then(async() => {
+                  await axiosInterceptorWithCybertoken.delete(`/api/users?id=${params.row.id}`);
+                  dispatch(deleteUserFromList([params.row.id]))
+              });
+            } else {
+              swal("Hủy thành công",  `Người dùng với id ${params.row.id} chưa bị xóa`, "error");
+            }
+          })
+          
+        } catch(error) { 
+          console.log(error)
+          swal("Thất bại, tại khoản xóa thất bại!", {
+            icon: "error",
+          });
+        }
       };
       return (
         <div className="button-group">
@@ -72,7 +105,7 @@ const columns: GridColDef[] = [
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
-            <PersonUpdateModal handleCloseModal={()=>{setShowUpdate(false)}}/>
+            <PersonUpdateModal personData={params.row} handleCloseModal={()=>{setShowUpdate(false)}}/>
           </Modal>
         </div>
       );
@@ -98,17 +131,19 @@ const rows = [
 
 function ManageUser() {
   const dispatch  = useDispatch<AppDispatch>()
+  const refSearch = React.useRef<HTMLInputElement>();
   const [open, setOpen] = React.useState(false);
   const [page, setPage] = React.useState(1)
+  const [searchKey, setSearchKey] = React.useState("")
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const dataRetrieve = useSelector((state: RootState)=>state.sliceAdmin.currentUserbyPhanTrang)
+  const dataRetrieve = useSelector((state: RootState)=>state.sliceUserAdmin.currentUserbyPhanTrang)
   const newRows = dataRetrieve.data ? dataRetrieve.data : rows 
 
   
   React.useEffect(() => { 
-    dispatch(getUserByPhanTrang({pageIndex: page, keywords: ""}))
-  }, [page])
+    dispatch(getUserByPhanTrang({pageIndex: page, keywords: searchKey}))
+  }, [page, searchKey])
 
   const handleChangePagination = (e: React.ChangeEvent<unknown>, page: number) => {
     setPage(page)
@@ -119,8 +154,11 @@ function ManageUser() {
       <Container fixed={true} className='mui-container-manage'>
         <Button className='button-add-admin' onClick={handleOpen}>Đăng ký quản trị viên</Button>
         <div className="search-user">
-          <TextField id="outlined-basic" label="Tìm tài khoản qua id" variant="outlined" className='input-search' />
-          <button>Tìm</button>
+          <TextField inputRef={refSearch} id="outlined-basic" label="Tìm tài khoản qua id" variant="outlined" className='input-search' />
+          <button onClick={() => { 
+            const keyword = (refSearch.current as unknown) as HTMLInputElement
+            setSearchKey(keyword.value)
+          }}>Tìm</button>
         </div>
         <Modal
           open={open}

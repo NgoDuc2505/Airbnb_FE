@@ -15,6 +15,7 @@ import UpdateLocation from '../Admin-location-popup/UpdateLocation';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
 import { ILocationItem } from '../../constant/constant';
+import { getLocationByPhanTrang } from '../../redux/Admin-slice/AdminLocationSlice';
 
 
 function ManageLocation() {
@@ -137,6 +138,16 @@ function ManageLocation() {
             hinhAnh: "https://airbnbnew.cybersoft.edu.vn/avatar/15-06-2023-03-11-34-cho.jpg"
           },
     ]
+
+
+    const dataRetrieve = useSelector((state: RootState)=>state.sliceLocationAdmin.currentLocationbyPhanTrang)
+    const newRows = dataRetrieve.data ? dataRetrieve.data : rows 
+
+    React.useEffect(() => { 
+        dispatch(getLocationByPhanTrang({pageIndex: page, keywords: ""}))
+      }, [page])
+
+
     const handleChangePagination = (e: React.ChangeEvent<unknown>, page: number) => {
         setPage(page)
      }
@@ -166,14 +177,14 @@ function ManageLocation() {
                 </Modal>
                 <DataGrid
                     className='mui-grid-user'
-                    rows={rows}
+                    rows={newRows}
                     columns={columns}
                     checkboxSelection
                     hideFooterPagination={true}
                     hideFooter={true}
                     sx={{ fontSize: '1.4rem', height: 475 }}
                 />
-                <Pagination onChange={handleChangePagination} count={10} variant="outlined" sx={{ marginTop: '1rem', marginRight: '5%', justifyContent: 'flex-end', display: 'flex' }} />
+                <Pagination onChange={handleChangePagination} count={Math.ceil(dataRetrieve.totalRow/dataRetrieve.pageSize)} variant="outlined" sx={{ marginTop: '1rem', marginRight: '5%', justifyContent: 'flex-end', display: 'flex' }} />
             </Container>
         </div>
     )

@@ -16,6 +16,9 @@ import { IRoomDetail } from '../../constant/constant';
 //modal
 import DetailRoom from '../Admin-add-room-popup/DetailRoom';
 import RoomUpdateModal from '../Admin-add-room-popup/RoomUpdateModal';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../redux/store';
+import { getRoomByPhanTrang } from '../../redux/Admin-slice/AdminRoomSlice';
 
 const initState: IRoomDetail = {
     id: 0,
@@ -244,11 +247,22 @@ const rows = [
 ];
 
 function ManageRoom() {
+    const dispatch  = useDispatch<AppDispatch>()
     const [open, setOpen] = React.useState(false);
+    const [page, setPage] = React.useState(1)
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    
+    const dataRetrieve = useSelector((state: RootState)=>state.sliceRoomAdmin.currentRoombyPhanTrang)
+    const newRows = dataRetrieve.data ? dataRetrieve.data : rows 
+
+    React.useEffect(() => { 
+        dispatch(getRoomByPhanTrang({pageIndex: page, keywords: ""}))
+      }, [page])
+
     const handleChangePagination = (e: React.ChangeEvent<unknown>, page: number) => {
-        console.log(e, page)
+        setPage(page)
     }
     return (
         <div className='manage-user'>
@@ -268,7 +282,7 @@ function ManageRoom() {
                 </Modal>
                 <DataGrid
                     className='mui-grid-user'
-                    rows={rows}
+                    rows={newRows}
                     columns={columns}
                     checkboxSelection
                     hideFooterPagination={true}
@@ -276,7 +290,7 @@ function ManageRoom() {
                     sx={{ fontSize: '1.4rem' }}
 
                 />
-                <Pagination onChange={handleChangePagination} count={10} variant="outlined" sx={{ marginTop: '1rem', marginRight: '5%', justifyContent: 'flex-end', display: 'flex' }} />
+                <Pagination onChange={handleChangePagination} count={Math.ceil(dataRetrieve.totalRow/dataRetrieve.pageSize)} variant="outlined" sx={{ marginTop: '1rem', marginRight: '5%', justifyContent: 'flex-end', display: 'flex' }} />
             </Container>
         </div>
     )
