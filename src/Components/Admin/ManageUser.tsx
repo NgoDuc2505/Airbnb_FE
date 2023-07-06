@@ -45,7 +45,6 @@ const columns: GridColDef[] = [
       const onClick = (e: React.MouseEvent) => {
         e.stopPropagation()
         setShow(true)
-        console.log(e, params)
       };
       const onClick2 = (e: React.MouseEvent) => {
         e.stopPropagation()
