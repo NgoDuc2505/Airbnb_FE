@@ -28,6 +28,7 @@
     "react-router-dom": "^6.12.1",
     "sass": "^1.63.3",
     "sweetalert": "^2.1.2",
+    "use-file-picker": "^1.7.0",
     "yup": "^1.2.0"
   },
   "devDependencies": {
