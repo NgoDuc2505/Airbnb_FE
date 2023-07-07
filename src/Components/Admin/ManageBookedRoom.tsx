@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './manage.scss'
 //mui ui
-import { DataGrid, GridColDef, GridActionsCellItem } from '@mui/x-data-grid';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 import Pagination from '@mui/material/Pagination';
 import Container from '@mui/material/Container';
@@ -16,13 +16,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '../../redux/store'
 import { getCurrentCustomerById, getCurrentBookedRoomById } from '../../redux/Current-detail/currentDetailManage'
 import BookedRoomModal from '../Admin-booked-room-popup/BookedRoomModal';
-
+import { getListBookedRoom } from '../../redux/Admin-slice/AdminBookingSlice'
 
 function ManageBookedRoom() {
   const dispatch = useDispatch<AppDispatch>()
   const currentDataUser = useSelector((state: RootState) => state.sliceCurrent.currentCustomer)
   const currentDataRoom = useSelector((state: RootState) => state.sliceCurrent.currentBookedRoom)
+  const bookingListData = useSelector((state:RootState) =>{return state.sliceBookingAdmin.listBooking})
   const [open, setOpen] = React.useState(false);
+  useEffect(()=>{
+    dispatch(getListBookedRoom())
+  },[])
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const rows = [
@@ -225,7 +229,7 @@ function ManageBookedRoom() {
       }
     }
   ];
-
+  const newRows:IBookRoom[] = bookingListData?.length >0 ? bookingListData : rows
   return (
     <div className='manage-booked-room'>
       <Container fixed={true} className='mui-container-manage'>
@@ -235,7 +239,7 @@ function ManageBookedRoom() {
         </div>
         <Box sx={{ height: 500, width: '100%' }}>
           <DataGrid
-            rows={rows}
+            rows={newRows}
             columns={columns}
             checkboxSelection
             sx={{ fontSize: '1.4rem', width: "100%" }}

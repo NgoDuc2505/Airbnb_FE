@@ -12,7 +12,8 @@ export interface ILocationState{
 export const getInspectOfSearchPage = createAsyncThunk(
     'locationSlice/getInspectOfSearchPage',
     async ()=>{
-        const resp = await axiosInterceptorWithCybertoken.get('/api/vi-tri/phan-trang-tim-kiem?pageIndex=1&pageSize=8')
+        // const resp = await axiosInterceptorWithCybertoken.get('/api/vi-tri/phan-trang-tim-kiem?pageIndex=1&pageSize=8')
+        const resp = await axiosInterceptorWithCybertoken.get('/api/vi-tri')
         return resp;
     }
 )
@@ -39,7 +40,7 @@ export const locationSlice = createSlice({
     },
     extraReducers: (build)=>{
         build.addCase(getInspectOfSearchPage.fulfilled,(state,action)=>{
-            state.inspectOfSearchPage = action.payload.data.content.data;
+            state.inspectOfSearchPage = action.payload.data.content;
         })
         build.addCase(getListRoomByIdLocation.fulfilled,(state,action)=>{
             state.listRoomByIdLocation = action.payload.data.content
