@@ -120,7 +120,7 @@ function PersonUpdateModal({ handleCloseModal, personData }: IProps) {
                         </FormControl>
                     </Grid>
                     <Grid item lg={6} className='mui-item-grid-admin'>
-                        <TextField id="filled-basic" label="Birthday" disabled={true} variant="filled" value={dateValue?.day() !== undefined ? dateGenerate : formik.values.birthday} />
+                        <TextField className='birth-day' id="filled-basic" label="Birthday" disabled={true} variant="filled" value={dateValue?.day() !== undefined ? dateGenerate : formik.values.birthday} />
                         <Box sx={{ display: 'flex' }}>
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <DemoContainer components={['DatePicker']}>

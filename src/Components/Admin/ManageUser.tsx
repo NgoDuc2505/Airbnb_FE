@@ -14,7 +14,6 @@ import PersonUpdateModal from '../Admin-register-popup/PersonUpdateModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteUserFromList, getUserByPhanTrang } from '../../redux/Admin-slice/AdminUserSlice';
 import { AppDispatch, RootState } from '../../redux/store';
-import { IProfile } from '../../constant/constant';
 import swal from 'sweetalert';
 import { axiosInterceptorWithCybertoken } from '../../services/services';
 
@@ -49,7 +48,6 @@ const columns: GridColDef[] = [
       const onClick2 = (e: React.MouseEvent) => {
         e.stopPropagation()
         setShowUpdate(true)
-        console.log(e, params.row.id)
       };
       const onClick3 = (e: React.MouseEvent) => {
         e.stopPropagation()
