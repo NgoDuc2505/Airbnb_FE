@@ -6,7 +6,7 @@ import sliceComment from './Comment-slice/CommentSlice'
 import sliceCurrent from './Current-detail/currentDetailManage'
 import sliceUserAdmin from './Admin-slice/AdminUserSlice'
 import sliceRoomAdmin from './Admin-slice/AdminRoomSlice'
-// import sliceBookingAdmin from './Admin-slice/AdminBookingSlice'
+import sliceBookingAdmin from './Admin-slice/AdminBookingSlice'
 import sliceLocationAdmin from './Admin-slice/AdminLocationSlice'
 export const store = configureStore({
   reducer: {
@@ -17,7 +17,8 @@ export const store = configureStore({
     sliceCurrent,
     sliceUserAdmin,
     sliceRoomAdmin,
-    sliceLocationAdmin
+    sliceLocationAdmin,
+    sliceBookingAdmin
   },
 })
 
