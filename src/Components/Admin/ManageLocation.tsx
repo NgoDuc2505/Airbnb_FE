@@ -1,22 +1,27 @@
+//react
 import * as React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+//mui ui
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 import Pagination from '@mui/material/Pagination';
 import Container from '@mui/material/Container';
-import './manage.scss'
-import AdminRegister from '../Admin-register-popup/AdminRegister';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import Avatar from '@mui/material/Avatar';
-//Modal
+import './manage.scss'
+//components
 import AddNewLocation from '../Admin-location-popup/AddNewLocation';
 import UpdateLocation from '../Admin-location-popup/UpdateLocation';
-
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../redux/store';
-import { ILocationItem } from '../../constant/constant';
+//swal
+import swal from 'sweetalert';
+//store redux
 import { getLocationByPhanTrang } from '../../redux/Admin-slice/AdminLocationSlice';
-
+import { AppDispatch, RootState } from '../../redux/store';
+//const
+import { ILocationItem } from '../../constant/constant';
+//services
+import { axiosInterceptor } from '../../services/services';
 
 function ManageLocation() {
     const dispatch  = useDispatch<AppDispatch>()
@@ -25,6 +30,8 @@ function ManageLocation() {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const [show, setShow] = React.useState(false)
+    const [paramsId,setParamsId]= React.useState<number>()
+    const [paramsData,setParamsData] = React.useState<ILocationItem>({id:-1,hinhAnh:'',quocGia:'',tenViTri:'',tinhThanh:''})
     const columns: GridColDef[] = [
         { field: 'id', headerName: 'Mã', width: 70, align: 'center', headerAlign: 'center' },
         { field: 'tenViTri', headerName: 'Tên vị trí', width: 200, align: 'center', headerAlign: 'center' },
@@ -58,11 +65,42 @@ function ManageLocation() {
                 const onClick2 = (e: React.MouseEvent) => {
                     e.stopPropagation()
                     setShow(true)
-                    console.log(e, params.row.id)
+                    setParamsId(params.row.id)
+                    setParamsData(params.row)
                 };
                 const onClick3 = (e: React.MouseEvent) => {
                     e.stopPropagation()
-                    console.log(e, params.row.id)
+                    try{ 
+                        swal({
+                          title: "Bạn có chắc chắn muốn xóa địa điểm này?",
+                          text: "Không thể quay lại sau khi xóa",
+                          icon: "warning",
+                          buttons: [
+                            'Không xóa',
+                            'Xóa!'
+                          ],
+                          dangerMode: true,
+                        }).then(function(isConfirm) {
+                          if (isConfirm) {
+                            swal({
+                              title: 'Xóa thành công!',
+                              text: `Người địa điểm với tên ${params.row.tenViTri} đã bị xóa`,
+                              icon: 'success'
+                            }).then(async() => {
+                                await axiosInterceptor.delete(`/api/vi-tri/${params.row.id}`);
+                                dispatch(getLocationByPhanTrang({pageIndex: page,keywords:""}))
+                            });
+                          } else {
+                            swal("Hủy thành công",  `Vị trí ${params.row.tenViTri} chưa bị xóa`, "error");
+                          }
+                        })
+                        
+                      } catch(error) { 
+                        console.log(error)
+                        swal("Thất bại, xóa thất bại!", {
+                          icon: "error",
+                        });
+                      }
                 };
                 return (
                     <div className="button-group">
@@ -81,73 +119,69 @@ function ManageLocation() {
             quocGia: "Việt Nam",
             hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/vt1.jpg"
           },
-          {
-            id: 2,
-            tenViTri: "Cái Răng",
-            tinhThanh: "Cần Thơ",
-            quocGia: "Việt Nam",
-            hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/vt2.jpg"
-          },
-          {
-            id: 3,
-            tenViTri: "Hòn Rùa",
-            tinhThanh: "Nha Trang",
-            quocGia: "Việt Nam",
-            hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/vt3.jpg"
-          },
-          {
-            id: 4,
-            tenViTri: "Hoàn Kiếm",
-            tinhThanh: "Hà Nội",
-            quocGia: "Việt Nam",
-            hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/vt4.jpg"
-          },
-          {
-            id: 5,
-            tenViTri: "Hòn Tằm",
-            tinhThanh: "Phú Quốc",
-            quocGia: "Việt Nam",
-            hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/vt5.jpg"
-          },
-          {
-            id: 6,
-            tenViTri: "Hải Châu",
-            tinhThanh: "Đà Nẵng",
-            quocGia: "Việt Nam",
-            hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/vt6.jpg"
-          },
-          {
-            id: 7,
-            tenViTri: "Langbiang",
-            tinhThanh: "Đà Lạt",
-            quocGia: "Việt Nam",
-            hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/vt7.jpg"
-          },
-          {
-            id: 8,
-            tenViTri: "Mũi Né",
-            tinhThanh: "Phan Thiết",
-            quocGia: "Việt Nam",
-            hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/vt8.jpg"
-          },
-          {
-            id: 1675,
-            tenViTri: "Chợ Nha Mân",
-            tinhThanh: "Đồng Tháp ",
-            quocGia: "Việt Nam",
-            hinhAnh: "https://airbnbnew.cybersoft.edu.vn/avatar/15-06-2023-03-11-34-cho.jpg"
-          },
+        //   {
+        //     id: 2,
+        //     tenViTri: "Cái Răng",
+        //     tinhThanh: "Cần Thơ",
+        //     quocGia: "Việt Nam",
+        //     hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/vt2.jpg"
+        //   },
+        //   {
+        //     id: 3,
+        //     tenViTri: "Hòn Rùa",
+        //     tinhThanh: "Nha Trang",
+        //     quocGia: "Việt Nam",
+        //     hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/vt3.jpg"
+        //   },
+        //   {
+        //     id: 4,
+        //     tenViTri: "Hoàn Kiếm",
+        //     tinhThanh: "Hà Nội",
+        //     quocGia: "Việt Nam",
+        //     hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/vt4.jpg"
+        //   },
+        //   {
+        //     id: 5,
+        //     tenViTri: "Hòn Tằm",
+        //     tinhThanh: "Phú Quốc",
+        //     quocGia: "Việt Nam",
+        //     hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/vt5.jpg"
+        //   },
+        //   {
+        //     id: 6,
+        //     tenViTri: "Hải Châu",
+        //     tinhThanh: "Đà Nẵng",
+        //     quocGia: "Việt Nam",
+        //     hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/vt6.jpg"
+        //   },
+        //   {
+        //     id: 7,
+        //     tenViTri: "Langbiang",
+        //     tinhThanh: "Đà Lạt",
+        //     quocGia: "Việt Nam",
+        //     hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/vt7.jpg"
+        //   },
+        //   {
+        //     id: 8,
+        //     tenViTri: "Mũi Né",
+        //     tinhThanh: "Phan Thiết",
+        //     quocGia: "Việt Nam",
+        //     hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/vt8.jpg"
+        //   },
+        //   {
+        //     id: 1675,
+        //     tenViTri: "Chợ Nha Mân",
+        //     tinhThanh: "Đồng Tháp ",
+        //     quocGia: "Việt Nam",
+        //     hinhAnh: "https://airbnbnew.cybersoft.edu.vn/avatar/15-06-2023-03-11-34-cho.jpg"
+        //   },
     ]
-
-
     const dataRetrieve = useSelector((state: RootState)=>state.sliceLocationAdmin.currentLocationbyPhanTrang)
     const newRows = dataRetrieve.data ? dataRetrieve.data : rows 
 
     React.useEffect(() => { 
         dispatch(getLocationByPhanTrang({pageIndex: page, keywords: ""}))
       }, [page])
-
-
     const handleChangePagination = (e: React.ChangeEvent<unknown>, page: number) => {
         setPage(page)
      }
@@ -165,7 +199,7 @@ function ManageLocation() {
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
                 >
-                    <AddNewLocation handleClose={handleClose}/>
+                    <AddNewLocation handleClose={handleClose} pageIndex={page}/>
                 </Modal>
                 <Modal
                     open={show}
@@ -173,7 +207,7 @@ function ManageLocation() {
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
                 >
-                    <UpdateLocation handleClose={()=>{setShow(false)}}/>
+                    <UpdateLocation handleClose={()=>{setShow(false)}} id={paramsId} pageIndex={page} data={paramsData}/>
                 </Modal>
                 <DataGrid
                     className='mui-grid-user'
