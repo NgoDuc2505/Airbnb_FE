@@ -1,5 +1,5 @@
 import { Suspense } from 'react'
-import { Outlet } from 'react-router-dom'
+import { NavLink, Outlet } from 'react-router-dom'
 import * as React from 'react';
 import './admin.scss'
 import Drawer from '@mui/material/Drawer';
@@ -93,7 +93,7 @@ function AdminTemplate() {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
-                  <MenuItem onClick={handleClose} sx={{ fontSize: '1.6rem' }}>Profile</MenuItem>
+                  <MenuItem onClick={handleClose} sx={{ fontSize: '1.6rem' }}> <NavLink to={'/Detail/profile'}>Profile</NavLink> </MenuItem>
                   <hr />
                   <MenuItem onClick={handleClose} sx={{ fontSize: '1.6rem' }}>Log out</MenuItem>
 

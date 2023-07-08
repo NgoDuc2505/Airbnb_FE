@@ -50,7 +50,7 @@ interface IProps{
 }
 
 const style = {
-  position: 'absolute' as 'absolute',
+  position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
@@ -64,7 +64,7 @@ const style = {
 };
 
 const styleGuest = {
-  position: 'absolute' as 'absolute',
+  position: 'absolute',
   top: '50%',
   left: '50%',
   borderRadius: "10px",
