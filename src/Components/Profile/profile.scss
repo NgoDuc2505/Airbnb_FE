@@ -93,6 +93,7 @@
     .profile-box-modal{ 
         width: 95%;
     }
+
 }
 
 
@@ -165,6 +166,42 @@
     margin-bottom: 1rem;
     animation: alert .5s linear both;
     transform: translateX(78%);
+}
+
+.update-form{ 
+    #my-helper-text{ 
+        font-size: 1.5rem;
+        color: red;
+    }
+
+    .button-group-admin-register{
+        display: flex;
+        justify-content: end;
+        button{ 
+            margin: 1rem;
+            font-size: 1.5rem;
+
+            &:first-child{ 
+                background-color: rgba(52, 231, 52, 0.723);
+            }
+
+            &:last-child{ 
+                background-color: rgb(255, 113, 113);
+            }
+        }
+    }
+}
+
+.Modal-update-Booking{
+    width: 75%;
+}
+
+
+@media screen and (max-width:750px) {
+    .Modal-update-Booking{ 
+        width: 95%;
+    }
+
 }
 
 

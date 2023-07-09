@@ -2,13 +2,17 @@ import { useEffect, useState } from 'react'
 import { IBookRoom } from '../../constant/constant';
 import { axiosInterceptorWithCybertoken } from '../../services/services';
 import RoomItem from '../Room-item/RoomItem';
+import * as React from 'react';
+import { Collapse, Divider } from 'antd';
+import { UpdateBooking } from './UpdateBooking';
 
 
 interface IProps{ 
     bookRoom: IBookRoom | any
+    index: number
 }
 
-function BookRoom({bookRoom}: IProps){
+function BookRoom({bookRoom,index}: IProps){
     const [bookRoomList, setBookRoom]= useState({
         id: 0,
         tenPhong:'',
@@ -43,7 +47,23 @@ function BookRoom({bookRoom}: IProps){
     }, [bookRoom])
     return (
         <div>
+            <hr style={{border:"solid 1px black", }}/>
+            <h2>Phòng {index + 1}</h2>
             <RoomItem listRoomItem={bookRoomList}/>
+            <Collapse
+                items={[{ key: '1', label: 'Hiển thị thêm thông tin', children: 
+                <div>
+                    <h3>Ngày đến: <span style={{fontWeight: "400"}}>{bookRoom.ngayDen}</span></h3>
+                    <h3>Ngày đi: <span style={{fontWeight: "400"}}>{bookRoom.ngayDi}</span></h3>
+                    <h3>Số khách: <span style={{fontWeight: "400"}}>{bookRoom.soLuongKhach}</span></h3>
+                    <div className='d-flex justify-content-end'>
+                        <UpdateBooking bookRoom={bookRoom} khachMax={bookRoomList.khach}/>
+                    </div>
+                </div>
+            }]}
+            />
+
+            <hr style={{border:"solid 1px black", }}/>
         </div> 
     )
 }
