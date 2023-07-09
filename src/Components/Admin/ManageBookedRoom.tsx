@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './manage.scss'
 //mui ui
-import { DataGrid, GridColDef, GridActionsCellItem } from '@mui/x-data-grid';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 import Pagination from '@mui/material/Pagination';
 import Container from '@mui/material/Container';
@@ -16,159 +16,32 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '../../redux/store'
 import { getCurrentCustomerById, getCurrentBookedRoomById } from '../../redux/Current-detail/currentDetailManage'
 import BookedRoomModal from '../Admin-booked-room-popup/BookedRoomModal';
-
+import { getListBookedRoom } from '../../redux/Admin-slice/AdminBookingSlice'
+import { axiosInterceptorWithCybertoken } from '../../services/services'
+import swal from 'sweetalert';
 
 function ManageBookedRoom() {
   const dispatch = useDispatch<AppDispatch>()
   const currentDataUser = useSelector((state: RootState) => state.sliceCurrent.currentCustomer)
   const currentDataRoom = useSelector((state: RootState) => state.sliceCurrent.currentBookedRoom)
+  const bookingListData = useSelector((state:RootState) =>{return state.sliceBookingAdmin.listBooking})
   const [open, setOpen] = React.useState(false);
+  const [valueInput,setValueInput] = useState<number>()
+  const [searchArr,setArr]= useState<IBookRoom[] >([])
+  const btn = useRef<HTMLButtonElement | null>(null)
+  useEffect(()=>{
+    dispatch(getListBookedRoom())
+  },[])
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const rows = [
     {
-      id: 1525,
-      maPhong: 14,
-      ngayDen: "2023-02-28T00:00:00",
-      ngayDi: "2023-03-03T00:00:00",
-      soLuongKhach: 4,
-      maNguoiDung: 2177
-    },
-    {
-      id: 1536,
-      maPhong: 11,
-      ngayDen: "2023-02-01T00:00:00",
-      ngayDi: "2023-02-01T00:00:00",
-      soLuongKhach: 2,
-      maNguoiDung: 2199
-    },
-    {
-      id: 1540,
-      maPhong: 6,
-      ngayDen: "2023-01-31T00:00:00",
-      ngayDi: "2023-02-04T00:00:00",
-      soLuongKhach: 1,
-      maNguoiDung: 2136
-    },
-    {
-      id: 1670,
-      maPhong: 10,
-      ngayDen: "2023-02-07T00:00:00",
-      ngayDi: "2023-06-15T00:00:00",
-      soLuongKhach: 2,
-      maNguoiDung: 2769
-    },
-    {
-      id: 1678,
-      maPhong: 7,
-      ngayDen: "2023-02-07T00:00:00",
-      ngayDi: "2023-02-07T00:00:00",
-      soLuongKhach: 1,
-      maNguoiDung: 1
-    },
-    {
-      id: 1679,
-      maPhong: 10,
-      ngayDen: "2023-02-07T00:00:00",
-      ngayDi: "2023-02-25T00:00:00",
-      soLuongKhach: 2,
-      maNguoiDung: 1
-    },
-    {
-      id: 1680,
-      maPhong: 13,
-      ngayDen: "2023-02-01T00:00:00",
-      ngayDi: "2023-02-07T00:00:00",
-      soLuongKhach: 1,
-      maNguoiDung: 1
-    },
-    {
-      id: 1681,
-      maPhong: 13,
-      ngayDen: "2023-02-07T00:00:00",
-      ngayDi: "2023-02-07T00:00:00",
-      soLuongKhach: 1,
-      maNguoiDung: 1
-    },
-    {
-      id: 1682,
-      maPhong: 13,
-      ngayDen: "2023-02-07T00:00:00",
-      ngayDi: "2023-02-07T00:00:00",
-      soLuongKhach: 1,
-      maNguoiDung: 1
-    },
-    {
-      id: 1683,
-      maPhong: 13,
-      ngayDen: "2023-02-07T00:00:00",
-      ngayDi: "2023-02-07T00:00:00",
-      soLuongKhach: 1,
-      maNguoiDung: 1
-    },
-    {
-      id: 1684,
-      maPhong: 13,
-      ngayDen: "2023-02-07T00:00:00",
-      ngayDi: "2023-02-07T00:00:00",
-      soLuongKhach: 1,
-      maNguoiDung: 1
-    },
-    {
-      id: 1685,
-      maPhong: 13,
-      ngayDen: "2023-02-07T00:00:00",
-      ngayDi: "2023-02-07T00:00:00",
-      soLuongKhach: 1,
-      maNguoiDung: 1
-    },
-    {
-      id: 1686,
-      maPhong: 13,
-      ngayDen: "2023-02-07T00:00:00",
-      ngayDi: "2023-02-07T00:00:00",
-      soLuongKhach: 1,
-      maNguoiDung: 1
-    },
-    {
-      id: 1689,
-      maPhong: 13,
-      ngayDen: "2023-02-07T00:00:00",
-      ngayDi: "2023-02-07T00:00:00",
-      soLuongKhach: 1,
-      maNguoiDung: 1
-    },
-    {
-      id: 1690,
-      maPhong: 13,
-      ngayDen: "2023-02-07T00:00:00",
-      ngayDi: "2023-02-07T00:00:00",
-      soLuongKhach: 1,
-      maNguoiDung: 1
-    },
-    {
-      id: 1691,
-      maPhong: 13,
-      ngayDen: "2023-02-07T00:00:00",
-      ngayDi: "2023-02-07T00:00:00",
-      soLuongKhach: 1,
-      maNguoiDung: 1
-    },
-    {
-      id: 1692,
-      maPhong: 13,
-      ngayDen: "2023-02-07T00:00:00",
-      ngayDi: "2023-02-07T00:00:00",
-      soLuongKhach: 1,
-      maNguoiDung: 1
-    },
-    {
-      id: 1693,
-      maPhong: 13,
-      ngayDen: "2023-02-07T00:00:00",
-      ngayDi: "2023-02-07T00:00:00",
-      soLuongKhach: 1,
-      maNguoiDung: 1
+      id: -1,
+      maPhong: -1,
+      ngayDen: "no data",
+      ngayDi: "no data",
+      soLuongKhach: 0,
+      maNguoiDung: -1,
     },
   ]
   const columns: GridColDef[] = [
@@ -214,28 +87,68 @@ function ManageBookedRoom() {
         };
         const onClick2 = (e: React.MouseEvent) => {
           e.stopPropagation()
-          console.log(e, params.row.id)
+          try{ 
+            swal({
+              title: "Bạn có chắc chắn muốn xóa đơn này?",
+              text: "Không thể quay lại sau khi xóa",
+              icon: "warning",
+              buttons: [
+                'Không xóa',
+                'Xóa!'
+              ],
+              dangerMode: true,
+            }).then(function(isConfirm) {
+              if (isConfirm) {
+                swal({
+                  title: 'Xóa thành công!',
+                  text: `Đơn đặt phòng với id ${params.row.id} đã bị xóa`,
+                  icon: 'success'
+                }).then(async() => {
+                    await axiosInterceptorWithCybertoken.delete(`/api/dat-phong/${params.row.id}`);
+                    await dispatch(getListBookedRoom())
+                    btn.current?.click()
+                });
+              } else {
+                swal("Hủy thành công",  `Đơn đặt phòng với id ${params.row.id} chưa bị xóa`, "error");
+              }
+            })
+            
+          } catch(error) { 
+            console.log(error)
+            swal("Thất bại, xóa thất bại!", {
+              icon: "error",
+            });
+          }
         };
         return (
           <div className="button-group">
-            <Button variant="contained" onClick={onClick}>Xem chi tiết</Button>
-            <Button variant="contained" color='error' onClick={onClick2}>Hủy đơn</Button>
+            <Button disabled={ bookingListData?.length >0 ? false : true} variant="contained" onClick={onClick}>Xem chi tiết</Button>
+            <Button disabled={ bookingListData?.length >0 ? false : true} variant="contained" color='error' onClick={onClick2}>Hủy đơn</Button>
           </div>
         );
       }
     }
   ];
-
+  const newRows:IBookRoom[] = bookingListData?.length >0 ? bookingListData : rows
+  const handleChangeValue =(e: React.ChangeEvent<HTMLInputElement>)=>{
+    setValueInput(Number(e.target.value))
+  }
+  const handleSearchRoom = ()=>{
+    const arraySearch:IBookRoom[] = newRows.filter((item)=>{
+      return item.maPhong === valueInput
+    })
+    setArr(arraySearch)
+  }
   return (
     <div className='manage-booked-room'>
       <Container fixed={true} className='mui-container-manage'>
         <div className="search-user">
-          <TextField id="outlined-basic" label="Tìm phòng đặt qua id" variant="filled" className='input-search' />
-          <button>Tìm</button>
+          <TextField id="outlined-basic" label="Tìm phòng đặt qua mã phòng" variant="filled" className='input-search' onChange={handleChangeValue}/>
+          <button onClick={handleSearchRoom} ref={btn}>Tìm</button>
         </div>
         <Box sx={{ height: 500, width: '100%' }}>
           <DataGrid
-            rows={rows}
+            rows={searchArr.length >0 ? searchArr :newRows}
             columns={columns}
             checkboxSelection
             sx={{ fontSize: '1.4rem', width: "100%" }}
