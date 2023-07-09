@@ -151,7 +151,7 @@ function ManageUser() {
       <Container fixed={true} className='mui-container-manage'>
         <Button className='button-add-admin' onClick={handleOpen}>Đăng ký quản trị viên</Button>
         <div className="search-user">
-          <TextField inputRef={refSearch} id="outlined-basic" label="Tìm tài khoản qua id" variant="outlined" className='input-search' />
+          <TextField inputRef={refSearch} id="outlined-basic" label="Tìm tài khoản qua tên" variant="outlined" className='input-search' />
           <button onClick={() => { 
             const keyword = (refSearch.current as unknown) as HTMLInputElement
             setSearchKey(keyword.value)
