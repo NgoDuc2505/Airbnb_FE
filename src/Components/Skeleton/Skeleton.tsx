@@ -60,9 +60,9 @@ export const SkeletonDetail = () => {
                 <Skeleton variant='rounded' sx={{width: '60px', height: '60px', borderRadius:'50%'}}></Skeleton>
               </Box> 
               <hr />
-              {arrayIcon.map(() => { 
+              {arrayIcon.map((item,index) => { 
                 return(
-                  <Box sx={{width: '100%', display: 'flex', marginTop:'1rem', alignItems: "center"}}>
+                  <Box key={index} sx={{width: '100%', display: 'flex', marginTop:'1rem', alignItems: "center"}}>
                     <Skeleton variant='rounded' sx={{width: '60px', height: '60px', borderRadius:'50%', marginRight:'1rem'}}></Skeleton>
                     <Skeleton variant='rectangular' sx={{width: '70%', height:'5rem', borderRadius:'10px'}}></Skeleton>
                   </Box> 
@@ -83,6 +83,6 @@ export const SkeletonDetail = () => {
 }
 
 
-export const SkeletonPersonal = () => { 
+// export const SkeletonPersonal = () => { 
     
-}
+// }
