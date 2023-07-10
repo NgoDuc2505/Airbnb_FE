@@ -76,12 +76,12 @@ interface IProps{
           <CardContent>
             <Typography paragraph sx={{fontSize:'1.6rem', fontWeight:600}}>Thông tin chi tiết:</Typography>
             <Typography paragraph sx={{fontSize:'1.6rem'}}>
-             - Về thông tin phòng có thể tra cứu <NavLink to={'/admin/roomdetail'}>tại đây</NavLink> với id là: <Typography variant='h4' sx={{display:'inline'}}>{currentDataRoom.id}</Typography>
+             - Về thông tin phòng có thể tra cứu <NavLink to={'/@@admin/roomdetail'}>tại đây</NavLink> với id là: <Typography variant='h4' sx={{display:'inline'}}>{currentDataRoom.id}</Typography>
             </Typography>
             <Typography paragraph sx={{fontSize:'1.6rem'}}>
               {currentDataUser.id === -1 
-              ? <span>- <Typography sx={{display:'inline',fontSize:'1.6rem',color:'red'}}>Thông tin người dùng hiện không tồn tại vui lòng kiểm tra tại mục quản lý người dùng</Typography> <NavLink to={'/admin/user'}>tại đây</NavLink> hoặc <Typography sx={{display:'inline',fontSize:'1.6rem',color:'red'}}>hủy đơn</Typography></span>
-              : <span>- Về thôn tin chi tiết có thể <NavLink to={'/admin/user'}>tra người dùng</NavLink> với id: <Typography variant='h4' sx={{display:'inline'}}>{currentDataUser.id}</Typography></span>}
+              ? <span>- <Typography sx={{display:'inline',fontSize:'1.6rem',color:'red'}}>Thông tin người dùng hiện không tồn tại vui lòng kiểm tra tại mục quản lý người dùng</Typography> <NavLink to={'/@@admin/user'}>tại đây</NavLink> hoặc <Typography sx={{display:'inline',fontSize:'1.6rem',color:'red'}}>hủy đơn</Typography></span>
+              : <span>- Về thôn tin chi tiết có thể <NavLink to={'/@@admin/user'}>tra người dùng</NavLink> với id: <Typography variant='h4' sx={{display:'inline'}}>{currentDataUser.id}</Typography></span>}
             </Typography>
           </CardContent>
         </Collapse>

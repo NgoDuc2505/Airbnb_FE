@@ -36,7 +36,7 @@ function App() {
             <Route path='login' element={<Login/>}></Route>
             <Route path='register' element={<Register/>}></Route>
           </Route>
-          <Route path='admin' element={<AdminTemplate />}>
+          <Route path='@@admin' element={<AdminTemplate />}>
             <Route path='user' element={<ManageUser/>}></Route>
             <Route path='roomdetail' element={<ManageRoom/>}></Route>
             <Route path='booked' element={<ManageBookedRoom/>}></Route>

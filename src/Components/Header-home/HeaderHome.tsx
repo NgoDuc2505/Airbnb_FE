@@ -4,12 +4,13 @@ import BasicModal from '../Modal/ModalLocation'
 import './headerHome.scss'
 //react plugin
 import { useState, useRef } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 //utils
 import { getLocal, deleteKey } from '../../utils/utils'
 //const
 import { ACCESS_TOKEN, ACCESS_USER_ID } from '../../constant/constant'
-//redux
+//mui ui
 import Avatar from '@mui/material/Avatar'
 import { deepOrange } from '@mui/material/colors'
 import Box from '@mui/material/Box';
@@ -17,8 +18,11 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 //swal
 import swal from 'sweetalert';
+//handle
 import { useLoginRenderAva } from './headerHomeLogic'
-
+//redux
+import { RootState } from '../../redux/store'
+import { setDefaultProfile } from '../../redux/user-slice/UserSlice'
 
 const style = {
     position: 'absolute',
@@ -33,6 +37,8 @@ const style = {
   };
 
 function HeaderHome() {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
     const getAcessToken: string = getLocal(ACCESS_TOKEN)
     const inputRef = useRef<null | HTMLInputElement>(null)
     const [active, setActive] = useState([true, false, false, false])
@@ -58,8 +64,12 @@ function HeaderHome() {
         deleteKey(ACCESS_TOKEN),
         deleteKey(ACCESS_USER_ID)
         setReloat(!reload)
+        dispatch(setDefaultProfile())
+        navigate('/')
         swal("Đã đăng xuất thành công!", {icon: "success"})
     }
+
+    const role = useSelector((state: RootState)=> state.sliceUser.profileData.role)
     return (
         <div className={`header-home ${show ? 'mb-84' : ''}`}>
             <div className={`header-home-layer ${show ? 'h-205' : ''}`}></div>
@@ -158,7 +168,7 @@ function HeaderHome() {
                             >
                                 <Box sx={style} className='mui-box-avatar'>
                                     <NavLink to={'/Detail/profile'}>Profile</NavLink>
-                                    <NavLink to={'/admin/user'}>For Admin</NavLink>
+                                    {role === 'ADMIN' ?  <NavLink to={'/@@admin/user'}>For Admin</NavLink> : <></>}
                                     <hr />
                                     <Button variant="text" sx={{fontSize:'1.6rem'}} onClick={handleLogOut}>Log out</Button>
                                 </Box>

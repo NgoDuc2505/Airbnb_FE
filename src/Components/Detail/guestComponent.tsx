@@ -133,8 +133,8 @@ export default function SelectVariants({khachMax, giaTien, phone, dataDetail} : 
     if (!inputFilled){
       swal("Bạn chưa điền ngày đến ngày đi!", {icon: "error"})
     } else {
-      if(availableCount < 1){
-        if (getLocal(ACCESS_USER_ID)){
+      if (getLocal(ACCESS_USER_ID)){
+        if(availableCount < 1){
           try {
             const value = { 
               maPhong: idRoom.idDetail,
@@ -153,11 +153,28 @@ export default function SelectVariants({khachMax, giaTien, phone, dataDetail} : 
             console.log(err)
           }
         }else { 
-          navigate("/auth/login")
+          swal("Phòng hiện tại không có sẵn trong ngày bạn đã đặt!", {icon: "error"})
         }
-      }else{
-        swal("Phòng hiện tại không có sẵn trong ngày bạn đã đặt!", {icon: "error"})
-      }
+        }else{
+          swal({
+            title: "Bạn chưa đăng nhập!",
+            text: "Bạn phải đăng nhập để có thể đặt phòng!",
+            icon: "warning",
+            buttons: [true,"Đăng nhập"],
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              swal("Bạn đã được chuyển trang đăng nhập", {
+                icon: "success",
+              });
+              navigate("/auth/login")
+            } else {
+              swal("Bạn sẽ tiếp tục với tư cách là khách!");
+              navigate("/")
+            }
+          });
+        }
     }
   }
 
