@@ -110,20 +110,12 @@ function RoomUpdateModal({handleCloseUpdate, roomdata, pageIndex}:IProps) {
                 }
                 
                 
-                await axiosInterceptorWithCybertoken.put(`/api/phong-thue/${roomdata.id}`, newValue, {
-                    headers: {
-                        token: getLocal(ACCESS_TOKEN)
-                    }
-                })
+                await axiosInterceptor.put(`/api/phong-thue/${roomdata.id}`, newValue)
 
                 if(file !== null){
                     const formData = new FormData();
                     formData.append("formFile", file);
-                    await axiosInterceptorWithCybertoken.post(`/api/phong-thue/upload-hinh-phong?maPhong=${roomdata.id}`, formData ,{
-                        headers: {
-                            token: getLocal(ACCESS_TOKEN)
-                        }
-                    })
+                    await axiosInterceptor.post(`/api/phong-thue/upload-hinh-phong?maPhong=${roomdata.id}`, formData)
                 }
                 dispatch(getRoomByPhanTrang({ pageIndex: pageIndex, keywords: "" }))
                 swal(`Thành công cập nhật phòng ${newValue.tenPhong}`, { icon: "success" })
@@ -132,7 +124,7 @@ function RoomUpdateModal({handleCloseUpdate, roomdata, pageIndex}:IProps) {
             
             } catch (error) {
                 console.log(error)
-                swal("Thất bại, bạn không có quyền sửa thông tin", {
+                swal("Thất bại, vui lòng kiểm tra lại thông tin, hình ảnh phải dưới 1MB !", {
                     icon: "error",
                 });
             }
@@ -157,6 +149,7 @@ function RoomUpdateModal({handleCloseUpdate, roomdata, pageIndex}:IProps) {
                         <InputLabel htmlFor="hinhAnh">Hình Ảnh</InputLabel>
                         <img className="mb-2" src={preview? preview : formik.values.hinhAnh} alt="" style={{height: "5rem", display:"block"}}/>
                         <input type="file" onChange={handleChangeFile} style={{fontSize:"1rem"}}/>
+                        <a target='_blank' href="https://imagecompressor.11zon.com/vi/image-compressor/compress-image-to-1mb.php">Nén ảnh</a>
                     </Grid>
                     <Grid item lg={4} className='mui-grid-item-room'>
                         <FormControl variant='standard' className='mui-form-control-admin' margin='dense' error={formik.errors.moTa ? true : false}>
