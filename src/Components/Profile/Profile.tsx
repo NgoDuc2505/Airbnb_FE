@@ -23,7 +23,7 @@ export function Profile({profileData, bookRoomData}: IProps){
             const newData : IBookRoom[]= bookRoomData.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
             setData(newData)
         }
-    },[page])
+    },[page, bookRoomData])
 
     // useEffect(() => { 
     //     let newData: any = 
@@ -60,9 +60,9 @@ export function Profile({profileData, bookRoomData}: IProps){
 
                     {hide ? <div></div> :
                     <div>
-                        {data.length >= 0 && data.map((booked: IBookRoom) => { 
+                        {data.length >= 0 && data.map((booked: IBookRoom, index: number) => { 
                             return(
-                                <BookRoom key={booked?.id} bookRoom={booked}/>
+                                <BookRoom index={index} key={booked?.id} bookRoom={booked}/>
                             )
                         })} 
                         
@@ -81,13 +81,20 @@ export function Profile({profileData, bookRoomData}: IProps){
                     </div>
                     
                     }      
+
+                    {bookRoomData.length === 0 ? "Bạn chưa đặt phòng nào" :
                     <button className="profile-button mt-3" type='button' onClick={() => {
                         setHide(!hide); 
                         if(data.length===0) {
-                            const newData:  IBookRoom[]= [bookRoomData[0],bookRoomData[1]]
+                            let newData: IBookRoom[] = [bookRoomData[0],bookRoomData[1]]
+
+                            if (bookRoomData.length === 1) {
+                                newData = [bookRoomData[0]]
+                            }
+
                             setData(newData)
                         }
-                    }}>{hide? `Hiển thị ${bookRoomData.length} phòng đã đặt` : "Ẩn hiện thị phòng"}</button>
+                    }}>{hide?  `Hiển thị ${bookRoomData.length} phòng đã đặt` : "Ẩn hiện thị phòng"}</button>}
                 
                     
                 </div>  

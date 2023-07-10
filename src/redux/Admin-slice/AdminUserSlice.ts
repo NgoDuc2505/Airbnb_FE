@@ -27,6 +27,7 @@ export const adminUserSlice = createSlice({
             const changeUserIndex = state.currentUserbyPhanTrang.data.findIndex((user: IProfile) => user.id === action.payload.id)
             state.currentUserbyPhanTrang.data[changeUserIndex] = action.payload;
         }, 
+        
         deleteUserFromList: (state, action) => { 
             const indexById = state.currentUserbyPhanTrang.data.findIndex((user: IProfile) => user.id === action.payload[0]);
             if (indexById != -1) {

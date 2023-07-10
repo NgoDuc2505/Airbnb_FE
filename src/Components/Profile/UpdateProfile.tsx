@@ -29,6 +29,9 @@ import { axiosInterceptorWithCybertoken } from '../../services/services'
 import { getLocal } from '../../utils/utils';
 //css
 import './profile.scss'
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../redux/store';
+import { getProfileData } from '../../redux/user-slice/UserSlice';
 
 const style = {
   position: 'absolute',
@@ -46,6 +49,7 @@ interface IProps {
 }
 
 export default function UpdateProfile({ profileData }: IProps) {
+  const dispatch = useDispatch<AppDispatch>()
   const [dateValue, setDateValue] = useState<Dayjs | null>(null);
   const [openModal, setOpenModal] = React.useState(false);
   const handleOpenModal = () => setOpenModal(true);
@@ -87,7 +91,8 @@ export default function UpdateProfile({ profileData }: IProps) {
         swal(`Thành công, Update thành công khách hàng ${resp.data.content.name}!`, {
           icon: "success",
         });
-        window.location.reload();
+        dispatch(getProfileData(getLocal(ACCESS_USER_ID)))
+        handleCloseModal()
       } catch (error) {
         console.log(error)
         swal("Thất bại, email đã được dùng!", {

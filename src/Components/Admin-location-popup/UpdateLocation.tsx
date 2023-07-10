@@ -20,7 +20,7 @@ import { AppDispatch } from '../../redux/store';
 import { getLocationByPhanTrang } from '../../redux/Admin-slice/AdminLocationSlice'
 //const
 import { ILocationItem } from '../../constant/constant';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface IProps {
     handleClose: () => void,
@@ -32,6 +32,19 @@ interface IProps {
 function UpdateLocation({ handleClose, id, data, pageIndex }: IProps) {
     const dispatch = useDispatch<AppDispatch>()
     const [file,setFile]= useState<File | null | Blob>(null)
+    const [preview, setPreview] = useState();
+
+    useEffect(() => {
+        if (!file) {
+            setPreview(undefined)
+            return
+        }
+        const objectUrl: any= URL.createObjectURL(file)
+        setPreview(objectUrl)
+        return () => URL.revokeObjectURL(objectUrl)
+    }, [file])
+
+
     const handleChangeFile =(e:React.ChangeEvent<HTMLInputElement>)=>{
         if((e.target.files) !== null){
             setFile(e.target.files[0])
@@ -101,7 +114,7 @@ function UpdateLocation({ handleClose, id, data, pageIndex }: IProps) {
                         </FormControl>
                     </Grid>
                     <Grid item lg={6} className='mui-grid-item-room'>
-                        <img src={formik.values.hinhAnh} alt="" />
+                        <img src={preview ? preview:formik.values.hinhAnh} alt="" />
                         <input type="file" onChange={handleChangeFile}/>
                     </Grid>
                 </Grid>
