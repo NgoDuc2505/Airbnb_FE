@@ -1,18 +1,18 @@
-import { FormControl, FormHelperText, Input, InputLabel, SelectChangeEvent } from '@mui/material';
+import { FormControl, FormHelperText, Input, InputLabel } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import NativeSelect from '@mui/material/NativeSelect';
 import Button from '@mui/material/Button';
 import './addRoom.scss'
-import { ACCESS_TOKEN, IRoomDetail, regex } from '../../constant/constant';
-import { ChangeEvent, SetStateAction, useEffect, useState } from 'react';
+import { IRoomDetail} from '../../constant/constant';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import swal from 'sweetalert';
-import { axiosInterceptor, axiosInterceptorWithCybertoken } from '../../services/services';
+import { axiosInterceptor } from '../../services/services';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../redux/store';
 import { getRoomByPhanTrang } from '../../redux/Admin-slice/AdminRoomSlice';
-import { getLocal } from '../../utils/utils';
+
 
 interface IProps {
     handleCloseUpdate:()=>void,
@@ -20,7 +20,7 @@ interface IProps {
     pageIndex: number
 }
 
-const str2bool = (value: any) => {
+const str2bool = (value: string | true) => {
     if (typeof value === "string") {
          if (value.toLowerCase() === "true") return true;
          if (value.toLowerCase() === "false") return false;
