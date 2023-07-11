@@ -1,6 +1,5 @@
 import { Suspense } from 'react'
 import { Outlet } from 'react-router-dom'
-import PersonalInformation from '../../Pages/Personal-information/PersonalInformation'
 import HeaderHome from '../../Components/Header-home/HeaderHome'
 import FooterHome from '../../Components/Footer-home/FooterHome'
 

@@ -32,7 +32,21 @@ export const getProfileData = createAsyncThunk(
 export const userSlice = createSlice({
     name: 'userSlice',
     initialState,
-    reducers:{},
+    reducers:{
+        setDefaultProfile: (state)=>{
+            state.profileData = {
+                id: 0,
+                name: '',
+                phone:'',
+                birthday: '',
+                avatar: '',
+                gender: true,
+                role:'',
+                email:'',
+                password:''
+            }
+        }
+    },
     extraReducers: (build)=>{
         build.addCase(getProfileData.fulfilled,(state,action)=>{
             state.profileData = action.payload.data.content
@@ -41,3 +55,5 @@ export const userSlice = createSlice({
 })
 
 export default userSlice.reducer
+
+export const { setDefaultProfile } = userSlice.actions

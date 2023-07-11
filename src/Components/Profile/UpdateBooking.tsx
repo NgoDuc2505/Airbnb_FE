@@ -16,9 +16,10 @@ import { getLocal } from '../../utils/utils';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../redux/store';
 import { getRoomByUserId } from '../../redux/Detail-slice/DetailSlice';
-
+import useCheckAvailableCount from '../Detail/handleCheckAvailable'
+import { getListBookedRoom } from '../../redux/Admin-slice/AdminBookingSlice'
 const style = {
-    position: 'absolute' as 'absolute',
+    position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
@@ -26,38 +27,44 @@ const style = {
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
-  };
+};
 
 
 interface IProps {
-    bookRoom:  IBookRoom | any,
+    bookRoom: IBookRoom | any,
     khachMax: number
 }
 
-export function UpdateBooking ({bookRoom, khachMax}: IProps ){ 
+export function UpdateBooking({ bookRoom, khachMax }: IProps) {
     const dispatch = useDispatch<AppDispatch>()
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const [dateStart, setDateStart] = React.useState("")
+    const [dateEnd, setDateEnd] = React.useState("")
+    const [isAvai,setAvai]= React.useState(false)
     const [phoneDate, setPhoneDate] = React.useState<any>([
         {
-          startDate: new Date(),
-          endDate: null,
-          key: 'selection'
+            startDate: new Date(),
+            endDate: null,
+            key: 'selection'
         }
-      ]);
+    ]);
     const [phoneError, setPhoneError] = React.useState("")
 
-
     React.useEffect(() => {
-        if ((phoneDate[0].endDate - phoneDate[0].startDate) === 0){
+        if ((phoneDate[0].endDate - phoneDate[0].startDate) === 0) {
             setPhoneError("Ngày đến và ngày đi không được trùng nhau")
         } else {
             setPhoneError("")
         }
 
     }, [phoneDate])
-
+    React.useEffect(()=>{
+        dispatch(getListBookedRoom())
+        
+      },[])
+    const availableCount = useCheckAvailableCount(bookRoom.maPhong,dateStart, dateEnd, bookRoom.id)
     const formik = useFormik({
         initialValues: {
             id: bookRoom.id,
@@ -68,26 +75,32 @@ export function UpdateBooking ({bookRoom, khachMax}: IProps ){
             soLuongKhach: bookRoom.soLuongKhach,
         },
         validationSchema: Yup.object().shape({
-            soLuongKhach: Yup.number().required('Số lượng khách can not be empty').min(1,"Số lượng khách phải lớn hơn 0").max(khachMax, `Số lượng khách lớn nhất mà bạn có thể đặt là ${khachMax}`)
+            soLuongKhach: Yup.number().required('Số lượng khách can not be empty').min(1, "Số lượng khách phải lớn hơn 0").max(khachMax, `Số lượng khách lớn nhất mà bạn có thể đặt là ${khachMax}`)
         }),
 
         onSubmit: async (values: IBookRoom | any) => {
             try {
 
-                let newValue = { 
+                let newValue = {
                     ...values
                 }
 
-                if (phoneDate[0].endDate !== null) { 
-                   newValue = {
-                        ...values,
-                        ngayDen: phoneDate[0].startDate,
-                        ngayDi: phoneDate[0].endDate
+                if (phoneDate[0].endDate !== null) {
+                    if(isAvai){
+                        newValue = {
+                            ...values,
+                            ngayDen: phoneDate[0].startDate,
+                            ngayDi: phoneDate[0].endDate
+                        }
+                    }else{
+                        newValue = {
+                            undefined
+                        }
                     }
                 }
-                
 
-                if (phoneError === ""){
+
+                if (phoneError === "") {
                     await axiosInterceptorWithCybertoken.put(`/api/dat-phong/${newValue.id}`, newValue)
 
                     dispatch(getRoomByUserId(newValue.maNguoiDung))
@@ -100,18 +113,33 @@ export function UpdateBooking ({bookRoom, khachMax}: IProps ){
 
             } catch (error) {
                 console.log(error)
-                swal("Thất bại, email đã được dùng!", {
+                swal("Thất bại sửa phòng", {
                     icon: "error",
                 });
             }
-    
+
         }
-    }) 
+    })
+    const handleCheckAvailable = async ()=>{
+        setDateStart(phoneDate[0].startDate)
+        setDateEnd(phoneDate[0].endDate)
+        if(availableCount < 1){
+            setAvai(true)
+            swal(`Phòng có sẵn`, {
+                icon: "success",
+            });
+        }else{
+            setAvai(false)
+            swal(`Phòng không có sẵn, liên hệ với nhân viên qua cổng hỗ trợ để sửa thông tin`, {
+                icon: "warning",
+            });
+        }
+    }
 
     return (
         <div>
-            <Button onClick={handleOpen} sx={{fontSize: "1.5rem", border:"solid 0.5px black", color:"green"}}>Sửa</Button>
-    
+            <Button onClick={handleOpen} sx={{ fontSize: "1.5rem", border: "solid 0.5px black", color: "green" }}>Sửa</Button>
+
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -124,13 +152,14 @@ export function UpdateBooking ({bookRoom, khachMax}: IProps ){
                         <Grid container spacing={2} className='mui-grid-admin '>
                             <Grid item lg={6} className='mui-item-grid-admin d-flex justify-content-center'>
                                 <div>
-                                    <h5>Ngày đến cũ: <span style={{fontWeight: "400"}}>{bookRoom.ngayDen}</span></h5>
-                                    <h5>Ngày Đi cũ: <span style={{fontWeight: "400"}}>{bookRoom.ngayDi}</span></h5>
-                               
+                                    <h5>Ngày đến cũ: <span style={{ fontWeight: "400" }}>{bookRoom.ngayDen}</span></h5>
+                                    <h5>Ngày Đi cũ: <span style={{ fontWeight: "400" }}>{bookRoom.ngayDi}</span></h5>
+
                                     <DateRange
                                         editableDateInputs={true}
                                         onChange={item => {
-                                            setPhoneDate([item.selection])}}
+                                            setPhoneDate([item.selection])
+                                        }}
                                         moveRangeOnFirstSelection={false}
                                         ranges={phoneDate}
                                     />
@@ -139,14 +168,15 @@ export function UpdateBooking ({bookRoom, khachMax}: IProps ){
                             </Grid>
                             <Grid item lg={6} className='mui-item-grid-admin'>
                                 <FormControl variant='standard' className='mui-form-control' margin='dense' error={formik.errors.soLuongKhach ? true : false}>
-                                    <InputLabel htmlFor="my-input-phone" sx={{fontSize: "1.5rem"}}>Số Lượng khách</InputLabel>
-                                    <Input id="my-input-phone" aria-describedby="my-helper-text" {...formik.getFieldProps('soLuongKhach')} sx={{fontSize: "1.5rem"}}/>
-                                    {formik.touched.soLuongKhach && formik.errors.soLuongKhach ? <FormHelperText id="my-helper-text">{formik.errors.soLuongKhach}</FormHelperText> : <></>}
-                                </FormControl>  
+                                    <InputLabel htmlFor="my-input-phone" sx={{ fontSize: "1.5rem" }}>Số Lượng khách</InputLabel>
+                                    <Input id="my-input-phone" aria-describedby="my-helper-text" {...formik.getFieldProps('soLuongKhach')} sx={{ fontSize: "1.5rem" }} />
+                                    {formik.touched.soLuongKhach && formik.errors.soLuongKhach ? <FormHelperText id="my-helper-text">{`${formik.errors.soLuongKhach}`}</FormHelperText> : <></>}
+                                </FormControl>
                             </Grid>
                         </Grid>
 
                         <div className="button-group-admin-register">
+                            <Button variant="contained" onClick={handleCheckAvailable}>Kiểm tra lịch</Button>
                             <Button variant="contained" type='submit'>Sửa</Button>
                             <Button variant="contained" onClick={handleClose}>Hủy</Button>
                         </div>

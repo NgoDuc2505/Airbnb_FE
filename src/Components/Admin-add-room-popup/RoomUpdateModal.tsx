@@ -1,18 +1,18 @@
-import { FormControl, FormHelperText, Input, InputLabel, SelectChangeEvent } from '@mui/material';
+import { FormControl, FormHelperText, Input, InputLabel } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import NativeSelect from '@mui/material/NativeSelect';
 import Button from '@mui/material/Button';
 import './addRoom.scss'
-import { ACCESS_TOKEN, IRoomDetail, regex } from '../../constant/constant';
-import { ChangeEvent, SetStateAction, useEffect, useState } from 'react';
+import { IRoomDetail} from '../../constant/constant';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import swal from 'sweetalert';
-import { axiosInterceptor, axiosInterceptorWithCybertoken } from '../../services/services';
+import { axiosInterceptor } from '../../services/services';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../redux/store';
 import { getRoomByPhanTrang } from '../../redux/Admin-slice/AdminRoomSlice';
-import { getLocal } from '../../utils/utils';
+
 
 interface IProps {
     handleCloseUpdate:()=>void,
@@ -20,7 +20,7 @@ interface IProps {
     pageIndex: number
 }
 
-const str2bool = (value: any) => {
+const str2bool = (value: string | true) => {
     if (typeof value === "string") {
          if (value.toLowerCase() === "true") return true;
          if (value.toLowerCase() === "false") return false;
@@ -110,20 +110,12 @@ function RoomUpdateModal({handleCloseUpdate, roomdata, pageIndex}:IProps) {
                 }
                 
                 
-                await axiosInterceptorWithCybertoken.put(`/api/phong-thue/${roomdata.id}`, newValue, {
-                    headers: {
-                        token: getLocal(ACCESS_TOKEN)
-                    }
-                })
+                await axiosInterceptor.put(`/api/phong-thue/${roomdata.id}`, newValue)
 
                 if(file !== null){
                     const formData = new FormData();
                     formData.append("formFile", file);
-                    await axiosInterceptorWithCybertoken.post(`/api/phong-thue/upload-hinh-phong?maPhong=${roomdata.id}`, formData ,{
-                        headers: {
-                            token: getLocal(ACCESS_TOKEN)
-                        }
-                    })
+                    await axiosInterceptor.post(`/api/phong-thue/upload-hinh-phong?maPhong=${roomdata.id}`, formData)
                 }
                 dispatch(getRoomByPhanTrang({ pageIndex: pageIndex, keywords: "" }))
                 swal(`Thành công cập nhật phòng ${newValue.tenPhong}`, { icon: "success" })
@@ -132,7 +124,7 @@ function RoomUpdateModal({handleCloseUpdate, roomdata, pageIndex}:IProps) {
             
             } catch (error) {
                 console.log(error)
-                swal("Thất bại, bạn không có quyền sửa thông tin", {
+                swal("Thất bại, vui lòng kiểm tra lại thông tin, hình ảnh phải dưới 1MB !", {
                     icon: "error",
                 });
             }
@@ -157,6 +149,7 @@ function RoomUpdateModal({handleCloseUpdate, roomdata, pageIndex}:IProps) {
                         <InputLabel htmlFor="hinhAnh">Hình Ảnh</InputLabel>
                         <img className="mb-2" src={preview? preview : formik.values.hinhAnh} alt="" style={{height: "5rem", display:"block"}}/>
                         <input type="file" onChange={handleChangeFile} style={{fontSize:"1rem"}}/>
+                        <a target='_blank' href="https://imagecompressor.11zon.com/vi/image-compressor/compress-image-to-1mb.php">Nén ảnh</a>
                     </Grid>
                     <Grid item lg={4} className='mui-grid-item-room'>
                         <FormControl variant='standard' className='mui-form-control-admin' margin='dense' error={formik.errors.moTa ? true : false}>

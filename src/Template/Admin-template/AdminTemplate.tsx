@@ -1,7 +1,11 @@
+//react
 import { Suspense } from 'react'
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet, useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import * as React from 'react';
+//css
 import './admin.scss'
+//mui-ui
 import Drawer from '@mui/material/Drawer';
 import AdminSideBar from './AdminSideBar'
 import AppBar from '@mui/material/AppBar';
@@ -11,10 +15,20 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+//utils
+import { deleteKey } from '../../utils/utils'
+//const
+import { ACCESS_TOKEN, ACCESS_USER_ID } from '../../constant/constant'
+//swal
+import swal from 'sweetalert';
+//redux
+import { setDefaultProfile } from '../../redux/user-slice/UserSlice'
 
 type Anchor = 'left';
 
 function AdminTemplate() {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [state, setState] = React.useState({
     left: false,
@@ -26,6 +40,14 @@ function AdminTemplate() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleLogout= ()=>{
+    deleteKey(ACCESS_TOKEN),
+    deleteKey(ACCESS_USER_ID)
+    dispatch(setDefaultProfile())
+    navigate('/')
+    swal("Đã đăng xuất thành công!", {icon: "success"})
+  }
 
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
@@ -95,7 +117,7 @@ function AdminTemplate() {
                 >
                   <MenuItem onClick={handleClose} sx={{ fontSize: '1.6rem' }}> <NavLink to={'/Detail/profile'}>Profile</NavLink> </MenuItem>
                   <hr />
-                  <MenuItem onClick={handleClose} sx={{ fontSize: '1.6rem' }}>Log out</MenuItem>
+                  <MenuItem onClick={handleLogout} sx={{ fontSize: '1.6rem' }}>Log out</MenuItem>
 
                 </Menu>
               </div>

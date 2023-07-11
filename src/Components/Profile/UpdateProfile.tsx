@@ -105,7 +105,7 @@ export default function UpdateProfile({ profileData }: IProps) {
 
   return (
     <div className='update-page'>
-      <Button className="profile-text-highlight" onClick={handleOpenModal}>Chỉnh sửa hồ sơ</Button>
+      <Button sx={{fontSize: '14px'}} className="profile-text-highlight" onClick={handleOpenModal}>Chỉnh sửa hồ sơ</Button>
       <Modal
         open={openModal}
         onClose={handleCloseModal}

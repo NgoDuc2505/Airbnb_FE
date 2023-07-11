@@ -4,20 +4,26 @@ import BookRoom from "./BookRoom"
 import React, { useEffect, useState } from 'react'
 import {Pagination} from 'antd'
 import "./profile.scss"
-import { getLocal } from "../../utils/utils"
 import UpdateProfile from "./UpdateProfile"
 import { PAGE_SIZE } from '../../constant/constant'
-
+import { axiosInterceptor } from '../../services/services';
+import { getProfileData } from '../../redux/user-slice/UserSlice'
+import { AppDispatch } from '../../redux/store';
+import { useDispatch } from "react-redux"
+import { getLocal } from "../../utils/utils"
+import swal from 'sweetalert';
+import Button from '@mui/material/Button';
 interface IProps{
     profileData: IProfile | any,
     bookRoomData: IBookRoom[]
 }
 
 export function Profile({profileData, bookRoomData}: IProps){ 
+    const dispatch = useDispatch<AppDispatch>()
     const [data, setData] = useState<IBookRoom[]>([])
     const [hide, setHide] = useState(true)
     const [page, setPage] = useState(1)
-    
+    const [file,setFile] = useState<File | null | Blob >(null)
     useEffect(()=>{
         if (bookRoomData != undefined){
             const newData : IBookRoom[]= bookRoomData.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
@@ -25,11 +31,25 @@ export function Profile({profileData, bookRoomData}: IProps){
         }
     },[page, bookRoomData])
 
-    // useEffect(() => { 
-    //     let newData: any = 
-    //     setData(newData)
-    // }, [])
-    
+    const handleChangeFile =(e: React.ChangeEvent<HTMLInputElement>)=>{
+        if((e.target.files) !== null){
+            setFile(e.target.files[0])
+        }
+    }
+    const handleUpdateAva =async ()=>{
+        try{
+            const formFile = new FormData()
+            if(file !== null){
+                formFile.append("formFile", file)
+                await axiosInterceptor.post('api/users/upload-avatar', formFile)
+            }
+            dispatch(getProfileData(getLocal(ACCESS_USER_ID)))
+            swal(`Thành công cập nhật hình ảnh`, { icon: "success" })
+            setFile(null)
+        }catch(err){
+            swal(`Thất bại, Dung lượng hình phải dưới 1Mb`, { icon: "error" })
+        }
+    }
     return (
         <div>            
             <div className="profile-page row mb-5">
@@ -37,7 +57,10 @@ export function Profile({profileData, bookRoomData}: IProps){
                     <div className="profile-fixed">
                         <div className="profile-avatar">
                             <img src={profileData.avatar === ""? "/src/assets/Image/emptyAva.jpg" : profileData.avatar} alt="" />
-                            <p className="profile-text-highlight">Cập nhật ảnh</p>
+                            <div className="update-avatar">
+                            <input type="file" className="profile-text-highlight" title="Cập nhật ảnh" onChange={handleChangeFile}/>
+                            <Button variant="contained" onClick={handleUpdateAva}>Cập nhật ảnh</Button>
+                            </div>
                         </div>
                         <div className="profile-section-description">
                             <i className="fa-regular fa-circle-check"></i>

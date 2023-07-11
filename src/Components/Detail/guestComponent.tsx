@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 // import mui guest input
 import InputLabel from '@mui/material/InputLabel';
@@ -27,12 +28,10 @@ import swal from 'sweetalert';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { date } from 'yup';
-
-
-
+import { AppDispatch } from '../../redux/store'
+import { getListBookedRoom } from '../../redux/Admin-slice/AdminBookingSlice'
+import useCheckAvailableCount from './handleCheckAvailable';
 dayjs.extend(customParseFormat);
 
 const { RangePicker } = DatePicker;
@@ -82,11 +81,10 @@ export default function SelectVariants({khachMax, giaTien, phone, dataDetail} : 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [checkPayment, setCheckPayment] = React.useState(false)
-
+  const dispatch = useDispatch<AppDispatch>()
   const [openGuest, setOpenGuest] = React.useState(false);
   const handleOpenGuest = () => setOpenGuest(true)
   const handleCloseGuest = () => setOpenGuest(false)
-
   const [openDate, setOpenDate] = React.useState(false);
   const handleOpenDate = () => setOpenDate(true)
   const handleCloseDate = () => setOpenDate(false)
@@ -107,7 +105,10 @@ export default function SelectVariants({khachMax, giaTien, phone, dataDetail} : 
   const [dateEnd, setDateEnd] = React.useState("")
   const [inputFilled, setInputFilled] = React.useState(false)
   const [dateDifferent, setDateDifferent] = React.useState(0)
-
+  React.useEffect(()=>{
+    dispatch(getListBookedRoom())
+  },[])
+  const availableCount = useCheckAvailableCount(idRoom.idDetail, dateStart, dateEnd)
   React.useEffect(() => { 
     setDateDifferent(
       Math.ceil(Math.abs(Date.parse(dateEnd) - Date.parse(dateStart)) / (1000 * 60 * 60 * 24)))
@@ -128,32 +129,52 @@ export default function SelectVariants({khachMax, giaTien, phone, dataDetail} : 
   const handleGuest = (index: number) => { 
     setGuest(guest + index)
   }
-
   const handleBooking = async() => {
     if (!inputFilled){
-      alert("Bạn chưa điền ngày đến ngày đi")
+      swal("Bạn chưa điền ngày đến ngày đi!", {icon: "error"})
     } else {
       if (getLocal(ACCESS_USER_ID)){
-        try {
-          const value = { 
-            maPhong: idRoom.idDetail,
-            ngayDen: dateStart,
-            ngayDi: dateEnd,
-            soLuongKhach: guest,
-            maNguoiDung: getLocal(ACCESS_USER_ID)
+        if(availableCount < 1){
+          try {
+            const value = { 
+              maPhong: idRoom.idDetail,
+              ngayDen: dateStart,
+              ngayDi: dateEnd,
+              soLuongKhach: guest,
+              maNguoiDung: getLocal(ACCESS_USER_ID)
+            }
+            await axiosInterceptorWithCybertoken.post("/api/dat-phong", value)
+            setDateEnd("")
+            setDateStart("")
+            setGuest(1)
+            swal("Thuê phòng thành công!", {icon: "success"})
+          } catch (err){ 
+            swal("Thuê phòng thất bại!", {icon: "error"})
+            console.log(err)
           }
-          await axiosInterceptorWithCybertoken.post("/api/dat-phong", value)
-          setDateEnd("")
-          setDateStart("")
-          setGuest(1)
-          swal("Thuê phòng thành công!", {icon: "success"})
-        } catch (err){ 
-          swal("Thuê phòng thất bại!", {icon: "error"})
-          console.log(err)
+        }else { 
+          swal("Phòng hiện tại không có sẵn trong ngày bạn đã đặt!", {icon: "error"})
         }
-      }else { 
-        navigate("/auth/login")
-      }
+        }else{
+          swal({
+            title: "Bạn chưa đăng nhập!",
+            text: "Bạn phải đăng nhập để có thể đặt phòng!",
+            icon: "warning",
+            buttons: [true,"Đăng nhập"],
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              swal("Bạn đã được chuyển trang đăng nhập", {
+                icon: "success",
+              });
+              navigate("/auth/login")
+            } else {
+              swal("Bạn sẽ tiếp tục với tư cách là khách!");
+              navigate("/")
+            }
+          });
+        }
     }
   }
 
@@ -214,7 +235,7 @@ export default function SelectVariants({khachMax, giaTien, phone, dataDetail} : 
         </Select>
       </FormControl>
       <button className="detail-submit-guest" type='button' onClick={handleBooking}>
-        {!inputFilled? "Check availability": "Thuê nhà"}
+        {!inputFilled? "Thuê nhà": "Check availability"}
       </button>
 
       {!inputFilled ?
