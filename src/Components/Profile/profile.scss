@@ -1,14 +1,28 @@
-.profile-text-highlight{
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: black;
-    cursor: pointer;
-    &:hover{ 
-        text-decoration: underline;
-        font-weight: 600;
+.profile-avatar{
+    img{
+        object-fit: cover;
+        object-position: center;
     }
-  
+    .update-avatar{
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        padding: 0 1.5rem;
+        .profile-text-highlight{
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: black;
+            cursor: pointer;
+            &:hover{ 
+                text-decoration: underline;
+                font-weight: 600;
+            }
+          
+        }
+    }
 }
+
 
 .profile-button{ 
     padding: 1rem 2rem;
@@ -58,9 +72,6 @@
         }
     }
 
-    // .profile-bookRoom-section{
-    //     padding-left:8rem;
-    // }
 }
 .birthday-show{
     padding-left: 1rem;
@@ -73,10 +84,6 @@
         font-size: 1.8rem;
         font-weight: 700;
     }
-}
-
-.profile-box-modal{ 
-    width: 70%;
 }
 
 @media screen and (max-width:414px) {
@@ -125,7 +132,12 @@
 
 
 .profile-box-modal{
-    padding-left: 1rem;
+    background-image: url('https://img.freepik.com/free-photo/white-blank-background-texture-design-element_53876-121611.jpg?w=1800&t=st=1689050766~exp=1689051366~hmac=76bf0b9cc302e5ea3ef40ff35ac7d5d56c56005c4128dba4b6d324952409f969');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    padding: 2rem;
+    width: 40%;
     .login-page-title{
         text-align: center;
         h1{
@@ -193,9 +205,34 @@
 }
 
 .Modal-update-Booking{
-    width: 75%;
+    width: 50%;
+    padding: 2rem;
+    background-image: url('https://img.freepik.com/premium-photo/seamless-texture-white-cement-wall-rough-surface-with-space-text-backgroundx9_661047-2097.jpg?w=1800');
+    background-size: cover;
+    border-radius: 10px;
+    h1{
+        text-align: center;
+        margin-bottom: 2rem;
+    }
 }
 
+@media screen and (max-width:1280px) {
+    .Modal-update-Booking{ 
+        width: 70%;
+    }
+    .profile-box-modal{
+        width: 60%;
+    }
+}
+
+@media screen and (max-width:1024px) {
+    .Modal-update-Booking{ 
+        width: 80%;
+    }
+    .profile-box-modal{
+        width: 65%;
+    }
+}
 
 @media screen and (max-width:750px) {
     .Modal-update-Booking{ 
@@ -204,6 +241,22 @@
 
 }
 
+@media screen and (max-width:576px) {
+    .Modal-update-Booking{ 
+        width: 95%;
+    }
+    .profile-box-modal{
+        width: 95%;
+    }
+}
 
-
+@media screen and (max-width:375px) {
+    .Modal-update-Booking{ 
+        width: 98%;
+        padding: 1.5rem;
+    }
+    .profile-box-modal{
+        width: 95%;
+    }
+}
 
