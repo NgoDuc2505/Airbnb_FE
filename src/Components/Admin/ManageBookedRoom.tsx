@@ -26,7 +26,7 @@ function ManageBookedRoom() {
   const currentDataRoom = useSelector((state: RootState) => state.sliceCurrent.currentBookedRoom)
   const bookingListData = useSelector((state:RootState) =>{return state.sliceBookingAdmin.listBooking})
   const [open, setOpen] = React.useState(false);
-  const [valueInput,setValueInput] = useState<number>()
+  const [valueInput,setValueInput] = useState<number | string>()
   const [searchArr,setArr]= useState<IBookRoom[] >([])
   const btn = useRef<HTMLButtonElement | null>(null)
   useEffect(()=>{
@@ -131,13 +131,19 @@ function ManageBookedRoom() {
   ];
   const newRows:IBookRoom[] = bookingListData?.length >0 ? bookingListData : rows
   const handleChangeValue =(e: React.ChangeEvent<HTMLInputElement>)=>{
-    setValueInput(Number(e.target.value))
+    setValueInput(e.target.value)
   }
+
+  
   const handleSearchRoom = ()=>{
-    const arraySearch:IBookRoom[] = newRows.filter((item)=>{
-      return item.maPhong === valueInput
-    })
-    setArr(arraySearch)
+    if (valueInput !== "") {
+      const arraySearch:IBookRoom[] = newRows.filter((item)=>{
+        return item.maPhong === Number(valueInput)
+      })
+      setArr(arraySearch)
+    } else  {
+      setArr(newRows)
+    }
   }
   return (
     <div className='manage-booked-room'>

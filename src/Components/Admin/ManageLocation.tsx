@@ -31,6 +31,8 @@ function ManageLocation() {
     const handleClose = () => setOpen(false);
     const [show, setShow] = React.useState(false)
     const [paramsId,setParamsId]= React.useState<number>()
+    const [searchKey, setSearchKey] = React.useState("")
+    const refSearch = React.useRef<HTMLInputElement>();
     const [paramsData,setParamsData] = React.useState<ILocationItem>({id:-1,hinhAnh:'',quocGia:'',tenViTri:'',tinhThanh:''})
     const columns: GridColDef[] = [
         { field: 'id', headerName: 'Mã', width: 70, align: 'center', headerAlign: 'center' },
@@ -180,8 +182,8 @@ function ManageLocation() {
     const newRows = dataRetrieve.data ? dataRetrieve.data : rows 
 
     React.useEffect(() => { 
-        dispatch(getLocationByPhanTrang({pageIndex: page, keywords: ""}))
-      }, [page])
+        dispatch(getLocationByPhanTrang({pageIndex: page, keywords: searchKey}))
+      }, [page, searchKey])
     const handleChangePagination = (e: React.ChangeEvent<unknown>, page: number) => {
         setPage(page)
      }
@@ -190,8 +192,12 @@ function ManageLocation() {
             <Container fixed={true} className='mui-container-manage'>
                 <Button className='button-add-admin' onClick={handleOpen}>Thêm mới vị trí</Button>
                 <div className="search-user">
-                    <TextField id="outlined-basic" label="Tìm theo tên" variant="outlined" className='input-search' />
-                    <button>Tìm</button>
+                    <TextField inputRef={refSearch} id="outlined-basic" label="Tìm theo tên" variant="outlined" className='input-search' />
+                    <button onClick={() => { 
+                        const keyword = (refSearch.current as unknown) as HTMLInputElement
+                        setSearchKey(keyword.value)
+                    }}>Tìm</button>
+
                 </div>
                 <Modal
                     open={open}
