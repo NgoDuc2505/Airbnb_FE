@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
 
 // import mui guest input
 import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
@@ -21,7 +21,6 @@ import { DateRange } from 'react-date-range';
 
 import { getLocal } from '../../utils/utils';
 import { ACCESS_USER_ID, IRoomDetail } from '../../constant/constant';
-import { useNavigate, useParams } from 'react-router-dom';
 import { axiosInterceptorWithCybertoken } from '../../services/services';
 import swal from 'sweetalert';
 
@@ -148,6 +147,7 @@ export default function SelectVariants({khachMax, giaTien, phone, dataDetail} : 
             setDateStart("")
             setGuest(1)
             swal("Thuê phòng thành công!", {icon: "success"})
+            navigate('/Detail/profile')
           } catch (err){ 
             swal("Thuê phòng thất bại!", {icon: "error"})
             console.log(err)
