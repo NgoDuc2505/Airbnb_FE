@@ -20,7 +20,7 @@ function PersonalInformation() {
 
   const profileData = useSelector((state: RootState)=>state.sliceUser.profileData)
   const bookRoomData = useSelector((state: RootState)=>state.sliceRoomDetail.currentBookRoom)
-
+  console.log(getLocal(ACCESS_USER_ID))
   // console.log(profileData)
 
   // console.log(bookRoomData)
