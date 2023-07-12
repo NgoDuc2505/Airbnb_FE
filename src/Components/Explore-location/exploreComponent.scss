@@ -4,6 +4,7 @@
     .mui-box{
         padding: 3rem 0;
         .mui-grid{
+            display: block;
             .mui-item{
                 box-shadow: unset;
                 background-color: transparent;
@@ -32,6 +33,50 @@
                     .explore-location-item-text{
                         p{
                             font-weight: 600;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .mySwiper{
+        width: 100%;
+        display: none;
+        .swpper-slice-custom{
+            height: 300px;
+            .swiper-item-custom{
+                width: 100%;
+                height: 100%;
+                background-color: #ececec;
+                border-radius: 10px;
+                a{
+                    width: 100%;
+                    height: 100%;
+                    display: block;
+                    .explore-location-item{
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        text-align: left;
+                        font-size: 1.6rem;
+                        color: black;
+                        img{
+                            width: 90%;
+                            height: 60%;
+                            border-radius: 7px;
+                            transition: all .5s;
+                            object-fit: cover;
+                        }
+                        .explore-location-item-text{
+                            text-align: center;
+                            margin-top: 2rem;
+                            p{
+                                font-weight: 600;
+                                font-size: 1.8rem;
+                            }
                         }
                     }
                 }
@@ -98,5 +143,14 @@
                 }
             }
         }
+        .mySwiper{
+            display: block;
+        }
+        .mui-box{
+            .mui-grid{
+                display: none;
+            }
+        }
     }
+
 }

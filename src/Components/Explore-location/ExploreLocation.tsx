@@ -1,4 +1,4 @@
-
+import React, { useRef, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 //MUI UI
 import { createTheme, styled, ThemeProvider } from '@mui/material/styles';
@@ -10,7 +10,12 @@ import './exploreComponent.scss'
 import useGetInspectOfSearchPage from './exploreComponentLogic';
 //interface constant
 import { ILocationItem } from '../../constant/constant'
-
+//swipper
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
@@ -60,7 +65,39 @@ function ExploreLocation() {
           }
         </Grid>
       </ThemeProvider>
-       
+      <Swiper
+        spaceBetween={30}
+        centeredSlides={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        
+        pagination={{
+          clickable: true,
+        }}
+        navigation={false}
+        modules={[Autoplay, Navigation]}
+        className="mySwiper"
+      >
+        {result.map((itemReturn : ILocationItem) => {
+              return (
+                <SwiperSlide key={itemReturn.id} className='swpper-slice-custom'>
+                <div className="swiper-item-custom">
+                <NavLink to={`${itemReturn.id}`}>
+                    <div className="explore-location-item">
+                      <img src={itemReturn.hinhAnh} alt="..." />
+                      <div className="explore-location-item-text">
+                        <p>{itemReturn.tenViTri}</p>
+                        <span>{`${itemReturn.tinhThanh}, ${itemReturn.quocGia}`}</span>
+                      </div>
+                    </div>
+                    </NavLink>
+                </div>
+                </SwiperSlide>
+              )
+            })}
+      </Swiper>
       </Box>
     </div>
   )

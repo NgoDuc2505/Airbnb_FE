@@ -12,7 +12,7 @@ import TextField from '@mui/material/TextField';
 //component
 import AddRoom from '../Admin-add-room-popup/AddRoom';
 //const
-import { ACCESS_TOKEN, IRoomDetail } from '../../constant/constant';
+import { IRoomDetail } from '../../constant/constant';
 //modal
 import DetailRoom from '../Admin-add-room-popup/DetailRoom';
 import RoomUpdateModal from '../Admin-add-room-popup/RoomUpdateModal';
@@ -20,8 +20,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../redux/store';
 import { getRoomByPhanTrang } from '../../redux/Admin-slice/AdminRoomSlice';
 import swal from 'sweetalert';
-import { axiosInterceptorWithCybertoken } from '../../services/services';
-import { getLocal } from '../../utils/utils';
+import { axiosInterceptor } from '../../services/services';
 
 const initState: IRoomDetail = {
     id: 0,
@@ -53,7 +52,6 @@ function ManageRoom() {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-        
     const columns: GridColDef[] = [
         { field: 'id', headerName: 'Mã phòng', width: 90, align: 'center' },
         { field: 'tenPhong', headerName: 'Tên phòng', width: 300, headerAlign:'center' },
@@ -90,12 +88,10 @@ function ManageRoom() {
                 const onClick = (e: React.MouseEvent) => {
                     e.stopPropagation()
                     handleShow()
-                    console.log(e, params)
                 };
                 const onClick2 = (e: React.MouseEvent) => {
                     e.stopPropagation()
                     setShowUpdate(true)
-                    console.log(e, params.row.id)
                 };
                 const onClick3 = (e: React.MouseEvent) => {
                     e.stopPropagation()
@@ -116,11 +112,7 @@ function ManageRoom() {
                               text: `Tên phòng với id ${params.row.id} đã bị xóa`,
                               icon: 'success'
                             }).then(async() => {
-                                await axiosInterceptorWithCybertoken.delete(`/api/phong-thue/${params.row.id}`, {
-                                    headers: {
-                                        token: getLocal(ACCESS_TOKEN)
-                                    }
-                                });
+                                await axiosInterceptor.delete(`/api/phong-thue/${params.row.id}`);
                                 dispatch(getRoomByPhanTrang({pageIndex: page, keywords: searchKey ? searchKey: ""}))
                             });
                           } else {
@@ -186,8 +178,6 @@ function ManageRoom() {
         },
     ];
 
-
-    
     const dataRetrieve = useSelector((state: RootState)=>state.sliceRoomAdmin.currentRoombyPhanTrang)
     const newRows = dataRetrieve.data ? dataRetrieve.data : rows 
 

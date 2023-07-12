@@ -59,9 +59,9 @@ export default function BasicModal({ children, value, setValue }: TProps) {
                         Địa điểm khả dụng: <input type="text" value={value} onChange={(e) => { handleChange(e) }} />
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        {list.map((item: ILocationItem) => {
+                        {list.map((item: ILocationItem, index) => {
                             return (
-                                <NavLink to={`/${item.id}`}>
+                                <NavLink key={`${index}${item.id}`} to={`/${item.id}`}>
                                 <div className="location-item">
                                     <i className="fa-solid fa-location-dot"></i>
                                     <p>{`${item.tenViTri}, ${item.tinhThanh}`}</p>

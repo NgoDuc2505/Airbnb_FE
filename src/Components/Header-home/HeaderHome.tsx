@@ -115,24 +115,24 @@ function HeaderHome() {
                             <div className={`reach-location under-content-text ${active[0] ? 'active' : ''}`} onClick={() => { handleSetActive(0) }}>
                                 <BasicModal value={valueInput} setValue={setValue}>
                                     <div>
-                                        <p>Dia diem</p>
+                                        <p>Địa điểm</p>
                                         <span className='under-content-span'>{valueInput ? valueInput : 'Hãy nhập địa điểm tìm kiếm'}</span>
                                         <span className='mobile-span'>{valueInput ? valueInput : 'Hãy nhập địa điểm'}</span>
                                     </div>
                                 </BasicModal>
                             </div>
                             <div className={`date-checkin under-content-text ${active[1] ? 'active' : ''}`} onClick={() => { handleSetActive(1) }}>
-                                <p>Nhan phong</p>
-                                <span>Them ngay</span>
+                                <p>Nhận phòng</p>
+                                <span>Thêm ngày</span>
                             </div>
                             <div className={`date-checkout under-content-text ${active[2] ? 'active' : ''}`} onClick={() => { handleSetActive(2) }}>
-                                <p>Tra phong</p>
-                                <span>Them ngay</span>
+                                <p>Trả phòng</p>
+                                <span>Thêm ngày</span>
                             </div>
                             <div className={`search-check under-content-text ${active[3] ? 'active' : ''}`} onClick={() => { handleSetActive(3) }}>
                                 <div className="search-check-content">
-                                    <p>Khach</p>
-                                    <span>Them khach</span>
+                                    <p>Khách</p>
+                                    <span>Thêm khách</span>
                                 </div>
                                 <button className='search-btn-check'>
                                     <i className="fa-solid fa-magnifying-glass"></i>
