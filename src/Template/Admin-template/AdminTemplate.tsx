@@ -24,6 +24,7 @@ import swal from 'sweetalert';
 //redux
 import { setDefaultProfile } from '../../redux/user-slice/UserSlice'
 import { useScrollTop } from '../../hooks/useScrollTop';
+import { SkeletonAdmin } from '../../Components/Skeleton/Skeleton';
 
 type Anchor = 'left';
 
@@ -137,7 +138,7 @@ function AdminTemplate() {
       >
         <AdminSideBar handleCloseSideBar={handleCloseSideBar} />
       </Drawer>
-      <Suspense fallback={<><h1>Loading...</h1></>}>
+      <Suspense fallback={<SkeletonAdmin/>}>
         <Outlet></Outlet>
       </Suspense>
     </div>
