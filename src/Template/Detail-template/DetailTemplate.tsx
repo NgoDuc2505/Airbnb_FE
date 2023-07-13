@@ -2,12 +2,13 @@ import { Suspense } from 'react'
 import { Outlet } from 'react-router-dom'
 import HeaderHome from '../../Components/Header-home/HeaderHome'
 import FooterHome from '../../Components/Footer-home/FooterHome'
+import { SkeletonProfile } from '../../Components/Skeleton/Skeleton'
 
 function DetailTemplate() {
   return (
     <div className='detail-template'>
       <HeaderHome/>
-      <Suspense fallback={<><h1>loading...</h1></>}>
+      <Suspense fallback={<SkeletonProfile/>}>
         <Outlet></Outlet>
       </Suspense>
       <FooterHome/>
