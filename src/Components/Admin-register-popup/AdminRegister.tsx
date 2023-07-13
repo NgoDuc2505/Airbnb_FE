@@ -80,8 +80,6 @@ function AdminRegister({ handleCloseModal }: IProps) {
         onSubmit: async (values: IValues) => {
           try {
                  
-    
-
                 if(isValid){
                     const newValue = {
                         ...values,
