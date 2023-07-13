@@ -98,41 +98,82 @@ export const SkeletonDetail = () => {
 export const SkeletonProfile = () => {
   const w992 = useMediaQuery('(max-width:991.98px)');
   return (
-    <Box sx={{ width: '100%', marginTop:`${w992 ? '26rem' : '22.5rem'}`, transform: 'translateY(-20%)' }} className='mui-box-skeleton-profile'>
+    <Box sx={{ width: '100%', marginTop: `${w992 ? '26rem' : '22.5rem'}`, transform: 'translateY(-20%)' }} className='mui-box-skeleton-profile'>
       <Container maxWidth='lg'>
-      <ThemeProvider theme={theme}>
-        <Grid container spacing={2}>
-          <Grid className='mui-item-profile' item xs={12} md={3} sx={{position:'relative'}}>
-          <Skeleton variant='circular' 
-          sx={{ 
-            width: '200px', 
-            height: '200px', 
-            borderRadius: '50%', 
-            margin: 'auto', 
-            position:'absolute', 
-            top:'4rem', 
-            left:'50%',
-            transform:'translateX(-43%)'
-          }}
-          ></Skeleton>
-           <Skeleton variant='rectangular' sx={{ width: '80%', height: '3rem', borderRadius: '10px',  position:'absolute', bottom:'40%', left:'50%',
-            transform:'translateX(-46%)'}}></Skeleton>
-             <Skeleton variant='rectangular' sx={{ width: '80%', height: '3rem', borderRadius: '10px',  position:'absolute', bottom:'32%', left:'50%',
-            transform:'translateX(-46%)'}}></Skeleton>
-          <Skeleton variant='rectangular' sx={{ width: '100%', height: `${w992 ? '55.2rem' : '59.7rem'}`, borderRadius: '10px' }}></Skeleton>
+        <ThemeProvider theme={theme}>
+          <Grid container spacing={2}>
+            <Grid className='mui-item-profile' item xs={12} md={3} sx={{ position: 'relative' }}>
+              <Skeleton variant='circular'
+                sx={{
+                  width: '200px',
+                  height: '200px',
+                  borderRadius: '50%',
+                  margin: 'auto',
+                  position: 'absolute',
+                  top: '4rem',
+                  left: '50%',
+                  transform: 'translateX(-43%)'
+                }}
+              ></Skeleton>
+              <Skeleton variant='rectangular' sx={{
+                width: '80%', height: '3rem', borderRadius: '10px', position: 'absolute', bottom: '40%', left: '50%',
+                transform: 'translateX(-46%)'
+              }}></Skeleton>
+              <Skeleton variant='rectangular' sx={{
+                width: '80%', height: '3rem', borderRadius: '10px', position: 'absolute', bottom: '32%', left: '50%',
+                transform: 'translateX(-46%)'
+              }}></Skeleton>
+              <Skeleton variant='rectangular' sx={{ width: '100%', height: `${w992 ? '55.2rem' : '59.7rem'}`, borderRadius: '10px' }}></Skeleton>
+            </Grid>
+            <Grid className='mui-item-profile' item xs={12} md={8} sx={{ position: 'relative' }}>
+              <Skeleton variant='rectangular' sx={{ width: '100%', height: `${w992 ? '20rem' : '59.7rem'}`, borderRadius: '10px' }}></Skeleton>
+              <Skeleton variant='rectangular' sx={{ width: '80%', height: `${w992 ? '2.5rem' : '3rem'}`, borderRadius: '10px', position: 'absolute', top: `${w992 ? '20%' : '10%'}`, left: '5%' }}></Skeleton>
+              <Skeleton variant='rectangular' sx={{ width: '80%', height: `${w992 ? '2.5rem' : '3rem'}`, borderRadius: '10px', position: 'absolute', top: `${w992 ? '40%' : '18%'}`, left: '5%' }}></Skeleton>
+              <Skeleton variant='rectangular' sx={{ width: `${w992 ? '20%' : '80%'}`, height: `${w992 ? '4rem' : '3rem'}`, borderRadius: '10px', position: 'absolute', top: `${w992 ? '60%' : '26%'}`, left: '5%' }}></Skeleton>
+              <Skeleton variant='rectangular' sx={{ display: `${w992 ? 'none' : 'block'}`, width: '80%', height: '3rem', borderRadius: '10px', position: 'absolute', top: '34%', left: '5%' }}></Skeleton>
+              <Skeleton variant='rectangular' sx={{ display: `${w992 ? 'none' : 'block'}`, width: '80%', height: '3rem', borderRadius: '10px', position: 'absolute', top: '42%', left: '5%' }}></Skeleton>
+              <Skeleton variant='rectangular' sx={{ display: `${w992 ? 'none' : 'block'}`, width: '30%', height: '4rem', borderRadius: '10px', position: 'absolute', top: '50%', left: '5%' }}></Skeleton>
+            </Grid>
           </Grid>
-          <Grid className='mui-item-profile' item xs={12} md={8} sx={{position:'relative'}}>
-          <Skeleton variant='rectangular' sx={{ width: '100%', height: `${w992 ? '20rem' : '59.7rem'}`, borderRadius: '10px' }}></Skeleton>
-          <Skeleton variant='rectangular' sx={{ width: '80%', height: `${w992? '2.5rem' : '3rem'}`, borderRadius: '10px',  position:'absolute', top:`${w992 ? '20%' : '10%'}`, left:'5%'}}></Skeleton>
-          <Skeleton variant='rectangular' sx={{ width: '80%', height: `${w992? '2.5rem' : '3rem'}`, borderRadius: '10px',  position:'absolute', top:`${w992 ? '40%' : '18%'}`, left:'5%'}}></Skeleton>
-          <Skeleton variant='rectangular' sx={{ width: `${w992 ? '20%' : '80%'}`, height: `${w992? '4rem' : '3rem'}`, borderRadius: '10px',  position:'absolute', top:`${w992 ? '60%' : '26%'}`, left:'5%'}}></Skeleton>
-          <Skeleton variant='rectangular' sx={{ display: `${w992 ? 'none' : 'block'}` ,width: '80%', height: '3rem', borderRadius: '10px',  position:'absolute', top:'34%', left:'5%'}}></Skeleton>
-          <Skeleton variant='rectangular' sx={{ display: `${w992 ? 'none' : 'block'}` ,width: '80%', height: '3rem', borderRadius: '10px',  position:'absolute', top:'42%', left:'5%'}}></Skeleton>
-          <Skeleton variant='rectangular' sx={{ display: `${w992 ? 'none' : 'block'}` ,width: '30%', height: '4rem', borderRadius: '10px',  position:'absolute', top:'50%', left:'5%'}}></Skeleton>
-          </Grid>
-        </Grid>
-      </ThemeProvider>
+        </ThemeProvider>
       </Container>
+    </Box>
+  )
+}
+
+export const SkeletonListRoom = () => {
+  const w992 = useMediaQuery('(max-width:991.98px)');
+  return (
+    <Box sx={{ width: '100%', height:'100vh', marginTop: '8rem', display: `${w992 ? 'block' : 'flex'}` }}>
+      <Box sx={{ width: `${w992 ? '100%' : '60%'}`, padding: '3rem 2rem' }}>
+        <Skeleton variant='rectangular' sx={{ width: '12%', height: '3rem', borderRadius: '10px', marginBottom: '1rem' }}></Skeleton>
+        <Skeleton variant='rectangular' sx={{ width: '35%', height: '3rem', borderRadius: '10px', marginBottom: '2rem' }}></Skeleton>
+        <Box sx={{ display: 'flex', gap: '8px', marginBottom:'3rem' }}>
+          <Skeleton variant='rectangular' sx={{ width: '10%', height: '3rem', borderRadius: '50px' }}></Skeleton>
+          <Skeleton variant='rectangular' sx={{ width: '5%', height: '3rem', borderRadius: '50px' }}></Skeleton>
+          <Skeleton variant='rectangular' sx={{ width: '8%', height: '3rem', borderRadius: '50px' }}></Skeleton>
+          <Skeleton variant='rectangular' sx={{ width: '8%', height: '3rem', borderRadius: '50px' }}></Skeleton>
+          <Skeleton variant='rectangular' sx={{ width: '10%', height: '3rem', borderRadius: '50px' }}></Skeleton>
+        </Box>
+
+        <Box sx={{ display: 'flex', gap:'2rem' ,height:'320px', borderTop:'0.5px solid rgba(0, 0, 0, 0.4509803922)',borderBottom:'0.5px solid rgba(0, 0, 0, 0.4509803922)', padding:'1rem 0'}}>
+          <Box sx={{width:'50%'}}>
+          <Skeleton variant='rectangular' sx={{ width: '100%', height: '100%', borderRadius: '15px' }}></Skeleton>
+          </Box>
+          <Box sx={{width:'50%'}}>
+          <Skeleton variant='rectangular' sx={{ width: '30%', height: '1.5rem', borderRadius: '10px', marginBottom:'1rem' }}></Skeleton>
+          <Skeleton variant='rectangular' sx={{ width: '80%', height: '2rem', borderRadius: '10px', marginBottom:'3rem' }}></Skeleton>
+          <Skeleton variant='rectangular' sx={{ width: '100%', height: '9rem', borderRadius: '10px' }}></Skeleton>
+          <Box sx={{width:'30%',display:'flex', gap:'5px', marginLeft:'auto', marginTop:'9rem'}}>
+          <Skeleton variant='rectangular' sx={{ width: '40%', height: '3rem', borderRadius: '10px' }}></Skeleton>
+          <Skeleton variant='rectangular' sx={{ width: '60%', height: '3rem', borderRadius: '10px' }}></Skeleton>
+          </Box>
+          </Box>
+        </Box>
+      </Box>
+      <Box sx={{ width: `${w992 ? '100%' : '40%'}`, height:`${w992 ? '500px' : '100%'}`, padding: `${w992 ? '0 3rem 3rem 3rem' : '0'}`}}>
+      <Skeleton variant='rectangular' sx={{ width: '100%', height: '100%', borderRadius: `${w992 ? '6px' : '0'}`  }}></Skeleton>
+      </Box>
     </Box>
   )
 }
