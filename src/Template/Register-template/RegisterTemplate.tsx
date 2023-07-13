@@ -2,7 +2,9 @@ import React, { Suspense }  from 'react'
 import { Outlet } from 'react-router-dom'
 import './registerTemplate.scss'
 import { SkeletonRegister } from '../../Components/Skeleton/Skeleton'
+import { useScrollTop } from '../../hooks/useScrollTop'
 function RegisterTemplate() {
+  useScrollTop()
   return (
     <div className='register-template'>
       <div className="left-content">

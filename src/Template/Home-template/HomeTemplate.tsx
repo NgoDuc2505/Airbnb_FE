@@ -3,9 +3,11 @@ import {Suspense, useEffect} from 'react'
 import {Outlet, useLocation} from 'react-router-dom'
 import FooterHome from "../../Components/Footer-home/FooterHome"
 import {SkeletonC, SkeletonListRoom} from "../../Components/Skeleton/Skeleton"
+import { useScrollTop } from "../../hooks/useScrollTop"
 
 function HomeTemplate() {
   const location = useLocation()
+  useScrollTop()
   return (
     <div>
         <HeaderHome/>
