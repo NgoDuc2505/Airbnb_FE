@@ -1,17 +1,17 @@
 import * as React from 'react';
-import { ACCESS_TOKEN, ACCESS_USER_ID, CYBER_TOKEN, IComment } from '../../constant/constant';
-import TextField from '@mui/material/TextField';
+import { ACCESS_USER_ID, IComment } from '../../constant/constant';
 import { useFormik } from 'formik';
 import { FormControl, FormHelperText, Input, InputLabel } from '@mui/material';
 import * as Yup from 'yup';
 import swal from 'sweetalert';
-import { axiosInterceptorWithCybertoken } from '../../services/services'
 import Button from '@mui/material/Button';
 import Rating from '@mui/material/Rating';
-import Typography from '@mui/material/Typography';
 import { getLocal } from '../../utils/utils';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { getCommentByRoomId } from '../../redux/Comment-slice/CommentSlice';
+import { AppDispatch } from '../../redux/store'
+import { axiosInterceptor } from '../../services/services'
 
 interface IProps{
     currentComment: IComment | any
@@ -94,6 +94,7 @@ export function CommentSlider({classes}: IPropsSlider){
 
 
 export function CommentBox() { 
+    const dispatch = useDispatch<AppDispatch>()
     const idRoom = useParams()
     const [starvalue, setValue] = React.useState<number | null>(0);
     const formik = useFormik({ 
@@ -115,17 +116,8 @@ export function CommentBox() {
                     noiDung: values.comment,
                     saoBinhLuan: values.star
                 }   
-                const options = {
-                    headers: {
-                        tokenCybersoft: CYBER_TOKEN,
-                        token: getLocal(ACCESS_TOKEN)
-                    }
-                }
-                await axios.post(
-                    "https://airbnbnew.cybersoft.edu.vn/api/binh-luan",
-                    value,
-                    options
-                )
+                await axiosInterceptor.post('/api/binh-luan',value)
+                dispatch(getCommentByRoomId(String(idRoom.idDetail)))
             }
             
             swal("Comment thành công!", {icon: "success"})

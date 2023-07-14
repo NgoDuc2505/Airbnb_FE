@@ -76,9 +76,7 @@ function Register() {
             role: 'USER',
             gender: getGender,
           }
-          console.log(newValue);
           const resp = await axiosInterceptorWithCybertoken.post('/api/auth/signup', newValue)
-          console.log(resp)
           swal("Thành công, tài khoản đã được tạo!", {
             icon: "success",
           });

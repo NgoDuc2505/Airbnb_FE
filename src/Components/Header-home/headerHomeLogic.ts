@@ -17,6 +17,11 @@ export const useLoginRenderAva = (getAcessToken: string)=>{
         }
     }, [getLocal(ACCESS_USER_ID)])
     const profileData = useSelector((state: RootState) => state.sliceUser.profileData)
-    const avaName = profileData.name.split(' ')[profileData.name.split(' ').length -1]
+    let avaName =''
+    if(profileData){
+        avaName = profileData.name.split(' ')[profileData.name?.split(' ').length -1]
+    }else{
+        avaName ='None'
+    }
     return avaName.split('')[0]
 }

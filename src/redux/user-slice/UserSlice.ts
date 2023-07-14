@@ -39,12 +39,12 @@ export const userSlice = createSlice({
         setDefaultProfile: (state) => {
             state.profileData = {
                 id: 0,
-                name: '',
+                name: 'None',
                 phone: '',
                 birthday: '',
                 avatar: '',
                 gender: true,
-                role: '',
+                role: 'USER',
                 email: '',
                 password: ''
             }

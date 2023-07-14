@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { CYBER_TOKEN, IComment } from '../../constant/constant'
+import { axiosInterceptorWithCybertoken } from '../../services/services'
 
 export interface IRoomState{
     currentRoomComment: IComment[]
@@ -10,14 +11,12 @@ export interface IRoomState{
 export const getCommentByRoomId = createAsyncThunk(
     'commentSlice/getCommentByRoomId',
     async (id: string | undefined)=>{
-        const resp = axios({
-            url:`https://airbnbnew.cybersoft.edu.vn/api/binh-luan/lay-binh-luan-theo-phong/${id}`,
-            method:'get',
-            headers:{
-                tokenCybersoft: CYBER_TOKEN,
-            }
-        })
-        return resp
+       try{
+           const resp = await axiosInterceptorWithCybertoken.get(`/api/binh-luan/lay-binh-luan-theo-phong/${id}`)
+           return resp
+       }catch(error){
+        console.log(error)
+       }
     }
 )
 
@@ -33,7 +32,7 @@ export const commentSlice = createSlice({
     },
     extraReducers: (build)=>{
         build.addCase(getCommentByRoomId.fulfilled,(state,action)=>{
-            state.currentRoomComment = action.payload.data.content
+            state.currentRoomComment = action.payload?.data.content
         })
     }
 })

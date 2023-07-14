@@ -56,7 +56,7 @@ export function Profile({profileData, bookRoomData}: IProps){
                 <div className="profile-section col-lg-3">
                     <div className="profile-fixed">
                         <div className="profile-avatar">
-                            <img src={profileData.avatar === ""? "/src/assets/Image/emptyAva.jpg" : profileData.avatar} alt="" />
+                            <img src={!profileData?.avatar ? "/src/assets/Image/emptyAva.jpg" : profileData?.avatar} alt="" />
                             <div className="update-avatar">
                             <input type="file" className="profile-text-highlight" title="Cập nhật ảnh" onChange={handleChangeFile}/>
                             <Button variant="contained" onClick={handleUpdateAva}>Cập nhật ảnh</Button>
@@ -68,13 +68,13 @@ export function Profile({profileData, bookRoomData}: IProps){
                             <p>Xác thực danh tính của bạn với huy hiệu xác minh danh tính</p>
                             <button className="profile-button" type="button">Nhận Huy Hiệu</button>
                             <hr className="my-4" />
-                            <h2>{profileData.name} đã xác nhận</h2>
+                            <h2>{profileData?.name} đã xác nhận</h2>
                             <p className="mt-3"><i className="fa-solid fa-check mr-2"></i>Địa chỉ Email</p>
                         </div>                
                     </div>
                 </div>
                 <div className="profile-bookRoom-section col-lg-9 pl-lg-5 mt-5 mt-lg-0">
-                    <h1>Xin Chào, tôi là {profileData.name}</h1>
+                    <h1>Xin Chào, tôi là {profileData?.name}</h1>
                     <p>Bắt đầu tham gia vào năm 2021</p>
                     <UpdateProfile profileData={profileData}/>
                     
@@ -105,7 +105,7 @@ export function Profile({profileData, bookRoomData}: IProps){
                     
                     }      
 
-                    {bookRoomData.length === 0 ? "Bạn chưa đặt phòng nào" :
+                    {bookRoomData?.length === 0 ? "Bạn chưa đặt phòng nào" :
                     <button className="profile-button mt-3" type='button' onClick={() => {
                         setHide(!hide); 
                         if(data.length===0) {
@@ -117,7 +117,7 @@ export function Profile({profileData, bookRoomData}: IProps){
 
                             setData(newData)
                         }
-                    }}>{hide?  `Hiển thị ${bookRoomData.length} phòng đã đặt` : "Ẩn hiện thị phòng"}</button>}
+                    }}>{hide?  `Hiển thị ${bookRoomData?.length} phòng đã đặt` : "Ẩn hiện thị phòng"}</button>}
                 
                     
                 </div>  

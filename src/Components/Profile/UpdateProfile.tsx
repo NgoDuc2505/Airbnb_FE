@@ -56,7 +56,7 @@ export default function UpdateProfile({ profileData }: IProps) {
   const handleCloseModal = () => setOpenModal(false);
 
 
-  const [genderValue, setGender] = useState<boolean | string>(profileData.gender);
+  const [genderValue, setGender] = useState<boolean | string>(profileData?.gender);
   const handleChange = (event: SelectChangeEvent<typeof genderValue>) => setGender(event.target.value);
   const dateGenerate = `${dateValue?.date()}-${(dateValue?.month() || 0) + 1}-${dateValue?.year()}`
   const [open, setOpen] = useState(false);
@@ -64,12 +64,12 @@ export default function UpdateProfile({ profileData }: IProps) {
   const handleOpen = () => setOpen(true);
   const formik = useFormik({
     initialValues: {
-      name: profileData.name,
-      email: profileData.email,
-      phone: profileData.phone,
-      birthday: profileData.birthday,
-      role: profileData.role,
-      gender: profileData.gender,
+      name: profileData?.name,
+      email: profileData?.email,
+      phone: profileData?.phone,
+      birthday: profileData?.birthday,
+      role: profileData?.role,
+      gender: profileData?.gender,
     },
 
     validationSchema: Yup.object().shape({
