@@ -10,8 +10,12 @@ export interface IRoomState{
 export const getRoomByPhanTrang = createAsyncThunk(
     'adminRoomSlice/getRoomByPhanTrang',
     async ({pageIndex, keywords}: {pageIndex: number | undefined, keywords: string | undefined})=>{
-        const resp = axiosInterceptorWithCybertoken.get(`/api/phong-thue/phan-trang-tim-kiem?pageIndex=${pageIndex}&pageSize=8${keywords === undefined ? "": `&keyword=${keywords}`}`)
-        return resp
+        try{
+            const resp = axiosInterceptorWithCybertoken.get(`/api/phong-thue/phan-trang-tim-kiem?pageIndex=${pageIndex}&pageSize=8${keywords === undefined ? "": `&keyword=${keywords}`}`)
+            return resp
+        }catch(error){
+            console.log(error)
+        }
     }
 )
 
@@ -27,7 +31,7 @@ export const adminRoomSlice = createSlice({
     },
     extraReducers: (build)=>{
         build.addCase(getRoomByPhanTrang.fulfilled,(state,action)=>{
-            state.currentRoombyPhanTrang = action.payload.data.content
+            state.currentRoombyPhanTrang = action.payload?.data.content
         })
     }
 })

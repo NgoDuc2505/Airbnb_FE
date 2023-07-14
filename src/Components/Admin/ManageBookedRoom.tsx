@@ -24,14 +24,14 @@ function ManageBookedRoom() {
   const dispatch = useDispatch<AppDispatch>()
   const currentDataUser = useSelector((state: RootState) => state.sliceCurrent.currentCustomer)
   const currentDataRoom = useSelector((state: RootState) => state.sliceCurrent.currentBookedRoom)
-  const bookingListData = useSelector((state:RootState) =>{return state.sliceBookingAdmin.listBooking})
+  const bookingListData = useSelector((state: RootState) => { return state.sliceBookingAdmin.listBooking })
   const [open, setOpen] = React.useState(false);
-  const [valueInput,setValueInput] = useState<number | string>()
-  const [searchArr,setArr]= useState<IBookRoom[] >([])
+  const [valueInput, setValueInput] = useState<number | string>()
+  const [searchArr, setArr] = useState<IBookRoom[]>([])
   const btn = useRef<HTMLButtonElement | null>(null)
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(getListBookedRoom())
-  },[])
+  }, [])
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const rows = [
@@ -87,7 +87,7 @@ function ManageBookedRoom() {
         };
         const onClick2 = (e: React.MouseEvent) => {
           e.stopPropagation()
-          try{ 
+          try {
             swal({
               title: "Bạn có chắc chắn muốn xóa đơn này?",
               text: "Không thể quay lại sau khi xóa",
@@ -97,23 +97,23 @@ function ManageBookedRoom() {
                 'Xóa!'
               ],
               dangerMode: true,
-            }).then(function(isConfirm) {
+            }).then(function (isConfirm) {
               if (isConfirm) {
                 swal({
                   title: 'Xóa thành công!',
                   text: `Đơn đặt phòng với id ${params.row.id} đã bị xóa`,
                   icon: 'success'
-                }).then(async() => {
-                    await axiosInterceptorWithCybertoken.delete(`/api/dat-phong/${params.row.id}`);
-                    await dispatch(getListBookedRoom())
-                    btn.current?.click()
+                }).then(async () => {
+                  await axiosInterceptorWithCybertoken.delete(`/api/dat-phong/${params.row.id}`);
+                  await dispatch(getListBookedRoom())
+                  btn.current?.click()
                 });
               } else {
-                swal("Hủy thành công",  `Đơn đặt phòng với id ${params.row.id} chưa bị xóa`, "error");
+                swal("Hủy thành công", `Đơn đặt phòng với id ${params.row.id} chưa bị xóa`, "error");
               }
             })
-            
-          } catch(error) { 
+
+          } catch (error) {
             console.log(error)
             swal("Thất bại, xóa thất bại!", {
               icon: "error",
@@ -122,26 +122,26 @@ function ManageBookedRoom() {
         };
         return (
           <div className="button-group">
-            <Button disabled={ bookingListData?.length >0 ? false : true} variant="contained" onClick={onClick}>Xem chi tiết</Button>
-            <Button disabled={ bookingListData?.length >0 ? false : true} variant="contained" color='error' onClick={onClick2}>Hủy đơn</Button>
+            <Button disabled={bookingListData?.length > 0 ? false : true} variant="contained" onClick={onClick}>Xem chi tiết</Button>
+            <Button disabled={bookingListData?.length > 0 ? false : true} variant="contained" color='error' onClick={onClick2}>Hủy đơn</Button>
           </div>
         );
       }
     }
   ];
-  const newRows:IBookRoom[] = bookingListData?.length >0 ? bookingListData : rows
-  const handleChangeValue =(e: React.ChangeEvent<HTMLInputElement>)=>{
+  const newRows: IBookRoom[] = bookingListData?.length > 0 ? bookingListData : rows
+  const handleChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValueInput(e.target.value)
   }
 
-  
-  const handleSearchRoom = ()=>{
+
+  const handleSearchRoom = () => {
     if (valueInput !== "") {
-      const arraySearch:IBookRoom[] = newRows.filter((item)=>{
+      const arraySearch: IBookRoom[] = newRows.filter((item) => {
         return item.maPhong === Number(valueInput)
       })
       setArr(arraySearch)
-    } else  {
+    } else {
       setArr(newRows)
     }
   }
@@ -149,12 +149,12 @@ function ManageBookedRoom() {
     <div className='manage-booked-room'>
       <Container fixed={true} className='mui-container-manage'>
         <div className="search-user">
-          <TextField id="outlined-basic" label="Tìm phòng đặt qua mã phòng" variant="filled" className='input-search' onChange={handleChangeValue}/>
+          <TextField id="outlined-basic" label="Tìm phòng đặt qua mã phòng" variant="filled" className='input-search' onChange={handleChangeValue} />
           <button onClick={handleSearchRoom} ref={btn}>Tìm</button>
         </div>
         <Box sx={{ height: 500, width: '100%' }}>
           <DataGrid
-            rows={searchArr.length >0 ? searchArr :newRows}
+            rows={searchArr.length > 0 ? searchArr : newRows}
             columns={columns}
             checkboxSelection
             sx={{ fontSize: '1.4rem', width: "100%" }}
@@ -168,15 +168,15 @@ function ManageBookedRoom() {
             pageSizeOptions={[7, 10]}
             className='mui-grid-user'
           />
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <BookedRoomModal currentDataRoom={currentDataRoom} currentDataUser={currentDataUser} />
+          </Modal>
         </Box>
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-         <BookedRoomModal currentDataRoom={currentDataRoom} currentDataUser={currentDataUser}/>
-        </Modal>
       </Container>
     </div>
   )

@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-// import type { PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { CYBER_TOKEN, IComment } from '../../constant/constant'
 
@@ -38,7 +37,5 @@ export const commentSlice = createSlice({
         })
     }
 })
-
-// export const { } = locationSlice.actions
 
 export default commentSlice.reducer
