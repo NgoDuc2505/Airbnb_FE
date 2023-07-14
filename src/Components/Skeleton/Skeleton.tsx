@@ -177,3 +177,65 @@ export const SkeletonListRoom = () => {
     </Box>
   )
 }
+
+
+export const SkeletonAdmin = () => { 
+  const w992 = useMediaQuery('(max-width:991.98px)');
+  return(
+    <Box className="container" sx={{ width: '100%', height:'100vh', marginTop: '8rem'}}>
+      <Box sx={{ width: `${w992 ? '100%' : '100%'}`, padding: '3rem 2rem' }}>
+        <Skeleton variant='rectangular' sx={{ width: '20%', height: '3rem', borderRadius: '10px', marginBottom: '1rem' }}></Skeleton>
+        <Box sx={{ display: 'flex', gap: '8px', marginBottom:'3rem' }}>
+          <Skeleton variant='rectangular' sx={{ width: '80%', height: '5rem', borderRadius: '10px', marginBottom: '2rem' }}></Skeleton>
+          <Skeleton variant='rectangular' sx={{ width: '20%', height: '5rem', borderRadius: '10px', marginBottom: '2rem' }}></Skeleton>
+        </Box>
+
+
+        <hr style={{border:"0.5px solid rgba(0, 0, 0, 0.4509803922)"}}/>
+        <div style={{overflow:"hidden"}}>
+        <div style={{ width:"1000px"}}>
+          <Box sx={{gap:'2rem', padding:'1rem 0', display:"block"}}>
+            <Box sx={{ display: 'flex', gap: '8px', marginBottom:'3rem' }}>
+              <Skeleton variant='rectangular' sx={{ width: '3%', height: '3rem', borderRadius: '50px', marginRight:"3rem"}}></Skeleton>
+              <Skeleton variant='rectangular' sx={{ width: '5%', height: '3rem', borderRadius: '50px', marginRight:"8rem" }}></Skeleton>
+              <Skeleton variant='rectangular' sx={{ width: '5%', height: '3rem', borderRadius: '50px', marginRight:"8rem" }}></Skeleton>
+              <Skeleton variant='rectangular' sx={{ width: '10%', height: '3rem', borderRadius: '50px', marginRight:"9.7rem" }}></Skeleton>
+              <Skeleton variant='rectangular' sx={{ width: '7%', height: '3rem', borderRadius: '50px', marginRight:"16rem" }}></Skeleton>
+              <Skeleton variant='rectangular' sx={{ width: '10%', height: '3rem', borderRadius: '50px', marginRight:"9rem" }}></Skeleton>
+            </Box>
+            {([...Array(8)] as any).map((x:null, index: number)=> { 
+              return(
+                <Box key={index} sx={{ display: 'flex', gap: '8px', marginBottom:'3rem' }}>
+                  <Skeleton variant='rectangular' sx={{ width: '3%', height: '3rem', borderRadius: '50px', marginRight:"3rem"}}></Skeleton>
+                  <Skeleton variant='rectangular' sx={{ width: '5%', height: '3rem', borderRadius: '50px', marginRight:"8rem" }}></Skeleton>
+                  <Skeleton variant='rectangular' sx={{ width: '5%', height: '3rem', borderRadius: '50px', marginRight:"11rem" }}></Skeleton>
+                  <Skeleton variant='circular' sx={{ width: "3rem", height: '3rem', borderRadius: '50px', marginRight:"13.2rem" }}></Skeleton>
+                  <Skeleton variant='rectangular' sx={{ width: '8%', height: '3rem', borderRadius: '50px', marginRight:"9rem" }}></Skeleton>
+                  <Skeleton variant='rectangular' sx={{ width: '8%', height: '3rem', borderRadius: '50px', marginRight:"1rem" }}></Skeleton>
+                  <Skeleton variant='rectangular' sx={{ width: '5%', height: '3rem', borderRadius: '50px', marginRight:"1rem" }}></Skeleton>
+                  <Skeleton variant='rectangular' sx={{ width: '5%', height: '3rem', borderRadius: '50px', marginRight:"1rem" }}></Skeleton>
+                </Box>
+              )
+            })}
+          </Box>
+          
+        </div>
+        </div>
+        <hr style={{border:"0.5px solid rgba(0, 0, 0, 0.4509803922)"}}/>
+
+        <Box sx={{ display: 'flex', gap: '8px', marginTop:'1rem', alignItems:"Center", justifyContent:"flex-end"}}>
+          <Skeleton variant='rectangular' sx={{ width: '3.7rem', height: '3.7rem', borderRadius: '50px', marginRight:"1rem"}}></Skeleton>
+          <Skeleton variant='rectangular' sx={{ width: '4rem', height: '4rem', borderRadius: '50px', marginRight:"1rem" }}></Skeleton>
+          <Skeleton variant='rectangular' sx={{ width: '4rem', height: '4rem', borderRadius: '50px', marginRight:"1rem" }}></Skeleton>
+          <Skeleton variant='rectangular' sx={{ width: '4rem', height: '4rem', borderRadius: '50px', marginRight:"1rem" }}></Skeleton>
+          <Skeleton variant='rectangular' sx={{ width: '3.7rem', height: '3.7rem', borderRadius: '50px', marginRight:"1rem" }}></Skeleton>
+        </Box>
+      </Box>
+
+      
+     
+    </Box>
+  )
+}
+
+

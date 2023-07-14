@@ -23,10 +23,13 @@ import { ACCESS_TOKEN, ACCESS_USER_ID } from '../../constant/constant'
 import swal from 'sweetalert';
 //redux
 import { setDefaultProfile } from '../../redux/user-slice/UserSlice'
+import { useScrollTop } from '../../hooks/useScrollTop';
+import { SkeletonAdmin } from '../../Components/Skeleton/Skeleton';
 
 type Anchor = 'left';
 
 function AdminTemplate() {
+  useScrollTop()
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -135,7 +138,7 @@ function AdminTemplate() {
       >
         <AdminSideBar handleCloseSideBar={handleCloseSideBar} />
       </Drawer>
-      <Suspense fallback={<><h1>Loading...</h1></>}>
+      <Suspense fallback={<SkeletonAdmin/>}>
         <Outlet></Outlet>
       </Suspense>
     </div>
