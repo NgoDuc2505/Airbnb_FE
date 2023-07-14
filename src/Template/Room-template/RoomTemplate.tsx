@@ -1,5 +1,7 @@
-import React, { Suspense }  from 'react'
+//react
+import { Suspense }  from 'react'
 import { Outlet } from 'react-router-dom'
+//components
 import HeaderHome from '../../Components/Header-home/HeaderHome'
 import FooterHome from '../../Components/Footer-home/FooterHome'
 import { SkeletonDetail } from '../../Components/Skeleton/Skeleton'

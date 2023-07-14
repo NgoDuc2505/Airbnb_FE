@@ -121,62 +121,6 @@ function ManageLocation() {
             quocGia: "Việt Nam",
             hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/vt1.jpg"
           },
-        //   {
-        //     id: 2,
-        //     tenViTri: "Cái Răng",
-        //     tinhThanh: "Cần Thơ",
-        //     quocGia: "Việt Nam",
-        //     hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/vt2.jpg"
-        //   },
-        //   {
-        //     id: 3,
-        //     tenViTri: "Hòn Rùa",
-        //     tinhThanh: "Nha Trang",
-        //     quocGia: "Việt Nam",
-        //     hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/vt3.jpg"
-        //   },
-        //   {
-        //     id: 4,
-        //     tenViTri: "Hoàn Kiếm",
-        //     tinhThanh: "Hà Nội",
-        //     quocGia: "Việt Nam",
-        //     hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/vt4.jpg"
-        //   },
-        //   {
-        //     id: 5,
-        //     tenViTri: "Hòn Tằm",
-        //     tinhThanh: "Phú Quốc",
-        //     quocGia: "Việt Nam",
-        //     hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/vt5.jpg"
-        //   },
-        //   {
-        //     id: 6,
-        //     tenViTri: "Hải Châu",
-        //     tinhThanh: "Đà Nẵng",
-        //     quocGia: "Việt Nam",
-        //     hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/vt6.jpg"
-        //   },
-        //   {
-        //     id: 7,
-        //     tenViTri: "Langbiang",
-        //     tinhThanh: "Đà Lạt",
-        //     quocGia: "Việt Nam",
-        //     hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/vt7.jpg"
-        //   },
-        //   {
-        //     id: 8,
-        //     tenViTri: "Mũi Né",
-        //     tinhThanh: "Phan Thiết",
-        //     quocGia: "Việt Nam",
-        //     hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/vt8.jpg"
-        //   },
-        //   {
-        //     id: 1675,
-        //     tenViTri: "Chợ Nha Mân",
-        //     tinhThanh: "Đồng Tháp ",
-        //     quocGia: "Việt Nam",
-        //     hinhAnh: "https://airbnbnew.cybersoft.edu.vn/avatar/15-06-2023-03-11-34-cho.jpg"
-        //   },
     ]
     const dataRetrieve = useSelector((state: RootState)=>state.sliceLocationAdmin.currentLocationbyPhanTrang)
     const newRows = dataRetrieve.data ? dataRetrieve.data : rows 

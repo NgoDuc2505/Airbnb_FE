@@ -1,19 +1,26 @@
-
+//react
+import { ChangeEvent, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+//mui ui
 import { FormControl, FormHelperText, Input, InputLabel } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import NativeSelect from '@mui/material/NativeSelect';
 import Button from '@mui/material/Button';
-import './addRoom.scss'
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../redux/store';
+//yup formiki
 import * as Yup from 'yup';
-
-import { ChangeEvent, SetStateAction, useEffect, useState } from 'react';
 import { useFormik } from 'formik';
+//css
+import './addRoom.scss'
+//const
 import { ACCESS_TOKEN, IRoomDetail } from '../../constant/constant';
+//services
 import { axiosInterceptorWithCybertoken } from '../../services/services';
+//utils
 import { getLocal } from '../../utils/utils';
+//redux
+import { AppDispatch } from '../../redux/store';
 import { getRoomByPhanTrang } from '../../redux/Admin-slice/AdminRoomSlice';
+//swal
 import swal from 'sweetalert';
 
 

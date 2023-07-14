@@ -1,7 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-// import type { PayloadAction } from '@reduxjs/toolkit'
-import axios from 'axios'
-import { CYBER_TOKEN, IProfile, IRoomDetail } from '../../constant/constant'
+import { IProfile, IRoomDetail } from '../../constant/constant'
 import { axiosInterceptorWithCybertoken } from '../../services/services'
 
 interface IInit {
@@ -29,8 +27,12 @@ export const getCurrentCustomerById = createAsyncThunk(
 export const getCurrentBookedRoomById = createAsyncThunk(
     'currentSlice/getCurrentBookedRoomById',
     async (id: number)=>{
-        const resp = await axiosInterceptorWithCybertoken(`/api/phong-thue/${id}`);
-        return resp;
+        try{
+            const resp = await axiosInterceptorWithCybertoken(`/api/phong-thue/${id}`);
+            return resp;
+        }catch(error){
+            console.log(error)
+        }
     }
 )
 
@@ -58,11 +60,9 @@ export const currentSlice = createSlice({
             }
         }),
         build.addCase(getCurrentBookedRoomById.fulfilled,(state,action)=>{
-            state.currentBookedRoom = action.payload.data.content
+            state.currentBookedRoom = action.payload?.data.content
         })
     }
 })
-
-// export const { } = currentSlice.actions
 
 export default currentSlice.reducer

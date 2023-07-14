@@ -1,7 +1,8 @@
-
+//react
 import { Fragment, lazy } from 'react'
-import HomeTemplate from './Template/Home-template/HomeTemplate'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+//template
+import HomeTemplate from './Template/Home-template/HomeTemplate'
 import AdminTemplate from './Template/Admin-template/AdminTemplate'
 import DetailTemplate from './Template/Detail-template/DetailTemplate'
 import RegisterTemplate from './Template/Register-template/RegisterTemplate'
@@ -17,6 +18,7 @@ const ManageUser = lazy(()=> {return import('./Components/Admin/ManageUser')})
 const ManageRoom = lazy(()=>{return import('./Components/Admin/ManageRoom')})
 const ManageBookedRoom = lazy(()=>{return import('./Components/Admin/ManageBookedRoom')})
 const ManageLocation = lazy(()=>{return import('./Components/Admin/ManageLocation')})
+
 function App() {
   return (
     <Fragment>

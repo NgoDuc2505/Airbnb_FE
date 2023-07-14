@@ -1,8 +1,13 @@
-import React, { Suspense }  from 'react'
+//react
+import { Suspense }  from 'react'
 import { Outlet } from 'react-router-dom'
+//css
 import './registerTemplate.scss'
+//components
 import { SkeletonRegister } from '../../Components/Skeleton/Skeleton'
 import { useScrollTop } from '../../hooks/useScrollTop'
+
+
 function RegisterTemplate() {
   useScrollTop()
   return (

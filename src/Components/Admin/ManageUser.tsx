@@ -1,21 +1,27 @@
+//react
 import * as React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+//mui ui
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 import Pagination from '@mui/material/Pagination';
 import Container from '@mui/material/Container';
-import './manage.scss'
 import AdminRegister from '../Admin-register-popup/AdminRegister';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import Avatar from '@mui/material/Avatar';
+//css
+import './manage.scss'
 //Modal
 import PersonModal from '../Admin-register-popup/PersonDetailModal';
 import PersonUpdateModal from '../Admin-register-popup/PersonUpdateModal';
-import { useDispatch, useSelector } from 'react-redux';
+//redux
 import { deleteUserFromList, getUserByPhanTrang } from '../../redux/Admin-slice/AdminUserSlice';
 import { AppDispatch, RootState } from '../../redux/store';
-import swal from 'sweetalert';
+//services
 import { axiosInterceptorWithCybertoken } from '../../services/services';
+//swal
+import swal from 'sweetalert';
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'Mã', width: 70, align: 'center', headerAlign: 'center' },

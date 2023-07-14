@@ -1,6 +1,8 @@
-import HeaderHome from "../../Components/Header-home/HeaderHome"
+//react
 import {Suspense, useEffect} from 'react'
 import {Outlet, useLocation} from 'react-router-dom'
+//components
+import HeaderHome from "../../Components/Header-home/HeaderHome"
 import FooterHome from "../../Components/Footer-home/FooterHome"
 import {SkeletonC, SkeletonListRoom} from "../../Components/Skeleton/Skeleton"
 import { useScrollTop } from "../../hooks/useScrollTop"

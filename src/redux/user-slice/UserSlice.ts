@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-// import type { PayloadAction } from '@reduxjs/toolkit'
 import { axiosInterceptorWithCybertoken } from '../../services/services'
 import { IProfile } from '../../constant/constant'
 interface IState {
@@ -10,21 +9,25 @@ const initialState: IState = {
     profileData: {
         id: 0,
         name: '',
-        phone:'',
+        phone: '',
         birthday: '',
         avatar: '',
         gender: true,
-        role:'',
-        email:'',
-        password:''
+        role: '',
+        email: '',
+        password: ''
     }
 }
 
 export const getProfileData = createAsyncThunk(
     'userSlice/getProfileData',
-    async (id: number)=>{
-        const resp = await axiosInterceptorWithCybertoken.get(`/api/users/${id}`)
-        return resp;
+    async (id: number) => {
+        try {
+            const resp = await axiosInterceptorWithCybertoken.get(`/api/users/${id}`)
+            return resp;
+        } catch (error) {
+            console.log(error)
+        }
     }
 )
 
@@ -32,24 +35,24 @@ export const getProfileData = createAsyncThunk(
 export const userSlice = createSlice({
     name: 'userSlice',
     initialState,
-    reducers:{
-        setDefaultProfile: (state)=>{
+    reducers: {
+        setDefaultProfile: (state) => {
             state.profileData = {
                 id: 0,
                 name: '',
-                phone:'',
+                phone: '',
                 birthday: '',
                 avatar: '',
                 gender: true,
-                role:'',
-                email:'',
-                password:''
+                role: '',
+                email: '',
+                password: ''
             }
         }
     },
-    extraReducers: (build)=>{
-        build.addCase(getProfileData.fulfilled,(state,action)=>{
-            state.profileData = action.payload.data.content
+    extraReducers: (build) => {
+        build.addCase(getProfileData.fulfilled, (state, action) => {
+            state.profileData = action.payload?.data.content
         })
     }
 })

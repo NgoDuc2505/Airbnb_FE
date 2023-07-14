@@ -1,19 +1,21 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-// import type { PayloadAction } from '@reduxjs/toolkit'
-import axios from 'axios'
-import { CYBER_TOKEN, IBookRoom, IRoomDetail } from '../../constant/constant'
+import { IBookRoom, IRoomDetail } from '../../constant/constant'
 import { axiosInterceptorWithCybertoken } from '../../services/services'
 
-export interface IRoomState{
+export interface IRoomState {
     currentRoom: IRoomDetail,
     currentBookRoom: IBookRoom[]
 }
 
 export const getRoomByUserId = createAsyncThunk(
     'roomSlice/getRoomByUserId',
-    async (id: number | undefined)=>{
-        const resp = await axiosInterceptorWithCybertoken.get(`/api/dat-phong/lay-theo-nguoi-dung/${id}`)
-        return resp
+    async (id: number | undefined) => {
+        try {
+            const resp = await axiosInterceptorWithCybertoken.get(`/api/dat-phong/lay-theo-nguoi-dung/${id}`)
+            return resp
+        } catch (error) {
+            console.log(error)
+        }
     }
 )
 
@@ -21,22 +23,20 @@ export const getRoomByUserId = createAsyncThunk(
 
 export const getRoomById = createAsyncThunk(
     'roomSlice/getRoomById',
-    async (id: string | undefined)=>{
-        const resp = await axios({
-            url:`https://airbnbnew.cybersoft.edu.vn/api/phong-thue/${id}`,
-            method:'get',
-            headers:{
-                tokenCybersoft: CYBER_TOKEN,
-            }
-        })
-        return resp
+    async (id: string | undefined) => {
+        try {
+            const resp = await axiosInterceptorWithCybertoken.get(`/api/phong-thue/${id}`)
+            return resp
+        } catch (error) {
+            console.log(error)
+        }
     }
 )
 
 const initialState: IRoomState = {
     currentRoom: {
         id: 0,
-        tenPhong:'',
+        tenPhong: '',
         tivi: false,
         phongNgu: 0,
         phongTam: 0,
@@ -51,29 +51,27 @@ const initialState: IRoomState = {
         bep: false,
         dieuHoa: false,
         doXe: false,
-        moTa:'',
+        moTa: '',
         hinhAnh: '',
         hoBoi: false,
     },
-    currentBookRoom:[]
+    currentBookRoom: []
 }
 
 export const roomSlice = createSlice({
     name: 'roomSlice',
     initialState,
-    reducers:{
-       
+    reducers: {
+
     },
-    extraReducers: (build)=>{
-        build.addCase(getRoomById.fulfilled,(state,action)=>{
-            state.currentRoom = action.payload.data.content
+    extraReducers: (build) => {
+        build.addCase(getRoomById.fulfilled, (state, action) => {
+            state.currentRoom = action.payload?.data.content
         })
-        build.addCase(getRoomByUserId.fulfilled,(state,action)=>{
-            state.currentBookRoom = action.payload.data.content
+        build.addCase(getRoomByUserId.fulfilled, (state, action) => {
+            state.currentBookRoom = action.payload?.data.content
         })
     }
 })
-
-// export const { } = locationSlice.actions
 
 export default roomSlice.reducer
