@@ -28,9 +28,7 @@ function Login() {
     }),
     onSubmit: async (values: IValuesLogin) => {
       try{
-        console.log(values);
         const resp = await axiosInterceptorWithCybertoken.post('/api/auth/signin',values)
-        console.log(resp);
         setLocal(ACCESS_TOKEN,resp.data.content.token)
         setLocal(ACCESS_USER_ID,resp.data.content.user.id)
         swal("Đã đăng nhập thành công!", {icon: "success"})

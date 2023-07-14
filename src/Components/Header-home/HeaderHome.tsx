@@ -69,7 +69,8 @@ function HeaderHome() {
         swal("Đã đăng xuất thành công!", {icon: "success"})
     }
 
-    const role = useSelector((state: RootState)=> state.sliceUser.profileData.role)
+    const role = useSelector((state: RootState)=> state.sliceUser.profileData?.role)
+    const getRole: string = (role ? role : 'USER')
     return (
         <div className={`header-home ${show ? 'mb-84' : ''}`}>
             <div className={`header-home-layer ${show ? 'h-205' : ''}`}></div>
@@ -158,7 +159,7 @@ function HeaderHome() {
                         : (
                             <div>
                             <Button onClick={handleOpen} sx={{width: '40px', height:'40px', borderRadius:'50%', minWidth: 'unset'}}>
-                            <Avatar sx={{ bgcolor: deepOrange[500] }}>{avaName}</Avatar> 
+                            <Avatar sx={{ bgcolor: deepOrange[500] }}>{avaName ? avaName : 'N'}</Avatar> 
                             </Button>
                             <Modal
                                 open={open}
