@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ACCESS_USER_ID, IComment, ICommentId } from '../../constant/constant';
 import { useFormik } from 'formik';
-import { FormControl, FormHelperText, Input, InputLabel } from '@mui/material';
+import { FormControl, FormHelperText} from '@mui/material';
 import * as Yup from 'yup';
 import swal from 'sweetalert';
 import Button from '@mui/material/Button';
@@ -9,7 +9,7 @@ import Rating from '@mui/material/Rating';
 import { getLocal } from '../../utils/utils';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { appendCommentID, getCommentByRoomId, getCommentList } from '../../redux/Comment-slice/CommentSlice';
+import { getCommentByRoomId } from '../../redux/Comment-slice/CommentSlice';
 import { AppDispatch } from '../../redux/store'
 import { axiosInterceptor } from '../../services/services'
 import { RootState } from '../../redux/store'
@@ -28,7 +28,9 @@ export function Comment({ currentComment, limit}: IProps) {
     const idRoom = useParams()
     const commentIdListAlter: ICommentId[] = useSelector((state: RootState)=>state.sliceComment.currentListCommentID);
     const [change, setChange] = React.useState<boolean>(false);
-
+    React.useEffect(()=>{
+        setChange(false)
+    },[commentIdListAlter])
     const getItemComment = (currentDayComment: string)=>{
         const commentItem = commentIdListAlter?.find((item:ICommentId )=>{
             return item.ngayBinhLuan === currentDayComment
@@ -203,7 +205,7 @@ export function CommentChange({idComment}:IPropsCommentChange) {
                         saoBinhLuan: values.star
                     }
                     await axiosInterceptor.put(`/api/binh-luan/${idComment.id}`, value)
-                    window.location.reload()
+                    dispatch(getCommentByRoomId(String(idRoom.idDetail)))
                 }
 
                 swal("Comment thành công!", { icon: "success" })
