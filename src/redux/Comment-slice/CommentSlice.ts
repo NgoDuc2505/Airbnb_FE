@@ -7,6 +7,7 @@ import { axiosInterceptorWithCybertoken } from '../../services/services'
 export interface IRoomState{
     currentRoomComment: IComment[]
     listComment : ICommentId[]
+    currentListCommentID: ICommentId[]
 }
 
 export const getCommentByRoomId = createAsyncThunk(
@@ -35,14 +36,18 @@ export const getCommentList = createAsyncThunk(
 
 const initialState: IRoomState = {
     currentRoomComment: [],
-    listComment : []
+    listComment : [],
+    currentListCommentID : []
+
 }
 
 export const commentSlice = createSlice({
     name: 'commentSlice',
     initialState,
     reducers:{
-       
+        appendCommentID: (state, action) => {
+            state.currentListCommentID = action.payload;
+        },
     },
     extraReducers: (build)=>{
         build.addCase(getCommentByRoomId.fulfilled,(state,action)=>{
@@ -54,4 +59,5 @@ export const commentSlice = createSlice({
     }
 })
 
+export const { appendCommentID } = commentSlice.actions;
 export default commentSlice.reducer
