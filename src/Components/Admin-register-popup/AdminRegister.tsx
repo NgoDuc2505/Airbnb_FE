@@ -32,9 +32,6 @@ function AdminRegister({ handleCloseModal }: IProps) {
     let dateGenerate = `${dateValue?.date()}-${(dateValue?.month() || 0) + 1}-${dateValue?.year()}`
     let getGender = (genderValue === 'true' ? true : (genderValue === 'false' ? false : ""))
 
-
-    const dispatch = useDispatch<AppDispatch>()
-
     const handleClose = () => {
         setOpen(false);
     };

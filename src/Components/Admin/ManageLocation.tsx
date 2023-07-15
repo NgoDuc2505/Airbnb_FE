@@ -130,6 +130,7 @@ function ManageLocation() {
       }, [page, searchKey])
     const handleChangePagination = (e: React.ChangeEvent<unknown>, page: number) => {
         setPage(page)
+        return e.target
      }
     return (
         <div className='manage-location'>

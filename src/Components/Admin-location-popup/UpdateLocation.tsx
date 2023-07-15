@@ -65,11 +65,11 @@ function UpdateLocation({ handleClose, id, data, pageIndex }: IProps) {
         }),
         onSubmit: async (values) => {
             try {
-                const resp = await axiosInterceptor.put(`/api/vi-tri/${id}`, values)
+                await axiosInterceptor.put(`/api/vi-tri/${id}`, values)
                 if(file !== null){
                     const formData = new FormData();
                     formData.append("formFile", file);
-                    const respo = await axiosInterceptor.post(`/api/vi-tri/upload-hinh-vitri?maViTri=${data.id}`, formData)
+                    await axiosInterceptor.post(`/api/vi-tri/upload-hinh-vitri?maViTri=${data.id}`, formData)
                 }
                 dispatch(getLocationByPhanTrang({ pageIndex: pageIndex, keywords: "" }))
                 swal(`Thành công cập nhật vị trí ${values.tenViTri}`, { icon: "success" })

@@ -1,5 +1,4 @@
 //react
-import { useState } from 'react'
 import { useDispatch } from 'react-redux';
 //mui ui
 import { FormControl, FormHelperText, Input, InputLabel } from '@mui/material';
@@ -42,7 +41,7 @@ function AddNewLocation({handleClose,pageIndex}:IProps) {
         }),
         onSubmit: async (values)=>{
             try{
-                const resp = await axiosInterceptor.post('/api/vi-tri',values)
+                await axiosInterceptor.post('/api/vi-tri',values)
                 dispatch(getLocationByPhanTrang({pageIndex:pageIndex,keywords:""}))
                 swal("Thành công thêm mới vị trí",{icon: "success"})
                 handleClose()

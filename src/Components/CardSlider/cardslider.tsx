@@ -1,5 +1,5 @@
 import { IComment } from '../../constant/constant';
-import { Comment, checkIfImageExists } from '../Detail/commentComponent';
+import { checkIfImageExists } from '../Detail/commentComponent';
 import './cardslider.scss'
 
 interface IProps { 
@@ -10,9 +10,9 @@ interface IProps {
 
 
 export function CardSlider({comment, sliceMax, limit}: IProps){ 
-    let items : any= document.querySelectorAll('.calslider .calitem') ;
-    let next :any = document.getElementById('next');
-    let prev : any= document.getElementById('prev');
+    const items : any= document.querySelectorAll('.calslider .calitem') ;
+    const next :any = document.getElementById('next');
+    const prev : any= document.getElementById('prev');
     
     let active = 0;
     function loadShow(){
@@ -21,7 +21,7 @@ export function CardSlider({comment, sliceMax, limit}: IProps){
         items[active].style.zIndex = 1;
         items[active].style.filter = 'none';
         items[active].style.opacity = 1;
-        for(var i = active + 1; i < items.length; i++){
+        for(let i = active + 1; i < items.length; i++){
             stt++;
             items[i].style.transform = `translateX(${120*stt}px) scale(${1 - 0.2*stt}) perspective(16px) rotateY(-1deg)`;
             items[i].style.zIndex = -stt;
@@ -29,7 +29,7 @@ export function CardSlider({comment, sliceMax, limit}: IProps){
             items[i].style.opacity = stt > 2 ? 0 : 0.6;
         }
         stt = 0;
-        for(var i = active - 1; i >= 0; i--){
+        for(let i = active - 1; i >= 0; i--){
             stt++;
             items[i].style.transform = `translateX(${-120*stt}px) scale(${1 - 0.2*stt}) perspective(16px) rotateY(1deg)`;
             items[i].style.zIndex = -stt;
@@ -49,7 +49,9 @@ export function CardSlider({comment, sliceMax, limit}: IProps){
         }
     
     
-    } catch{}
+    } catch(error){
+        console.log(error)
+    }
         
   
     return(

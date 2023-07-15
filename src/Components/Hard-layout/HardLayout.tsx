@@ -1,4 +1,4 @@
-import React from 'react'
+
 import './hardLayout.scss'
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';

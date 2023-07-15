@@ -70,7 +70,6 @@ function HeaderHome() {
     }
 
     const role = useSelector((state: RootState)=> state.sliceUser.profileData?.role)
-    const getRole: string = (role ? role : 'USER')
     return (
         <div className={`header-home ${show ? 'mb-84' : ''}`}>
             <div className={`header-home-layer ${show ? 'h-205' : ''}`}></div>

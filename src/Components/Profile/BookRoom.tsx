@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react'
 import { IBookRoom } from '../../constant/constant';
 import { axiosInterceptorWithCybertoken } from '../../services/services';
 import RoomItem from '../Room-item/RoomItem';
-import * as React from 'react';
-import { Collapse, Divider } from 'antd';
+import { Collapse } from 'antd';
 import { UpdateBooking } from './UpdateBooking';
 
 
