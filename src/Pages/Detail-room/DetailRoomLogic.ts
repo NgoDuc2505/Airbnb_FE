@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 //interface store
 import { AppDispatch, RootState } from '../../redux/store'
 //const
-import { IComment, ILocationItem, IRoomDetail } from '../../constant/constant'
+import { IComment, ILocationItem, IRoomDetail, ICommentId } from '../../constant/constant'
 import { getRoomById } from '../../redux/Detail-slice/DetailSlice';
-import { getCommentByRoomId } from '../../redux/Comment-slice/CommentSlice';
+import { getCommentByRoomId, getCommentList } from '../../redux/Comment-slice/CommentSlice';
 
 export const useRoomDetail = ()=>{
     const idRoom = useParams()
@@ -24,9 +24,12 @@ export const useCommentRoom = () => {
     const dispatch = useDispatch<AppDispatch>()
     useEffect(()=>{
       dispatch(getCommentByRoomId(idRoom.idDetail))
+      dispatch(getCommentList())
     },[idRoom])
     const stateComment : IComment[] = useSelector((state: RootState)=>state.sliceComment.currentRoomComment)
-    return stateComment
+    const listComment: ICommentId[] = useSelector((state: RootState)=>state.sliceComment.listComment)
+    const listCommentSortById :ICommentId[] = listComment.filter((item: ICommentId)=>{return item.maPhong === Number(idRoom.idDetail)})
+    return {stateComment, listCommentSortById}
 }
 
 
