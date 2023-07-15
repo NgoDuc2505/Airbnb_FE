@@ -1,5 +1,5 @@
 //react
-import {Suspense, useEffect} from 'react'
+import {Suspense} from 'react'
 import {Outlet, useLocation} from 'react-router-dom'
 //components
 import HeaderHome from "../../Components/Header-home/HeaderHome"

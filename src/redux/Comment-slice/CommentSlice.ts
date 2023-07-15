@@ -1,7 +1,6 @@
-import * as React from 'react';
+
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
-import { CYBER_TOKEN, IComment, ICommentId } from '../../constant/constant'
+import { IComment, ICommentId } from '../../constant/constant'
 import { axiosInterceptorWithCybertoken } from '../../services/services'
 
 export interface IRoomState{

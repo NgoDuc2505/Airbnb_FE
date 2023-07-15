@@ -4,7 +4,6 @@ import './manage.scss'
 //mui ui
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
-import Pagination from '@mui/material/Pagination';
 import Container from '@mui/material/Container';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';

@@ -1,10 +1,9 @@
-import * as React from 'react';
+
 import Box from '@mui/material/Box';
 import Skeleton from '@mui/material/Skeleton';
 import Grid from '@mui/material/Grid';
-import Stack from '@mui/material/Stack';
 import { Container } from '@mui/material'
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 const arrayRenderItem: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8]
 const arrayIcon: Array<number> = [1, 2, 3]
@@ -75,7 +74,7 @@ export const SkeletonDetail = () => {
             <hr />
             {arrayIcon.map((item, index) => {
               return (
-                <Box key={index} sx={{ width: '100%', display: 'flex', marginTop: '1rem', alignItems: "center" }}>
+                <Box key={`${item}-${index}`} sx={{ width: '100%', display: 'flex', marginTop: '1rem', alignItems: "center" }}>
                   <Skeleton variant='rounded' sx={{ width: '60px', height: '60px', borderRadius: '50%', marginRight: '1rem' }}></Skeleton>
                   <Skeleton variant='rectangular' sx={{ width: '70%', height: '5rem', borderRadius: '10px' }}></Skeleton>
                 </Box>
@@ -84,7 +83,7 @@ export const SkeletonDetail = () => {
             <hr />
             {arrayIcon.map((item, index) => {
               return (
-                <Skeleton key={index} variant='rectangular' sx={{ width: '100%', height: '5rem', borderRadius: '10px', marginTop: '1rem' }}></Skeleton>
+                <Skeleton key={`${item}-${index}`} variant='rectangular' sx={{ width: '100%', height: '5rem', borderRadius: '10px', marginTop: '1rem' }}></Skeleton>
               )
             })}
           </Box>
@@ -205,7 +204,7 @@ export const SkeletonAdmin = () => {
             </Box>
             {([...Array(8)] as any).map((x:null, index: number)=> { 
               return(
-                <Box key={index} sx={{ display: 'flex', gap: '8px', marginBottom:'3rem' }}>
+                <Box key={`${x}-${index}`} sx={{ display: 'flex', gap: '8px', marginBottom:'3rem' }}>
                   <Skeleton variant='rectangular' sx={{ width: '3%', height: '3rem', borderRadius: '50px', marginRight:"3rem"}}></Skeleton>
                   <Skeleton variant='rectangular' sx={{ width: '5%', height: '3rem', borderRadius: '50px', marginRight:"8rem" }}></Skeleton>
                   <Skeleton variant='rectangular' sx={{ width: '5%', height: '3rem', borderRadius: '50px', marginRight:"11rem" }}></Skeleton>

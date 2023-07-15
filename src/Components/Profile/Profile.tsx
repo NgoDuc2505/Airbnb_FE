@@ -1,5 +1,4 @@
-import { ACCESS_USER_ID, IBookRoom, IProfile, IRoomDetail } from "../../constant/constant"
-import { axiosInterceptorWithCybertoken } from "../../services/services"
+import { ACCESS_USER_ID, IBookRoom, IProfile } from "../../constant/constant"
 import BookRoom from "./BookRoom"
 import React, { useEffect, useState } from 'react'
 import {Pagination} from 'antd'

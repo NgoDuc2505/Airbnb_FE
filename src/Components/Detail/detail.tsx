@@ -6,7 +6,6 @@ import AlertDialogSlide from '../Dialog/dialog';
 import {BanLa, BanUi, Bep, DieuHoa, DoXe, HoBoi, MayGiat, Tivi, Wifi}  from '../UtilityIcon/UtilityIcon';
 import DisabledOptions from './guestComponent';
 import { Comment, CommentBox, CommentSlider } from './commentComponent';
-import { Divider } from 'antd';
 import { getLocal } from '../../utils/utils';
 import { CardSlider } from '../CardSlider/cardslider';
 

@@ -42,6 +42,7 @@ export function Comment({ currentComment, limit}: IProps) {
         setChange(!change)
         const commentItem = getItemComment(currentDayComment)
         const commentID = commentItem?.id
+        return commentID
     }
 
     const handleDeleteComment = async (currentDayComment: string)=>{
@@ -94,7 +95,7 @@ export function Comment({ currentComment, limit}: IProps) {
                 <div>
                     <h3>{currentComment.tenNguoiBinhLuan}</h3>
                     <p>{currentComment.ngayBinhLuan}</p>
-
+                    <Button sx={{display:'none'}}>{formik.values.comment}</Button>
                    
                 {
                     getItemComment(currentComment.ngayBinhLuan) && (getItemComment(currentComment.ngayBinhLuan) as any).maNguoiBinhLuan == getLocal(ACCESS_USER_ID) ? 
@@ -230,6 +231,7 @@ export function CommentChange({idComment}:IPropsCommentChange) {
                 onChange={(event, newValue) => {
                     formik.values.star = newValue
                     setValue(newValue);
+                    return event
                 }}
             />
             <div className='helper-text-star-rating'>
@@ -291,6 +293,7 @@ export function CommentBox() {
                 onChange={(event, newValue) => {
                     formik.values.star = newValue
                     setValue(newValue);
+                    return event
                 }}
             />
             <div className='helper-text-star-rating'>
