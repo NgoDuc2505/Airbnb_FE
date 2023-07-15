@@ -1,7 +1,7 @@
 
 import './detail.scss'
 import '/src/Components/UtilityIcon/utility.scss'
-import { ACCESS_USER_ID, IComment, ILocationItem, IRoomDetail } from '../../constant/constant'
+import { ACCESS_USER_ID, IComment, ILocationItem, IRoomDetail, ICommentId } from '../../constant/constant'
 import AlertDialogSlide from '../Dialog/dialog';
 import {BanLa, BanUi, Bep, DieuHoa, DoXe, HoBoi, MayGiat, Tivi, Wifi}  from '../UtilityIcon/UtilityIcon';
 import DisabledOptions from './guestComponent';
@@ -13,9 +13,10 @@ import { CardSlider } from '../CardSlider/cardslider';
 interface IProps{
     dataDetail: IRoomDetail | any,
     location: ILocationItem | undefined,
-    comment: IComment[]
+    comment: IComment[],
+    commentIdList: ICommentId[],
 }
-function Detail({dataDetail, location, comment}:IProps) {
+function Detail({dataDetail, location, comment, commentIdList}:IProps) {
     const currentLocation = `${location?.tenViTri} - ${location?.tinhThanh}, ${location?.quocGia}`
     const textSplit = dataDetail.moTa !== undefined ? dataDetail.moTa.split(/\r?\n/) : dataDetail.moTa;
     const tienNghi = (text: string) => {
@@ -157,7 +158,7 @@ function Detail({dataDetail, location, comment}:IProps) {
                 comment && comment.slice(0, 5).map((currentComment: IComment, index: number) => { 
                     return ( 
                         <div key={index}>
-                            <Comment currentComment={currentComment} limit={true}/> 
+                            <Comment currentComment={currentComment} limit={true} commentIdList={commentIdList}/> 
                         </div>
                     )
                 })
@@ -174,7 +175,7 @@ function Detail({dataDetail, location, comment}:IProps) {
                     {comment && comment.map((currentComment: IComment, index: number) => { 
                         return ( 
                             <div key={index}>
-                                <Comment currentComment={currentComment} limit={false}/> 
+                                <Comment currentComment={currentComment} limit={false} /> 
                             </div>
                         )
                     })}

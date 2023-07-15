@@ -12,7 +12,7 @@ function DetailRoom() {
   return (
     <div>
       <Container maxWidth='lg'>
-        <Detail dataDetail={stateData} location = {currentLocation} comment = {stateComment}/> 
+        <Detail dataDetail={stateData} location = {currentLocation} comment = {stateComment.stateComment} commentIdList = {stateComment.listCommentSortById}/> 
       </Container>
     </div>
   )

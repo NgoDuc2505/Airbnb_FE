@@ -66,6 +66,11 @@ export interface IComment{
     avatar: string
 }
 
+export interface ICommentId extends IComment{
+    id: number,
+    maPhong: number
+}
+
 export interface IBookRoom{ 
     id: number,
     maPhong: number,
