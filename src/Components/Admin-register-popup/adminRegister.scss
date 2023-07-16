@@ -125,3 +125,16 @@
         }
     }
 }
+
+@media screen and (max-width: 576.98px) {
+    .card-detail{
+        width: 95%;
+        .card-wrapper{
+            width: unset!important;
+        }
+    }
+    .person-update-modal{
+        height: 625px;
+        width: 95%;
+    }
+}

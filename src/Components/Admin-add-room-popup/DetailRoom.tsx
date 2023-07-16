@@ -9,7 +9,7 @@ interface IProps {
 }
 
 function DetailRoom({handleCloseModal,data,handleUpdate}:IProps) {
-    console.log(data)
+   
   return (
     <div className='admin-detai-room'>
         <h2>{data.tenPhong}</h2>

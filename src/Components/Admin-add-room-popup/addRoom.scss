@@ -211,3 +211,43 @@
             }}
     }
 }
+
+@media screen and (max-width: 576.98px) {
+    .update-location-modal{
+        width: 95%;
+        height: 82%;
+        overflow-y: auto;
+        .button-group-admin-room{
+            padding-bottom: 2rem;
+        }
+    }
+    .admin-detai-room{
+        width: 95%;
+        height: 90%;
+        overflow-y: auto;
+    }
+    .room-update-modal{
+        width: 95%;
+        height: 90%;
+        overflow-y: auto;
+        &::before{
+            height: 115%;
+        }
+    }
+}
+
+@media screen and (max-width:414px) {
+    .room-update-modal{
+        &::before{
+            height: 210%;
+        }
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .room-update-modal{
+        &::before{
+            height: 255%;
+        }
+    }
+}

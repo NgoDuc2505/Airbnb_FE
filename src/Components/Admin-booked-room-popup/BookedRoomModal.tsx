@@ -15,6 +15,8 @@ import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 //const
 import { IRoomDetail, IProfile } from '../../constant/constant'
+//css
+import './bookedRoomModal.scss'
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -42,7 +44,7 @@ const BookedRoomModal = React.forwardRef<HTMLInputElement, IProps>((props: IProp
   };
 
   return (
-    <Card ref={ref} sx={{ maxWidth: 500, position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)' }}>
+    <Card ref={ref} sx={{ maxWidth: 500, position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)' }} className='mui-card-custom'>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe" src={currentDataUser.avatar}>
