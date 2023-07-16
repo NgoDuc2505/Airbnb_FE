@@ -24,6 +24,7 @@ import { useLoginRenderAva } from './headerHomeLogic'
 import { RootState } from '../../redux/store'
 import { setDefaultProfile } from '../../redux/user-slice/UserSlice'
 
+
 const style = {
     position: 'absolute',
     top: '18%',
@@ -36,7 +37,7 @@ const style = {
     borderRadius: '8px',
   };
 
-function HeaderHome() {
+const HeaderHome = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const getAcessToken: string = getLocal(ACCESS_TOKEN)
@@ -76,7 +77,7 @@ function HeaderHome() {
             <div className="container-header">
                 <div className="left-header">
                     <NavLink to={'/'}>
-                        <img src="/assets/Image/Airbnb_logo.png" alt="..." />
+                        <img src='/src/assets/Image/Airbnb_logo.png' alt="..." />
                     </NavLink>
                 </div>
                 <div className="mid-wrapper">
