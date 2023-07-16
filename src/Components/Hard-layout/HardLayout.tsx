@@ -4,6 +4,11 @@ import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+//static file img
+import homeOcean from '../../assets/Image/home-ocean.jpg'
+import dogBed from '../../assets/Image/dog-on-bed-photopin-740w.jpg'
+import maxRes from '../../assets/Image/maxresdefault.jpg'
+import unique from '../../assets/Image/unique.jpg'
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -34,7 +39,7 @@ function HardLayout() {
             <Grid item md={3} sm={6} xs={6}  className='mui-grid-item'>
               <Item className='mui-item'>
                 <div className="feature-sub-item">
-                  <img src="/src/assets/Image/home-ocean.jpg" alt="..." />
+                  <img src={homeOcean} alt="..." />
                   <p>Toàn bộ nhà</p>
                 </div>
               </Item>
@@ -42,7 +47,7 @@ function HardLayout() {
             <Grid item md={3} sm={6} xs={6} className='mui-grid-item'>
               <Item className='mui-item'>
                 <div className="feature-sub-item">
-                  <img src="/src/assets/Image/unique.jpg" alt="..." />
+                  <img src={unique} alt="..." />
                   <p>Chỗ ở độc đáo</p>
                 </div>
               </Item>
@@ -50,7 +55,7 @@ function HardLayout() {
             <Grid item md={3} sm={6} xs={6} className='mui-grid-item'>
               <Item className='mui-item'>
                 <div className="feature-sub-item">
-                  <img src="/src/assets/Image/maxresdefault.jpg" alt="..." />
+                  <img src={maxRes} alt="..." />
                   <p>Trang trại vè thiên nhiên</p>
                 </div>
               </Item>
@@ -58,7 +63,7 @@ function HardLayout() {
             <Grid item md={3} sm={6} xs={6} className='mui-grid-item'>
               <Item className='mui-item'>
                 <div className="feature-sub-item">
-                  <img src="/src/assets/Image/dog-on-bed-photopin-740w.jpg" alt="..." />
+                  <img src={dogBed} alt="..." />
                   <p>Cho phép mang theo thú cưng</p>
                 </div>
               </Item>

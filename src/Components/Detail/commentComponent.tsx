@@ -13,6 +13,9 @@ import { getCommentByRoomId } from '../../redux/Comment-slice/CommentSlice';
 import { AppDispatch } from '../../redux/store'
 import { axiosInterceptor } from '../../services/services'
 import { RootState } from '../../redux/store'
+//static file img
+import emptyAva from '../../assets/Image/emptyAva.jpg'
+
 interface IProps {
     currentComment: IComment | any
     limit: boolean
@@ -20,7 +23,7 @@ interface IProps {
 }
 
 export const checkIfImageExists = (url: string): string => {
-    return url === "" ? "/src/assets/Image/emptyAva.jpg" : url
+    return url === "" ? emptyAva : url
 }
 
 export function Comment({ currentComment, limit}: IProps) {
