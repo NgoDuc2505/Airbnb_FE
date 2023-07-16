@@ -23,6 +23,8 @@ import { useLoginRenderAva } from './headerHomeLogic'
 //redux
 import { RootState } from '../../redux/store'
 import { setDefaultProfile } from '../../redux/user-slice/UserSlice'
+//static file
+import Airbnb_logo from './src/assets/Image/Airbnb_logo.png'
 
 const style = {
     position: 'absolute',
@@ -76,7 +78,7 @@ function HeaderHome() {
             <div className="container-header">
                 <div className="left-header">
                     <NavLink to={'/'}>
-                        <img src="/assets/Image/Airbnb_logo.png" alt="..." />
+                        <img src={Airbnb_logo} alt="..." />
                     </NavLink>
                 </div>
                 <div className="mid-wrapper">
