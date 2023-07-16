@@ -76,7 +76,7 @@ function HeaderHome() {
             <div className="container-header">
                 <div className="left-header">
                     <NavLink to={'/'}>
-                        <img src="/src/assets/Image/Airbnb_logo.png" alt="..." />
+                        <img src="/assets/Image/Airbnb_logo.png" alt="..." />
                     </NavLink>
                 </div>
                 <div className="mid-wrapper">
