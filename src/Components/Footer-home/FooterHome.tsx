@@ -1,4 +1,4 @@
-import React from 'react'
+
 import './footerHome.scss'
 //MUI UI
 import { styled } from '@mui/material/styles';

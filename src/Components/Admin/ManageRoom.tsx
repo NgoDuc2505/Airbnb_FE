@@ -12,8 +12,6 @@ import Avatar from '@mui/material/Avatar';
 import TextField from '@mui/material/TextField';
 //component
 import AddRoom from '../Admin-add-room-popup/AddRoom';
-//const
-import { IRoomDetail } from '../../constant/constant';
 //modal
 import DetailRoom from '../Admin-add-room-popup/DetailRoom';
 import RoomUpdateModal from '../Admin-add-room-popup/RoomUpdateModal';
@@ -23,27 +21,7 @@ import { getRoomByPhanTrang } from '../../redux/Admin-slice/AdminRoomSlice';
 import swal from 'sweetalert';
 import { axiosInterceptor } from '../../services/services';
 
-const initState: IRoomDetail = {
-    id: 0,
-    tenPhong: "NewApt D1 - Cozy studio - NU apt - 500m Bui Vien!",
-    khach: 3,
-    phongNgu: 1,
-    giuong: 1,
-    phongTam: 1,
-    moTa: "Tự nhận phòng cấp là những chủ nhà có kinh nghiệm, được đánh giá cao và là những người cam kết mang lại quãng thời gian ở tuyệt vời cho khách.",
-    giaTien: 28,
-    mayGiat: true,
-    banLa: true,
-    tivi: true,
-    dieuHoa: false,
-    wifi: true,
-    bep: false,
-    doXe: true,
-    hoBoi: true,
-    banUi: true,
-    maViTri: 1,
-    hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/phong3.jpg"
-}
+
 function ManageRoom() {
     const dispatch  = useDispatch<AppDispatch>()
     const [open, setOpen] = React.useState(false);
@@ -188,6 +166,7 @@ function ManageRoom() {
 
     const handleChangePagination = (e: React.ChangeEvent<unknown>, page: number) => {
         setPage(page)
+        return e.target
     }
     return (
         <div className='manage-user'>

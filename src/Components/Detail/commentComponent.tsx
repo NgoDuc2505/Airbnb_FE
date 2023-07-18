@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ACCESS_USER_ID, IComment, ICommentId } from '../../constant/constant';
 import { useFormik } from 'formik';
-import { FormControl, FormHelperText, Input, InputLabel } from '@mui/material';
+import { FormControl, FormHelperText} from '@mui/material';
 import * as Yup from 'yup';
 import swal from 'sweetalert';
 import Button from '@mui/material/Button';
@@ -9,10 +9,13 @@ import Rating from '@mui/material/Rating';
 import { getLocal } from '../../utils/utils';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { appendCommentID, getCommentByRoomId, getCommentList } from '../../redux/Comment-slice/CommentSlice';
+import { getCommentByRoomId } from '../../redux/Comment-slice/CommentSlice';
 import { AppDispatch } from '../../redux/store'
 import { axiosInterceptor } from '../../services/services'
 import { RootState } from '../../redux/store'
+//static file img
+import emptyAva from '../../assets/Image/emptyAva.jpg'
+
 interface IProps {
     currentComment: IComment | any
     limit: boolean
@@ -20,7 +23,7 @@ interface IProps {
 }
 
 export const checkIfImageExists = (url: string): string => {
-    return url === "" ? "/src/assets/Image/emptyAva.jpg" : url
+    return url === "" ? emptyAva : url
 }
 
 export function Comment({ currentComment, limit}: IProps) {
@@ -28,7 +31,9 @@ export function Comment({ currentComment, limit}: IProps) {
     const idRoom = useParams()
     const commentIdListAlter: ICommentId[] = useSelector((state: RootState)=>state.sliceComment.currentListCommentID);
     const [change, setChange] = React.useState<boolean>(false);
-
+    React.useEffect(()=>{
+        setChange(false)
+    },[commentIdListAlter])
     const getItemComment = (currentDayComment: string)=>{
         const commentItem = commentIdListAlter?.find((item:ICommentId )=>{
             return item.ngayBinhLuan === currentDayComment
@@ -40,6 +45,7 @@ export function Comment({ currentComment, limit}: IProps) {
         setChange(!change)
         const commentItem = getItemComment(currentDayComment)
         const commentID = commentItem?.id
+        return commentID
     }
 
     const handleDeleteComment = async (currentDayComment: string)=>{
@@ -92,7 +98,7 @@ export function Comment({ currentComment, limit}: IProps) {
                 <div>
                     <h3>{currentComment.tenNguoiBinhLuan}</h3>
                     <p>{currentComment.ngayBinhLuan}</p>
-
+                    <Button sx={{display:'none'}}>{formik.values.comment}</Button>
                    
                 {
                     getItemComment(currentComment.ngayBinhLuan) && (getItemComment(currentComment.ngayBinhLuan) as any).maNguoiBinhLuan == getLocal(ACCESS_USER_ID) ? 
@@ -203,7 +209,7 @@ export function CommentChange({idComment}:IPropsCommentChange) {
                         saoBinhLuan: values.star
                     }
                     await axiosInterceptor.put(`/api/binh-luan/${idComment.id}`, value)
-                    window.location.reload()
+                    dispatch(getCommentByRoomId(String(idRoom.idDetail)))
                 }
 
                 swal("Comment thành công!", { icon: "success" })
@@ -228,6 +234,7 @@ export function CommentChange({idComment}:IPropsCommentChange) {
                 onChange={(event, newValue) => {
                     formik.values.star = newValue
                     setValue(newValue);
+                    return event
                 }}
             />
             <div className='helper-text-star-rating'>
@@ -289,6 +296,7 @@ export function CommentBox() {
                 onChange={(event, newValue) => {
                     formik.values.star = newValue
                     setValue(newValue);
+                    return event
                 }}
             />
             <div className='helper-text-star-rating'>

@@ -6,9 +6,10 @@ import AlertDialogSlide from '../Dialog/dialog';
 import {BanLa, BanUi, Bep, DieuHoa, DoXe, HoBoi, MayGiat, Tivi, Wifi}  from '../UtilityIcon/UtilityIcon';
 import DisabledOptions from './guestComponent';
 import { Comment, CommentBox, CommentSlider } from './commentComponent';
-import { Divider } from 'antd';
 import { getLocal } from '../../utils/utils';
 import { CardSlider } from '../CardSlider/cardslider';
+//static img file
+import ava from '../../assets/Image/carousel-img.jpg'
 
 interface IProps{
     dataDetail: IRoomDetail | any,
@@ -89,7 +90,7 @@ function Detail({dataDetail, location, comment, commentIdList}:IProps) {
                     <h2>Toàn bộ căn hộ Condo</h2>
                     <p>{dataDetail.khach} khách · {dataDetail.phongNgu} phòng ngủ · {dataDetail.phongTam} phòng tắm</p>
                 </div>
-                <img className="avatar" src="/src/assets/Image/carousel-img.jpg" alt="" />
+                <img className="avatar" src={ava} alt="" />
             </div>
             <hr />
             <div className='my-4'>

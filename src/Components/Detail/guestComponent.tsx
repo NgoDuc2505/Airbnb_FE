@@ -82,10 +82,8 @@ export default function SelectVariants({khachMax, giaTien, phone, dataDetail} : 
   const [checkPayment, setCheckPayment] = React.useState(false)
   const dispatch = useDispatch<AppDispatch>()
   const [openGuest, setOpenGuest] = React.useState(false);
-  const handleOpenGuest = () => setOpenGuest(true)
   const handleCloseGuest = () => setOpenGuest(false)
   const [openDate, setOpenDate] = React.useState(false);
-  const handleOpenDate = () => setOpenDate(true)
   const handleCloseDate = () => setOpenDate(false)
 
   const [phoneDate, setPhoneDate] = React.useState<any>([
@@ -123,6 +121,7 @@ export default function SelectVariants({khachMax, giaTien, phone, dataDetail} : 
 
   const handleChange = (event: SelectChangeEvent) => {
     setInputGuest(event.target.value);
+    return inputGuest
   };
 
   const handleGuest = (index: number) => { 

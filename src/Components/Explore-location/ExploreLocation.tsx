@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+
 import { NavLink } from 'react-router-dom';
 //MUI UI
 import { createTheme, styled, ThemeProvider } from '@mui/material/styles';
@@ -12,10 +12,11 @@ import useGetInspectOfSearchPage from './exploreComponentLogic';
 import { ILocationItem } from '../../constant/constant'
 //swipper
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import { Autoplay, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,

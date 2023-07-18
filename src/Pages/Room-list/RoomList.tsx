@@ -11,7 +11,7 @@ import useRoomList from './roomListLogic';
 function RoomList() {
   const stateData =useRoomList()
   const handleChipClick = () => {
-    const nothing = 'nothing';
+    return 1
   }
   return (
     <div className='room-list'>

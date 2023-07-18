@@ -23,6 +23,8 @@ import { useLoginRenderAva } from './headerHomeLogic'
 //redux
 import { RootState } from '../../redux/store'
 import { setDefaultProfile } from '../../redux/user-slice/UserSlice'
+//static img
+import AirbnbLogo from '../../assets/Image/Airbnb_logo.png'
 
 const style = {
     position: 'absolute',
@@ -36,7 +38,7 @@ const style = {
     borderRadius: '8px',
   };
 
-function HeaderHome() {
+const HeaderHome = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const getAcessToken: string = getLocal(ACCESS_TOKEN)
@@ -70,14 +72,13 @@ function HeaderHome() {
     }
 
     const role = useSelector((state: RootState)=> state.sliceUser.profileData?.role)
-    const getRole: string = (role ? role : 'USER')
     return (
         <div className={`header-home ${show ? 'mb-84' : ''}`}>
             <div className={`header-home-layer ${show ? 'h-205' : ''}`}></div>
             <div className="container-header">
                 <div className="left-header">
                     <NavLink to={'/'}>
-                        <img src="/src/assets/Image/Airbnb_logo.png" alt="..." />
+                        <img src={AirbnbLogo} alt="..." />
                     </NavLink>
                 </div>
                 <div className="mid-wrapper">

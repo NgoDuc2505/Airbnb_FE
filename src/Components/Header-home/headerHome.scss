@@ -538,7 +538,7 @@
             }
             .under-content{
                 width: 225%; 
-                transform: translateX(-8%); 
+                transform: translateX(-11%); 
                 .under-content-text{
                     padding: 1rem 1rem 1rem 1rem; 
                 }
@@ -573,12 +573,12 @@
        .mid-wrapper{
         .zoomout-comonent{
             .under-content{
-                transform: translateX(-11%); 
+                width: 221%;
+                transform: translateX(-12%); 
                 .under-content-text{
                     padding: 1rem 0.5rem 1rem 0.5rem; 
                 }
                 .search-check{
-                    padding-top: 0;
                     .search-btn-check{ 
                         width: 3rem;
                         font-size: 1.2rem;
@@ -587,9 +587,14 @@
                 }
                 .date-checkout{ 
                     width: 22%;
+                    padding-top: 1.6rem;
+                }
+                .date-checkin{
+                    padding-top: 1.6rem;
                 }
                 .reach-location{
                     padding-left: 1.2rem;
+                    padding-top: 1.6rem;
                 }
             }
         }

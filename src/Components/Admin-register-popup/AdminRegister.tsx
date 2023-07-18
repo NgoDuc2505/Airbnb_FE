@@ -10,8 +10,6 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../redux/store';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { axiosInterceptorWithCybertoken } from '../../services/services';
@@ -31,9 +29,6 @@ function AdminRegister({ handleCloseModal }: IProps) {
 
     let dateGenerate = `${dateValue?.date()}-${(dateValue?.month() || 0) + 1}-${dateValue?.year()}`
     let getGender = (genderValue === 'true' ? true : (genderValue === 'false' ? false : ""))
-
-
-    const dispatch = useDispatch<AppDispatch>()
 
     const handleClose = () => {
         setOpen(false);
