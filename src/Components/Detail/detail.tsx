@@ -61,7 +61,7 @@ function Detail({dataDetail, location, comment, commentIdList}:IProps) {
       <div className='detail-gimmick d-flex justify-content-between align-content-center'>
         <div className='detail-sub-heading'>
             <i className="fa-solid fa-star"></i>
-            <p className='rating'>{averageStar}</p>
+            <p className='rating'>{averageStar ? averageStar: "0"}</p>
             <p>·</p>
             <p className='onDetail'>({comment.length} đánh giá)</p>
             <p>·</p>
@@ -132,7 +132,7 @@ function Detail({dataDetail, location, comment, commentIdList}:IProps) {
                 <h1>${dataDetail.giaTien}<span> / đêm</span></h1>
                 <div className='detail-sub-heading yeet'>
                     <i className="fa-solid fa-star"></i>
-                    <p className='rating'>{averageStar}</p>
+                    <p className='rating'>{averageStar ? averageStar: "0"}</p>
                     <p>·</p>
                     <p className='onDetail'>({comment.length} đánh giá)</p>
                 </div>
@@ -142,17 +142,19 @@ function Detail({dataDetail, location, comment, commentIdList}:IProps) {
       </section>
       <hr />
       {/* -------------------------------------- Comment display -------------------------------*/}
+
       <section className='detail-comment'>
         <div className='detail-comment-rating'>
             <i className="fa-solid fa-star"></i>
-            <h1>{averageStar}</h1>
+            <h1>{averageStar ? averageStar: "0"}</h1>
             <p>·</p>
             <h1 className='rating-comment'>{comment.length} đánh giá</h1>
         </div>
-            
+        
+        {averageStar ? 
         <div className='detail-comment-slider'>
             <CommentSlider classes={"row"}/>
-        </div>
+        </div>:""}
 
         <div className='detail-comment-section'>
             {
@@ -165,9 +167,13 @@ function Detail({dataDetail, location, comment, commentIdList}:IProps) {
                 })
             }
         </div>
+
+        {averageStar ? 
         <div className='detail-comment-section-phone'>
             <CardSlider comment={comment} limit={true} sliceMax={5}/>
-        </div>
+        </div>: ""}
+
+        {averageStar ? 
         <AlertDialogSlide 
             buttonName={`Hiển Thị ${comment.length} Đánh Giá`} 
             title={`★ ${averageStar} · ${comment.length} đánh giá`} 
@@ -182,6 +188,8 @@ function Detail({dataDetail, location, comment, commentIdList}:IProps) {
                     })}
                 </div>
         }/>
+        : 
+        <h3>Hãy là người đánh giá đầu tiên</h3>}
       </section>
       {/* -------------------------------------- END Comment display -------------------------------*/}
       <hr />
